@@ -4,6 +4,8 @@ import { Outfit } from 'next/font/google';
 import GlobalCommandPalette from '@/components/GlobalCommandPalette';
 import PWARegistry from '@/components/PWARegistry';
 import { Toaster } from 'sonner';
+import { Providers } from '@/components/Providers';
+import { AuthProvider } from '@/lib/auth-mock';
 
 const font = Outfit({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800', '900'] });
 
@@ -24,9 +26,6 @@ export const viewport = {
   maximumScale: 1,
   userScalable: false,
 };
-
-import { Providers } from '@/components/Providers';
-import { AuthProvider } from '@/lib/auth-mock';
 
 export default function RootLayout({
   children,

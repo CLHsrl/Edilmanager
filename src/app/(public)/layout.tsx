@@ -1,148 +1,20 @@
-'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import PublicNavbar from '@/components/PublicNavbar';
+import PublicFooter from '@/components/PublicFooter';
 import ScrollReveal from '@/components/ScrollReveal';
-import Logo from '@/components/Logo';
 
 export default function PublicLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
     return (
         <div className="min-h-screen w-full bg-white flex flex-col font-sans relative">
             <ScrollReveal />
-            {/* CORPORATE NAVBAR */}
-            <header className="sticky top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm py-4 transition-all duration-300">
-                <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-                    <Logo />
-
-                    {/* Desktop Menu */}
-                    <nav className="hidden md:flex items-center gap-10 font-bold text-[11px] uppercase tracking-widest text-slate-500">
-                        <Link href="/features" className="hover:text-slate-900 transition-colors">Funzionalità</Link>
-                        <Link href="/platform" className="hover:text-slate-900 transition-colors">Piattaforma</Link>
-                        <Link href="/pricing" className="hover:text-slate-900 transition-colors">Prezzi</Link>
-                        <Link href="/blog" className="hover:text-slate-900 transition-colors">Blog</Link>
-                        <Link href="/about" className="hover:text-slate-900 transition-colors">Azienda</Link>
-                    </nav>
-
-                    <div className="flex items-center gap-6">
-                        <Link href="/login" className="text-xs font-bold text-slate-900 hover:text-blue-600 hidden sm:block">Accedi</Link>
-                        <Link href="/#contatti" className="bg-slate-900 text-white px-6 py-3 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-blue-600 transition-all shadow-sm btn-solid">
-                            Richiedi Demo
-                        </Link>
-                        {/* Mobile Toggle */}
-                        <button 
-                            className="md:hidden p-2 text-slate-600 hover:text-blue-600"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
-                </div>
-            </header>
-
-                {/* Mobile Menu Overlay */}
-                {isMenuOpen && (
-                    <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b border-gray-100 py-8 px-6 shadow-xl animate-in slide-in-from-top-2">
-                        <nav className="flex flex-col gap-6 text-lg font-bold text-gray-900">
-                            <Link href="/features" onClick={() => setIsMenuOpen(false)}>Funzionalità</Link>
-                            <Link href="/platform" onClick={() => setIsMenuOpen(false)}>Piattaforma</Link>
-                            <Link href="/pricing" onClick={() => setIsMenuOpen(false)}>Prezzi</Link>
-                            <Link href="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
-                            <Link href="/#faq" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
-                            <Link href="/about" onClick={() => setIsMenuOpen(false)}>Chi Siamo</Link>
-                            <hr className="border-gray-100" />
-                            <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-blue-600">Accedi Clienti</Link>
-                        </nav>
-                    </div>
-                )}
-
-
-            {/* MAIN CONTENT */}
+            <PublicNavbar />
             <main className="flex-1">
                 {children}
             </main>
-
-
-            {/* PREMIUM FOOTER */}
-            <footer className="bg-gray-950 text-gray-400 border-t border-gray-800">
-                {/* NEWSLETTER BANNER */}
-                <div className="border-b border-gray-800/50">
-                    <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
-                        <div>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-blue-500 mb-2">Industry Insights</p>
-                            <h3 className="text-xl font-black text-white">Ricevi le guide settimanali per far crescere la tua impresa.</h3>
-                        </div>
-                        <div className="flex gap-3 w-full md:w-auto">
-                            <input 
-                                type="email" 
-                                placeholder="tua@email.it" 
-                                className="flex-1 md:w-64 bg-gray-900 border border-gray-800 text-white rounded-xl px-4 py-3 text-sm outline-none focus:border-blue-600 transition-colors placeholder-gray-600 font-medium"
-                            />
-                            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-black uppercase tracking-widest text-[10px] transition-all whitespace-nowrap">
-                                Iscriviti
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                {/* MAIN FOOTER */}
-                <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-5 gap-12 mb-4">
-                    <div className="col-span-1 md:col-span-2">
-                        <div className="mb-6">
-                            <Logo variant="light" />
-                        </div>
-                        <p className="text-sm max-w-sm mb-8 leading-relaxed">
-                            Il sistema operativo definitivo per le imprese edili moderne. Innovazione, tecnologia e controllo totale in un unico posto.
-                        </p>
-                        <div className="flex items-center gap-2 px-3 py-2 bg-gray-900 border border-gray-800 rounded-xl w-fit">
-                            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                            <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Server Online — 99.99% uptime</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 className="text-white font-black mb-6 uppercase tracking-widest text-[10px]">Prodotto</h4>
-                        <ul className="space-y-4 text-sm">
-                            <li><Link href="/features" className="hover:text-white transition-colors">Funzionalità</Link></li>
-                            <li><Link href="/platform" className="hover:text-white transition-colors">Piattaforma</Link></li>
-                            <li><Link href="/pricing" className="hover:text-white transition-colors">Prezzi</Link></li>
-                            <li><Link href="/login" className="hover:text-white transition-colors">Accedi</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-white font-black mb-6 uppercase tracking-widest text-[10px]">Risorse</h4>
-                        <ul className="space-y-4 text-sm">
-                            <li><Link href="/blog" className="hover:text-white transition-colors">Blog & Guide</Link></li>
-                            <li><Link href="/#quiz" className="hover:text-white transition-colors">Maturity Quiz</Link></li>
-                            <li><Link href="/#contatti" className="hover:text-white transition-colors">Richiedi Demo</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-white font-black mb-6 uppercase tracking-widest text-[10px]">Azienda</h4>
-                        <ul className="space-y-4 text-sm">
-                            <li><Link href="/about" className="hover:text-white transition-colors">Chi Siamo</Link></li>
-                            <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                            <li><Link href="/terms" className="hover:text-white transition-colors">Termini e Condizioni</Link></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div className="max-w-7xl mx-auto px-6 border-t border-gray-900 py-8 flex flex-col md:flex-row justify-between items-center text-xs gap-4">
-                    <p>© {new Date().getFullYear()} EdilManager Srl — P.IVA IT12345678900. Tutti i diritti riservati.</p>
-                    <div className="flex items-center gap-2">
-                        <span className="text-gray-600">🇮🇹</span>
-                        <span className="font-bold text-gray-600 uppercase tracking-widest text-[9px]">Made in Italy · GDPR Compliant</span>
-                    </div>
-                </div>
-            </footer>
+            <PublicFooter />
             {/* WHATSAPP FLOATING BUTTON */}
             <a 
                 href="https://wa.me/393331234567" 
