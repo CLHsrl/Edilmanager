@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, ReactNode, useState } from 'react';
 import { useSession } from 'next-auth/react';
 
 type Role = 'ADMIN' | 'PM' | 'OPERAIO';
@@ -10,6 +10,7 @@ interface AuthContextType {
   user: any;
   status: 'loading' | 'authenticated' | 'unauthenticated';
   canAccess: (requiredRole: Role[]) => boolean;
+  setRole: (role: Role) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -17,7 +18,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { data: session, status } = useSession();
   
-  const role = (session?.user as any)?.role as Role || 'OPERAIO';
+  const [localRole, setLocalRole] = useState<Role | null>(null);
+  
+  const role = localRole || (session?.user as any)?.role as Role || 'OPERAIO';
 
   const canAccess = (requiredRoles: Role[]) => {
     return requiredRoles.includes(role);
@@ -28,7 +31,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       role, 
       user: session?.user, 
       status,
-      canAccess 
+      canAccess,
+      setRole: setLocalRole
     }}>
       {children}
     </AuthContext.Provider>
