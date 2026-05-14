@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, User, Share2, ArrowRight, BookOpen, Clock, Bookmark } from 'lucide-react';
 import { BLOG_POSTS } from '@/lib/blog-data';
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const post = BLOG_POSTS.find(p => p.slug === slug);
 
