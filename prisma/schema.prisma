@@ -1,0 +1,675 @@
+// This is your Prisma schema file
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── GOVERNANCE & AUDIT ──────────────────────────────────────────────────────
+
+model SystemAuditLog {
+  id        String   @id @default(cuid())
+  userId    String   @default("SYSTEM") // User who performed the action
+  action    String   // e.g. "DELETE_FATTURA", "UPDATE_BUDGET"
+  resource  String   // e.g. "FATTURA_123", "PROJECT_456"
+  details   String?  // JSON string or extra text describing the change
+  createdAt DateTime @default(now())
+}
+
+// ─── AUTH & CORE ─────────────────────────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String   
+  role      String   @default("ADMIN") // ADMIN, PM, OPERAIO
+  
+  totalXp            Int      @default(0)
+  rank               String   @default("GARZONE DI CANTIERE")
+  lastDailyBonusDate DateTime?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tasks     WorkflowTask[]
+}
+
+model Client {
+  id        String   @id @default(cuid())
+  number    Int?     @unique
+  type      String   @default("PRIVATE")
+  name      String   
+  firstName String?  
+  lastName  String?  
+  gender    String?
+  taxId     String?  // P.IVA or Codice Fiscale - used as Portal Access Code
+  email     String?
+  phone     String?
+  pec       String?
+  sdiCode   String?
+  address   String?
+  city      String?
+  cap       String?
+  province  String?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  quotes    Quote[]
+  contracts Contract[]
+  projects  Project[]
+  portalEnabled Boolean @default(true)
+}
+
+
+
+model Project {
+  id           String   @id @default(cuid())
+  number       Int?     
+  name         String
+  description  String?
+  status       String   @default("ONGOING") 
+  committente  String?  
+  indirizzo    String?  
+  citta        String?  
+  cap          String?  
+  latitude     Float?
+  longitude    Float?
+
+  clientId     String
+  client       Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  startDate    DateTime @default(now())
+  endDate      DateTime?
+  budget       Float?   
+
+  items        ProjectItem[]
+  rapportini   Rapportino[]
+  ddts         Ddt[]
+  sal          Sal[]
+  previsionali Previsionale[]
+  movimenti    Movimento[] @relation("MovimentoProjects")
+  fatture      Fattura[]   @relation("FatturaProjects")
+  lavoratori   Lavoratore[] @relation("ProjectLavoratori")
+
+  aiMetadata   String?  // JSON for site-wide AI safety logs/stats
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  quotes       Quote[]  @relation("ProjectQuotes")
+  attrezzature Attrezzatura[]
+  
+  portalKey    String?  @unique // Secret key for client portal access
+  updates      ProjectUpdate[]
+  safetyPlans  SafetyPlan[]
+  documents    ProjectDocument[]
+  rfis         RFI[]
+}
+
+model ProjectDocument {
+  id            String   @id @default(cuid())
+  projectId     String
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name          String
+  category      String   @default("TECHNICAL") // TECHNICAL, LEGAL, ADMIN, PHOTO
+  status        String   @default("PENDING")   // PENDING, APPROVED, REJECTED, ARCHIVED
+  
+  versions      DocumentVersion[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model DocumentVersion {
+  id            String   @id @default(cuid())
+  documentId    String
+  document      ProjectDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  versionNumber Int
+  fileUrl       String
+  notes         String?
+  uploadedBy    String?  // Name or User ID
+  
+  createdAt     DateTime @default(now())
+}
+
+model RFI {
+  id            String   @id @default(cuid())
+  projectId     String
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  number        Int      
+  title         String
+  question      String
+  answer        String?
+  status        String   @default("OPEN") // OPEN, ANSWERED, CLOSED
+  priority      String   @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
+  
+  dueDate       DateTime?
+  answeredAt    DateTime?
+  answeredBy    String?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ─── DOCUMENTAZIONE & FIRME (HORIZON) ────────────────────────────────────────
+
+model DigitalSignature {
+  id            String     @id @default(cuid())
+  signatureData String     // Base64 image
+  signerName    String?
+  role          String     @default("COMMITTENTE") // COMMITTENTE, OPERAIO, FORNITORE
+  
+  // Relations (1-to-1)
+  rapportinoId  String?    @unique
+  rapportino    Rapportino? @relation(fields: [rapportinoId], references: [id], onDelete: Cascade)
+  
+  ddtId         String?    @unique
+  ddt           Ddt?        @relation(fields: [ddtId], references: [id], onDelete: Cascade)
+  
+  quoteId       String?    @unique
+  quote         Quote?      @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  
+  contractId    String?    @unique
+  contract      Contract?   @relation(fields: [contractId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime   @default(now())
+}
+
+model Rapportino {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  data        DateTime
+  attivita    String   
+  note        String?
+  mezzi       String?  
+  materiali   String?  
+  lavoratori        RapportinoLavoratore[]
+  attrezzature      RapportinoAttrezzatura[]
+  articoliMagazzino RapportinoArticolo[]
+
+  latitude          Float?
+  longitude         Float?
+  
+  photos            String?   // JSON Array of URLs/Base64
+  signature         DigitalSignature?
+  aiSafetyCheck     Boolean   @default(true) 
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Ddt {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  numeroDdt   String
+  fornitoreId String?
+  fornitore   Fornitore? @relation(fields: [fornitoreId], references: [id], onDelete: SetNull)
+  fornitoreName String?  // Backup for legacy or quick entries
+  data        DateTime
+  note        String?
+  importo     Float?
+  articoli    DdtArticolo[]
+  fileUrl     String?
+  signature   DigitalSignature?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Fornitore {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  ragioneSociale String? // Added from duplicate
+  vatId         String?  @unique // partitaIva
+  email         String?
+  phone         String?
+  tipo          String   @default("FORNITORE") // FORNITORE, SUBAPPALTATORE
+  category      String?  // CEMENTO, IDRAULICA, ELETTRICA, etc.
+  
+  rating        Float    @default(5.0) // 0.0 - 5.0
+  totalOrders   Int      @default(0)
+  
+  dataScadenzaDurc DateTime?
+  note          String?
+
+  ddts          Ddt[]
+  fatture       Fattura[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Quote {
+  id            String         @id @default(cuid())
+  number        Int            @unique 
+  clientId      String
+  client        Client         @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  date          DateTime       @default(now())
+  status        String         @default("DRAFT") 
+  vatType       String         @default("22%") 
+  taxableAmount Float          @default(0)
+  vatAmount     Float          @default(0)
+  total         Float          @default(0)
+  note          String?
+  
+  items         QuoteItem[]
+  projects      Project[]      @relation("ProjectQuotes")
+  contract      Contract?
+  signature     DigitalSignature?
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Contract {
+  id          String    @id @default(cuid())
+  quoteId     String    @unique
+  quote       Quote     @relation(fields: [quoteId], references: [id])
+  clientId    String
+  client      Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  
+  body        String    
+  status      String    @default("DRAFT") 
+  signedDate  DateTime?
+  signature   DigitalSignature?
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ─── SUPPORT MODELS ──────────────────────────────────────────────────────────
+
+model RapportinoLavoratore {
+  id            String     @id @default(cuid())
+  rapportinoId  String
+  rapportino    Rapportino @relation(fields: [rapportinoId], references: [id], onDelete: Cascade)
+  lavoratoreId  String
+  lavoratore    Lavoratore @relation(fields: [lavoratoreId], references: [id], onDelete: Cascade)
+  ore           Float      @default(0)
+}
+
+model Lavoratore {
+  id            String   @id @default(cuid())
+  nome          String
+  cognome       String?
+  tipo          String   @default("DIPENDENTE") 
+  costoOrario   Float?
+  telefono      String?
+  email         String?
+  dataAssunzione DateTime?
+  livello        String?
+  ferieAnnuetot  Float   @default(20) 
+  
+  projects      Project[] @relation("ProjectLavoratori")
+  rapportini    RapportinoLavoratore[]
+  presenze      Presenza[]
+  assenze       Assenza[]
+  documenti     ComplianceDoc[]
+  attrezzature  Attrezzatura[]
+  tasks         WorkflowTask[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Presenza {
+  id            String     @id @default(cuid())
+  lavoratoreId  String
+  lavoratore    Lavoratore @relation(fields: [lavoratoreId], references: [id], onDelete: Cascade)
+  entrata       DateTime   @default(now())
+  uscita        DateTime?
+  latIn         Float?
+  longIn        Float?
+  latOut        Float?
+  longOut       Float?
+  isManuale     Boolean    @default(false)
+  note          String?
+  createdAt     DateTime   @default(now())
+}
+
+model Assenza {
+  id            String     @id @default(cuid())
+  lavoratoreId  String
+  lavoratore    Lavoratore @relation(fields: [lavoratoreId], references: [id], onDelete: Cascade)
+  tipo          String     
+  dataInizio    DateTime
+  dataFine      DateTime
+  giorniTotali  Float?
+  stato         String     @default("PENDENTE") 
+  note          String?
+  createdAt     DateTime   @default(now())
+}
+
+model ComplianceDoc {
+  id            String     @id @default(cuid())
+  nome          String     
+  dataScadenza  DateTime
+  stato         String     @default("VALIDO") 
+  fileUrl       String?
+  lavoratoreId  String?
+  lavoratore    Lavoratore? @relation(fields: [lavoratoreId], references: [id], onDelete: Cascade)
+  attrezzaturaId String?
+  attrezzatura   Attrezzatura? @relation(fields: [attrezzaturaId], references: [id], onDelete: Cascade)
+  createdAt     DateTime   @default(now())
+}
+
+model DdtArticolo {
+  id          String  @id @default(cuid())
+  ddtId       String
+  ddt         Ddt     @relation(fields: [ddtId], references: [id], onDelete: Cascade)
+  descrizione String
+  quantita    Float   @default(1)
+  unita       String?
+  prezzoUn    Float?
+}
+
+model Sal {
+  id          String    @id @default(cuid())
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  numero      Int       
+  data        DateTime
+  note        String?
+  importo     Float     @default(0)  
+  voci        SalVoce[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model SalVoce {
+  id              String  @id @default(cuid())
+  salId           String
+  sal             Sal     @relation(fields: [salId], references: [id], onDelete: Cascade)
+  descrizione     String
+  percentuale     Float   @default(0)  
+  importoVoce     Float   @default(0)
+}
+
+model Previsionale {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tipo        String   
+  categoria   String?
+  data        DateTime
+  importo     Float
+  descrizione String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ProjectItem {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  description String
+  quantity    Float    @default(1)
+  unit        String   @default("corpo")
+  unitPrice   Float    @default(0)
+  totalPrice  Float    @default(0)
+  completed   Boolean  @default(false)
+  
+  // Gantt / Scheduling fields
+  startDate   DateTime?
+  endDate     DateTime?
+  dependencies String?   // JSON array of ProjectItem IDs
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PriceItem {
+  id          String   @id @default(cuid())
+  code        String   
+  description String
+  unit        String   
+  price       Float
+  category    String?
+  source      String?  
+  quoteItems  QuoteItem[]
+}
+
+model QuoteItem {
+  id          String    @id @default(cuid())
+  quoteId     String
+  quote       Quote     @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  type        String    @default("ITEM") 
+  priceItemId String?
+  priceItem   PriceItem? @relation(fields: [priceItemId], references: [id])
+  description String    
+  unit        String?
+  price       Float?    
+  quantity    Float?
+  total       Float?    
+  order       Int       @default(0)
+}
+
+model WorkflowTask {
+  id           String      @id @default(cuid())
+  title        String
+  description  String?
+  status       String      @default("TODO") 
+  priority     String      @default("MEDIUM")
+  assignedToId String?
+  assignedTo   User?       @relation(fields: [assignedToId], references: [id])
+  lavoratoreId String?
+  lavoratore   Lavoratore? @relation(fields: [lavoratoreId], references: [id], onDelete: SetNull)
+  roleScope    String?  
+  dueDate      DateTime?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model ContoBancario {
+  id          String     @id @default(cuid())
+  nome        String
+  tipo        String     @default("BANCARIO") 
+  saldoIniziale Float    @default(0)
+  iban        String?
+  note        String?
+  attivo      Boolean    @default(true)
+  movimenti   Movimento[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Movimento {
+  id            String         @id @default(cuid())
+  contoId       String
+  conto         ContoBancario  @relation(fields: [contoId], references: [id], onDelete: Cascade)
+  tipo          String         
+  categoria     String?        
+  data          DateTime
+  importo       Float
+  descrizione   String?
+  controparte   String?        
+  riferimento   String?        
+  fatturaId     String?
+  fattura       Fattura?       @relation(fields: [fatturaId], references: [id], onDelete: SetNull)
+  projects      Project[]      @relation("MovimentoProjects")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Fattura {
+  id            String         @id @default(cuid())
+  numero        String
+  tipo          String         
+  fornitoreId   String?
+  fornitore     Fornitore?     @relation(fields: [fornitoreId], references: [id], onDelete: SetNull)
+  soggetto      String         
+  dataEmissione DateTime
+  dataScadenza  DateTime?
+  importo       Float
+  iva           Float          @default(22)
+  totale        Float          
+  stato         String         @default("DA_PAGARE") 
+  fileUrl       String?        
+  note          String?
+  projects      Project[]      @relation("FatturaProjects")
+  movimenti     Movimento[]    
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Attrezzatura {
+  id               String         @id @default(cuid())
+  nome             String
+  targa            String?        @unique
+  tipo             String         @default("VEICOLO") 
+  costoOrario      Float?
+  stato            String         @default("DISPONIBILE") 
+  note             String?
+  dataManutenzione DateTime?
+  cantiereId       String?
+  project          Project?       @relation(fields: [cantiereId], references: [id])
+  dipendenteId     String?
+  dipendente       Lavoratore?    @relation(fields: [dipendenteId], references: [id])
+  rapportini       RapportinoAttrezzatura[]
+  documenti        ComplianceDoc[]
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+}
+
+model ArticoloMagazzino {
+  id               String      @id @default(cuid())
+  codice           String      @unique
+  nome             String
+  categoria        String?
+  unitaMisura      String      @default("PZ") 
+  giacenza         Float       @default(0)
+  livelloScortaMin Float       @default(0)
+  costoUnitario    Float?      @default(0)
+  rapportini       RapportinoArticolo[]
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+}
+
+model RapportinoAttrezzatura {
+  id             String        @id @default(cuid())
+  rapportinoId   String
+  rapportino     Rapportino    @relation(fields: [rapportinoId], references: [id], onDelete: Cascade)
+  attrezzaturaId String
+  attrezzatura   Attrezzatura  @relation(fields: [attrezzaturaId], references: [id], onDelete: Cascade)
+  oreUtilizzo    Float         @default(0)
+}
+
+model RapportinoArticolo {
+  id                 String             @id @default(cuid())
+  rapportinoId       String
+  rapportino         Rapportino         @relation(fields: [rapportinoId], references: [id], onDelete: Cascade)
+  articoloMagazzinoId String
+  articoloMagazzino  ArticoloMagazzino  @relation(fields: [articoloMagazzinoId], references: [id], onDelete: Cascade)
+  quantita           Float              @default(1)
+}
+
+model ProjectUpdate {
+  id                String   @id @default(cuid())
+  projectId         String
+  project           Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  authorName        String?
+  content           String?
+  photos            String?  // JSON string array of photos
+  type              String   @default("UPDATE") // UPDATE, PHOTO, MILESTONE
+  isVisibleToClient Boolean  @default(false)    
+  createdAt         DateTime @default(now())
+}
+
+model Lead {
+  id               String   @id @default(cuid())
+  name             String   
+  clientName       String?
+  clientEmail      String?
+  clientPhone      String?
+  address          String?
+  city             String?
+  status           String   @default("NEW") // NEW, CONTACTED, SURVEY_SCHEDULED, QUOTED, WON, LOST
+  level            Int      @default(1)
+  xp               Int      @default(0)
+  
+  source           String?  
+  workType         String?  
+  estimatedBudget  Float?
+  surveyDate       DateTime?
+  notes            String?
+  
+  coachingState    String?  // JSON tracking applied coaching tips
+  stagnationAlert  Boolean  @default(false)
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  convertedToQuoteId String?
+}
+
+model SafetySettings {
+  id               String   @id @default("GLOBAL")
+  companyName      String   @default("Edil One Costruzioni S.r.l.")
+  vatId            String?
+  legalAddress     String?
+  legalCity        String?
+  responsabileSicurezza String?
+  rspp             String?
+  medicoCompetente String?
+  updatedAt        DateTime @updatedAt
+}
+
+model SafetyPlan {
+  id               String   @id @default(cuid())
+  projectId        String
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  title            String   @default("Piano Operativo di Sicurezza")
+  content          String?  // JSON formatted or Markdown of the plan
+  risks            String?  // JSON array of risks
+  materials        String?  // JSON array of materials/equipment needed
+  preventionMeasures String? // JSON array
+  
+  status           String   @default("DRAFT") // DRAFT, FINALIZED, ARCHIVED
+  version          Int      @default(1)
+  
+  aiInsights       String?  // Metadata from AI dialogue
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model StrategicMission {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String   // COST_REDUCTION, MARGIN_UP, REVENUE_GROWTH, OPERATIONAL_EFFICIENCY
+  impact      Float    // Estimated Euro impact
+  status      String   @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED, ARCHIVED
+  priority    String   @default("MEDIUM")  // LOW, MEDIUM, HIGH, CRITICAL
+  
+  difficulty  Int      @default(1) // 1-5
+  rewardXp    Int      @default(100)
+  
+  deadline    DateTime?
+  completedAt DateTime?
+  
+  aiRationale String?  // Why the AI suggested this
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BusinessAdvisor {
+  id               String   @id @default("GLOBAL")
+  lastAnalysisDate DateTime @default(now())
+  currentGrowthPhase String @default("STABILIZATION") // STABILIZATION, EXPANSION, OPTIMIZATION
+  
+  globalHealthScore Int     @default(70)
+  targetMargin      Float   @default(25.0)
+  
+  aiInsights       String?  // JSON with latest macro-trends/advice
+  
+  updatedAt        DateTime @updatedAt
+}

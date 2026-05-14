@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdilManager - Presentazione Tecnica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2563eb;
+            --slate-900: #0f172a;
+            --slate-600: #475569;
+            --slate-400: #94a3b8;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f1f5f9;
+            color: var(--slate-900);
+            line-height: 1.6;
+            padding: 40px 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 80px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        header {
+            margin-bottom: 80px;
+            border-bottom: 2px solid var(--slate-100);
+            padding-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo-area h1 {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .logo-area p {
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        section {
+            margin-bottom: 100px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--slate-400);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title span { color: var(--blue); }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 30px;
+            line-height: 1;
+        }
+
+        .img-container {
+            background: var(--slate-50);
+            padding: 10px;
+            border-radius: 40px;
+            border: 1px solid var(--slate-100);
+            margin-bottom: 30px;
+        }
+
+        .img-container img {
+            width: 100%;
+            border-radius: 30px;
+            display: block;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        .desc p {
+            font-size: 15px;
+            color: var(--slate-600);
+            font-weight: 500;
+        }
+
+        .features {
+            background: var(--slate-50);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .features ul { list-style: none; }
+        .features li {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--slate-900);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--blue);
+            border-radius: 50%;
+        }
+
+        footer {
+            margin-top: 100px;
+            padding-top: 40px;
+            border-top: 1px solid var(--slate-100);
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--slate-400);
+        }
+
+        @media print {
+            body { padding: 0; background: white; }
+            .container { box-shadow: none; max-width: 100%; padding: 20mm; }
+            @page { margin: 10mm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--slate-900);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 12px;
+            cursor: pointer;
+            border: none;
+            z-index: 100;
+        }
+        
+        .print-btn:hover { background: var(--blue); }
+        @media print { .print-btn { display: none; } }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">Stampa Ora</button>
+
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <h1>EdilManager</h1>
+                <p>Enterprise 2.0</p>
+            </div>
+            <div style="text-align: right">
+                <p style="color: var(--slate-400); margin-bottom: 5px">Documento Bancario</p>
+                <p style="font-weight: 900">Analisi Tecnica</p>
+            </div>
+        </header>
+
+        <section>
+            <div class="section-title"><span>01</span> Supervisione Strategica</div>
+            <h2>Command Center Control</h2>
+            <div class="img-container">
+                <img src="/presentation/dashboard.png" alt="Dashboard">
+            </div>
+            <div class="content-grid">
+                <div class="desc">
+                    <p>Monitoraggio in tempo reale dei KPI finanziari e operativi. La Dashboard permette una visione granulare della liquidità a 7 giorni e dei margini lordi, garantendo trasparenza totale per gli istituti di credito.</p>
+                </div>
+                <div class="features">
+                    <ul>
+                        <li>Financial Pulse 7D</li>
+                        <li>Monitoraggio Margini</li>
+                        <li>Audit Operativo H24</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title"><span>02</span> Controllo Commesse</div>
+            <h2>Gestione Cantieri</h2>
+            <div class="img-container">
+                <img src="/presentation/projects.png" alt="Cantieri">
+            </div>
+            <div class="content-grid">
+                <div class="desc">
+                    <p>Analisi costante degli scostamenti tra budget stanziato e costi effettivi. Ogni cantiere è tracciato analiticamente per assicurare il mantenimento del ROI previsto in fase di preventivazione.</p>
+                </div>
+                <div class="features">
+                    <ul>
+                        <li>SAL Analitici</li>
+                        <li>Budget vs Actual</li>
+                        <li>Risorse Umane</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title"><span>03</span> Asset & Patrimonio</div>
+            <h2>Logistica Mezzi</h2>
+            <div class="img-container">
+                <img src="/presentation/magazzino.png" alt="Magazzino">
+            </div>
+            <div class="content-grid">
+                <div class="desc">
+                    <p>Protezione e valorizzazione del patrimonio aziendale. Gestione informatizzata del parco mezzi, delle attrezzature e delle scorte di magazzino per ridurre il capitale immobilizzato.</p>
+                </div>
+                <div class="features">
+                    <ul>
+                        <li>IoT Fleet Tracking</li>
+                        <li>Manutenzione Asset</li>
+                        <li>Scorte Ottimizzate</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div>EdilManager Enterprise Solution</div>
+            <div>Pagina 1 / 1</div>
+        </footer>
+    </div>
+</body>
+</html>

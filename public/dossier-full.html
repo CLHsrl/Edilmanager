@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdilManager - Master Dossier 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2563eb;
+            --emerald: #10b981;
+            --purple: #8b5cf6;
+            --orange: #f59e0b;
+            --slate-900: #0f172a;
+            --slate-600: #475569;
+            --slate-400: #94a3b8;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f1f5f9;
+            color: var(--slate-900);
+            line-height: 1.4;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 40px auto;
+            background: white;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+        }
+
+        header {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--slate-100);
+            padding-bottom: 15px;
+        }
+
+        .logo-area h1 { font-size: 24px; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; }
+        .logo-area p { font-size: 8px; font-weight: 900; color: var(--blue); text-transform: uppercase; letter-spacing: 3px; }
+
+        .section-header { margin-bottom: 20px; }
+        .section-label { font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 4px; color: var(--blue); margin-bottom: 4px; }
+        h2 { font-size: 30px; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin-bottom: 10px; }
+
+        .img-box {
+            background: var(--slate-50);
+            padding: 6px;
+            border-radius: 20px;
+            border: 1px solid var(--slate-100);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .img-box img { width: 100%; border-radius: 14px; display: block; }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feature-item {
+            background: var(--slate-50);
+            padding: 18px;
+            border-radius: 15px;
+            border: 1px solid var(--slate-100);
+        }
+
+        .feature-item h4 { 
+            font-size: 10px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            color: var(--blue); 
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .feature-item p { font-size: 11px; color: var(--slate-600); margin: 0; font-weight: 500; line-height: 1.5; }
+        .feature-item ul { list-style: none; margin-top: 8px; }
+        .feature-item li { font-size: 10px; color: var(--slate-900); font-weight: 700; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 6px; }
+        .feature-item li::before { content: '✓'; color: var(--emerald); font-weight: 900; }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--slate-900);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .gamified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--purple);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--slate-100);
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--slate-400);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cover { justify-content: center; align-items: center; text-align: center; }
+        .cover h1 { font-size: 80px; margin: 40px 0; line-height: 0.9; }
+        .cover .subtitle { font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 6px; color: var(--blue); }
+
+        @media print {
+            body { background: white; }
+            .page { margin: 0; box-shadow: none; width: 100%; height: 297mm; }
+            .print-btn { display: none; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        .print-btn {
+            position: fixed; top: 20px; right: 20px; background: var(--slate-900); color: white;
+            padding: 15px 30px; border-radius: 12px; font-weight: 900; text-transform: uppercase;
+            font-size: 12px; cursor: pointer; z-index: 100; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .print-btn:hover { background: var(--blue); }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">Stampa Master Dossier 2026</button>
+
+    <!-- PAGE 1: COVER -->
+    <div class="page cover">
+        <div class="subtitle">Master Document</div>
+        <h1>EdilManager<br><span style="color: var(--slate-100)">Ecosystem</span></h1>
+        <div style="width: 120px; height: 6px; background: var(--slate-900); margin: 40px 0;"></div>
+        <p style="font-size: 20px; max-width: 600px; font-weight: 500; color: var(--slate-600)">Analisi integrale dell'infrastruttura tecnologica: AI Coaching, CRM Gamification, Logistica IoT e Finanza Digitale.</p>
+        <div style="margin-top: 100px; font-weight: 900; text-transform: uppercase; font-size: 11px; letter-spacing: 5px; color: var(--slate-400)">Strictly Confidential • 2026</div>
+    </div>
+
+    <!-- PAGE 2: STRATEGIC INTRODUCTION -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>Vision & Mission</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Introduzione Strategica</div>
+            <h2>L'Evoluzione del Cantiere</h2>
+        </div>
+        
+        <div style="margin-bottom: 40px;">
+            <p style="font-size: 18px; font-weight: 700; color: var(--slate-900); margin-bottom: 15px;">Cos'è EdilManager?</p>
+            <p style="color: var(--slate-600); font-size: 15px;">EdilManager non è un semplice software gestionale, ma un <strong>Ecosistema Digitale Integrato</strong> basato su Intelligenza Artificiale, progettato per risolvere la frammentazione informativa cronica del settore delle costruzioni. La piattaforma unifica in un unico ambiente cloud-native la gestione commerciale, operativa, logistica e finanziaria.</p>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 40px; gap: 30px;">
+            <div class="box" style="background: var(--slate-900); color: white; border: none; padding: 30px; border-radius: 30px;">
+                <p style="font-size: 10px; font-weight: 900; text-transform: uppercase; color: var(--blue); margin-bottom: 10px;">Il Problema</p>
+                <p style="font-size: 13px; color: var(--slate-400); line-height: 1.6;">Oggi le aziende edili soffrono di "opacità finanziaria": i costi di cantiere vengono recepiti con mesi di ritardo, i margini sono incerti e la sicurezza è gestita su carta. Questo genera inefficienze che erodono il 15-20% del ROI potenziale.</p>
+            </div>
+            <div class="box" style="padding: 30px; background: var(--slate-50); border: 1px solid var(--slate-100); border-radius: 30px;">
+                <p style="font-size: 10px; font-weight: 900; text-transform: uppercase; color: var(--blue); margin-bottom: 10px;">La Soluzione</p>
+                <p style="font-size: 13px; color: var(--slate-600); line-height: 1.6;">EdilManager trasforma il cantiere in una fonte di dati certi e immediati. Attraverso l'AI Advisor e la Gamification, il personale viene guidato e incentivato a mantenere il database aggiornato, permettendo alla direzione di decidere basandosi sui fatti, non sulle intuizioni.</p>
+            </div>
+        </div>
+
+        <div class="section-label">Target & Stakeholders</div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>PMI Edili & Imprese</h4>
+                <p>Aziende che cercano di scalare le operazioni riducendo il carico amministrativo e aumentando il controllo sui margini di ogni singola commessa.</p>
+            </div>
+            <div class="feature-item">
+                <h4>General Contractors</h4>
+                <p>Società che devono coordinare decine di subappaltatori, fornitori e professionisti in un unico flusso informativo certificato.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Istituti di Credito</h4>
+                <p>Banche e investitori che necessitano di reportistica trasparente e verificabile per la concessione di linee di fido e finanziamenti garantiti.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Safety & Compliance</h4>
+                <p>Responsabili della sicurezza che necessitano di strumenti digitali per l'audit continuo e la riduzione drastica del rischio infortuni.</p>
+            </div>
+        </div>
+
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 2</div></footer>
+    </div>
+
+    <!-- PAGE 3: DASHBOARD & AI CEO -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>01 / Global Overview</div>
+        </header>
+        <div class="section-header">
+            <div class="ai-badge">AI CEO ADVISOR ENABLED</div>
+            <h2>Command Center</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/dashboard_final.png" alt="Dashboard"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>Dashboard Intelligence</h4>
+                <ul>
+                    <li>Real-time Health Score: Analisi neurale della salute aziendale.</li>
+                    <li>Weather-Aware Scheduling: Adattamento logistico basato su API meteo.</li>
+                    <li>Multi-Company View: Gestione centralizzata di più entità legali.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>AI CEO Widget</h4>
+                <ul>
+                    <li>Strategic Focus: Suggerimenti settimanali per l'ottimizzazione dei margini.</li>
+                    <li>Anomaly Detection: Alert automatici su scostamenti di budget improvvisi.</li>
+                    <li>Growth Radar: Identificazione automatica di opportunità di mercato.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="img-box" style="margin-top: 20px; height: 200px;"><img src="/presentation/ai_advisor_section.png" alt="AI Section" style="object-fit: cover; object-position: top;"></div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 3</div></footer>
+    </div>
+
+    <!-- PAGE 4: GROWTH ADVISOR (AI CENTER) -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>02 / Strategic Growth</div>
+        </header>
+        <div class="section-header">
+            <div class="ai-badge">POWERED BY ANTIGRAVITY v2.0</div>
+            <h2>Growth Advisor Center</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/growth_advisor.png" alt="Growth Advisor"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>Growth Missions</h4>
+                <ul>
+                    <li>Efficienza Operativa: Missioni mirate alla riduzione degli sprechi (-15%).</li>
+                    <li>Espansione Margine: Strategie AI per il recupero della marginalità persa.</li>
+                    <li>Scaling Roadmap: Percorso guidato per il raddoppio del fatturato in 24 mesi.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>AI Insights Engine</h4>
+                <ul>
+                    <li>Data-Driven Rationale: Ogni consiglio è supportato da analisi storiche.</li>
+                    <li>Risk Assessment: Calcolo preventivo dell'impatto di ogni decisione strategica.</li>
+                    <li>Automated Learning: L'IA impara dai successi passati per affinare i futuri.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 4</div></footer>
+    </div>
+
+    <!-- PAGE 5: CRM GAMIFICATION -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>03 / Gamified CRM</div>
+        </header>
+        <div class="section-header">
+            <div class="gamified-badge">CAMPAIGN CONQUEST SYSTEM</div>
+            <h2>Mission Board & Global Rank</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/mission_board.png" alt="Mission Board"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>Gamification Engine</h4>
+                <ul>
+                    <li>XP Reward System: Punti esperienza per ogni attività commerciale conclusa.</li>
+                    <li>Level-Up Progress: Avanzamento di grado da "Garzone" a "Archistar".</li>
+                    <li>Boss Fights: Meccanica speciale per le negoziazioni contrattuali critiche.</li>
+                </ul>
+            </div>
+            <div class="feature-item" style="background: var(--slate-900); color: white;">
+                <h4 style="color: var(--purple)">Global Ranking</h4>
+                <div class="img-box" style="background: transparent; border: none; margin: 0; padding: 0;">
+                    <img src="/presentation/global_rank.png" alt="Rank" style="height: 100px; object-fit: contain;">
+                </div>
+                <p style="color: var(--slate-400); margin-top: 10px;">Classifica mondiale integrata per stimolare la sana competizione tra i team vendita.</p>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 5</div></footer>
+    </div>
+
+    <!-- PAGE 6: PROJECT OPERATIONS (SAL) -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>04 / Production Detail</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Monitoraggio Analitico</div>
+            <h2>Dettagli Cantiere & SAL</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/project_sal_details.png" alt="SAL Details"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>SAL (Stato Avanzamento Lavori)</h4>
+                <ul>
+                    <li>Certificazione Digitale: Generazione SAL con firma digitale del tecnico.</li>
+                    <li>Progress bar: Visualizzazione visiva della percentuale di completamento.</li>
+                    <li>Storico Varianti: Tracciamento di ogni modifica al progetto iniziale.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Cost Management</h4>
+                <ul>
+                    <li>Accertato vs Budget: Confronto istantaneo per evitare sforamenti.</li>
+                    <li>Material Tracking: Associazioni automatica dei costi materiali alla commessa.</li>
+                    <li>Labor Cost Audit: Analisi dell'incidenza manodopera in tempo reale.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 6</div></footer>
+    </div>
+
+    <!-- PAGE 7: OPERATIONS (LIST) -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>05 / Operations</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Gestione Commesse</div>
+            <h2>Pipeline Progetti</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/projects_full.png" alt="Projects"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>Workflow Automatizzati</h4>
+                <ul>
+                    <li>Automated Dispatch: Notifica immediata alle maestranze assegnate.</li>
+                    <li>File Center: Archivio tecnico con anteprime CAD e PDF integrate.</li>
+                    <li>Daily Journals: Generazione automatica del diario di cantiere via AI.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Safety & Compliance</h4>
+                <ul>
+                    <li>AI PPE Check: Verifica automatica dei DPI tramite foto rapportino.</li>
+                    <li>Safety Expiration Alert: Monitoraggio scadenze documenti di sicurezza.</li>
+                    <li>Incident Reporting: Sistema rapido di segnalazione "Near Miss".</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 7</div></footer>
+    </div>
+
+    <!-- PAGE 8: LEADS & SALES -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>06 / Commercial</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Pipeline Acquisizione</div>
+            <h2>Leads & Opportunità</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/leads.png" alt="Leads"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>CRM Commerciale</h4>
+                <ul>
+                    <li>Lead Management: Gestione centralizzata dei potenziali clienti.</li>
+                    <li>Survey Scheduler: Gestione sopralluoghi con geolocalizzazione.</li>
+                    <li>Quote Generator: Passaggio rapido da Lead a Preventivo esecutivo.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Analisi Performance</h4>
+                <ul>
+                    <li>Cost Per Lead (CPL): Analisi del costo di acquisizione cliente.</li>
+                    <li>Sales Velocity: Tempo medio di conversione da lead a contratto.</li>
+                    <li>Heatmap: Visualizzazione geografica delle aree di maggior richiesta.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 8</div></footer>
+    </div>
+
+    <!-- PAGE 9: CLIENTS & CRM -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>07 / CRM Relations</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Asset Intangibili</div>
+            <h2>Anagrafiche Committenti</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/clients.png" alt="Clients"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>Database Committenti</h4>
+                <ul>
+                    <li>360° Profile: Visione completa di tutti i progetti legati al cliente.</li>
+                    <li>Credit Scoring: Analisi interna dell'affidabilità finanziaria.</li>
+                    <li>SDI Automation: Integrazione codici destinatario per fatturazione.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Client Portal Experience</h4>
+                <ul>
+                    <li>Live Feed: Aggiornamenti fotografici del cantiere per il cliente.</li>
+                    <li>Doc Sharing: Area download per fatture, progetti e garanzie.</li>
+                    <li>E-Payments: Integrazione per pagamenti rapidi via portale.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 9</div></footer>
+    </div>
+
+    <!-- PAGE 10: PROCUREMENT & QUOTES -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>08 / Estimating</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Ingegneria Economica</div>
+            <h2>Preventivi & Appalti</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/quotes.png" alt="Quotes"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>Computo Metrico Digitale</h4>
+                <ul>
+                    <li>Dynamic Price Lists: Aggiornamento automatico dei prezzi fornitori.</li>
+                    <li>AI Estimate Advisor: Suggerimenti su ricarichi e margini attesi.</li>
+                    <li>Revision Tracking: Storico delle versioni inviate al cliente.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Procurement System</h4>
+                <ul>
+                    <li>Gare Subappalto: Gestione richieste offerta a ditte terze.</li>
+                    <li>Vendor Rating: Classifica affidabilità dei subappaltatori.</li>
+                    <li>Price Comparison: Analisi automatica delle offerte ricevute.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 10</div></footer>
+    </div>
+
+    <!-- PAGE 11: FINANCE & INVOICES -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>09 / Finance</div>
+        </header>
+        <div class="section-header">
+            <div class="ai-badge">AI INVOICE SCANNER ACTIVE</div>
+            <h2>Contabilità & Ciclo Passivo</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/fatture_full.png" alt="Fatture"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>AI Accounting</h4>
+                <ul>
+                    <li>XML/PDF Parsing: Estrazione dati automatica senza data-entry.</li>
+                    <li>Smart Coding: Categorizzazione automatica dei costi (Piano dei conti).</li>
+                    <li>Fraud Detection: Identificazione di potenziali anomalie o duplicati.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Controllo di Gestione</h4>
+                <ul>
+                    <li>Riconciliazione DDT: Verifica fattura vs materiali ricevuti.</li>
+                    <li>Cash-out Forecast: Previsione esatta delle uscite di cassa mensili.</li>
+                    <li>Gestione Scadenze: Alert automatici per evitare penali e interessi.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 11</div></footer>
+    </div>
+
+    <!-- PAGE 12: TREASURY (CASSA) -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>10 / Treasury</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Cash Flow Control</div>
+            <h2>Tesoreria & Banche</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/cassa.png" alt="Cassa"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>Cashflow Engine</h4>
+                <ul>
+                    <li>Bank Reconciliation: Quadratura automatica banca-gestionale.</li>
+                    <li>Liquidity Radar: Visualizzazione grafica della cassa a 90 giorni.</li>
+                    <li>Expense Tracking: Monitoraggio spese fisse e variabili.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Reporting Bancario</h4>
+                <ul>
+                    <li>Audit Ready: Report pronti per l'istruttoria di fido bancario.</li>
+                    <li>Multi-Bank Aggregation: Visione unificata di tutti i conti correnti.</li>
+                    <li>Tax Planning: Accantonamento automatico per Iva e imposte previste.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 12</div></footer>
+    </div>
+
+    <!-- PAGE 13: LOGISTICS (ASSETS) -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>11 / Logistics</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Gestione Patrimonio</div>
+            <h2>Magazzino & Mezzi</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/magazzino_full.png" alt="Magazzino"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>Inventory 2.0</h4>
+                <ul>
+                    <li>QR Asset Tagging: Identificazione fisica di ogni attrezzatura.</li>
+                    <li>Low Stock Alerts: Riordino automatico materiali di consumo.</li>
+                    <li>Inventory Value: Valorizzazione magazzino per bilancio.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Fleet Management</h4>
+                <ul>
+                    <li>Maintenance Scheduler: Gestione tagliandi e riparazioni mezzi.</li>
+                    <li>Consumption Audit: Monitoraggio costi carburante e manutenzione.</li>
+                    <li>Document Archive: Tutti i libretti e le assicurazioni in Cloud.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 13</div></footer>
+    </div>
+
+    <!-- PAGE 14: HR & SAFETY -->
+    <div class="page">
+        <header>
+            <div class="logo-area"><h1>EdilManager</h1><p>Enterprise</p></div>
+            <div>12 / Human Resources</div>
+        </header>
+        <div class="section-header">
+            <div class="section-label">Capitale Umano</div>
+            <h2>Personale & Sicurezza</h2>
+        </div>
+        <div class="img-box"><img src="/presentation/lavoratori_full.png" alt="Lavoratori"></div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>HR Digital Archive</h4>
+                <ul>
+                    <li>Safety Pass: Scadenzario automatico corsi 81/08.</li>
+                    <li>Medical Exams: Alert visite mediche periodiche.</li>
+                    <li>DPI Management: Registro digitale consegna dispositivi.</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <h4>Timesheet & Activity</h4>
+                <ul>
+                    <li>Mobile Punch-in: Rilevazione presenze via App con GPS.</li>
+                    <li>Performance Analytics: Analisi efficienza per singolo operatore.</li>
+                    <li>Cost Attribution: Imputazione automatica costo orario al cantiere.</li>
+                </ul>
+            </div>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 14</div></footer>
+    </div>
+
+    <!-- PAGE 15: TECHNOLOGY STACK (PWA) -->
+    <div class="page cover" style="background: var(--slate-900); color: white;">
+        <div class="subtitle" style="color: var(--blue)">Architecture</div>
+        <h2 style="font-size: 50px; margin-bottom: 30px; text-align: center;">Scalabilità<br>Cloud-Native</h2>
+        <div style="width: 80px; height: 4px; background: var(--blue); margin-bottom: 40px;"></div>
+        <div class="feature-grid" style="max-width: 600px;">
+            <div class="feature-item" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+                <h4 style="color: var(--blue)">PWA (Mobile First)</h4>
+                <p style="color: var(--slate-400)">L'applicazione funziona offline nei cantieri e si installa su smartphone come un'app nativa senza passare dagli store.</p>
+            </div>
+            <div class="feature-item" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+                <h4 style="color: var(--blue)">Enterprise Security</h4>
+                <p style="color: var(--slate-400)">Crittografia dati AES-256, backup orari e conformità GDPR garantita su infrastruttura Cloud Europea.</p>
+            </div>
+        </div>
+        <p style="margin-top: 60px; font-size: 14px; font-weight: 700; color: var(--slate-400); text-transform: uppercase; letter-spacing: 2px;">Powered by Next.js 16 + Prisma + SQLite (Edge Ready)</p>
+        <footer><div style="color: var(--slate-600)">EdilManager Master Dossier</div><div style="color: var(--slate-600)">Pagina 15</div></footer>
+    </div>
+
+    <!-- PAGE 16: CONCLUSION -->
+    <div class="page cover">
+        <h2 style="font-size: 40px; margin-bottom: 20px;">Ready for Expansion</h2>
+        <p style="max-width: 500px; margin-bottom: 40px;">EdilManager non è solo un software, è il sistema nervoso centrale di un'azienda edile moderna, progettato per scalare e dominare il mercato attraverso i dati.</p>
+        <div style="padding: 40px; background: var(--slate-50); border-radius: 40px; width: 100%; max-width: 500px;">
+            <p style="font-[10px] font-black uppercase text-slate-400 mb-4 tracking-widest">Contatti Tecnici</p>
+            <p style="font-black text-2xl text-slate-900 mb-1">EdilManager Enterprise Team</p>
+            <p style="font-medium text-slate-500">support@edilmanager.it • www.edilmanager.it</p>
+        </div>
+        <footer><div>EdilManager Master Dossier</div><div>Pagina 16 / FINE</div></footer>
+    </div>
+
+</body>
+</html>
