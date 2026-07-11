@@ -122,9 +122,9 @@ export default function LandingPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
                         {/* PAIN */}
                         <div className="relative p-10 lg:p-12 rounded-[3rem] bg-white border border-white shadow-2xl overflow-hidden group">
-                            <div className="absolute top-4 right-8 text-[64px] font-black text-red-500/5 -z-0 select-none">PRIMA</div>
+                            <div className="hidden lg:block absolute top-4 right-8 text-[64px] font-black text-red-500/5 -z-0 select-none">PRIMA</div>
                             <div className="relative z-10">
-                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-red-100">
+                                <div className="flex w-fit items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-red-100 mx-auto lg:mx-0">
                                     Vecchio Metodo
                                 </div>
                                 <h3 className="text-4xl font-black text-slate-900 mb-8 tracking-tight leading-tight">Inefficienza e<br/>Dati Frammentati</h3>
@@ -148,10 +148,10 @@ export default function LandingPage() {
 
                         {/* DREAM */}
                         <div className="relative p-10 lg:p-12 rounded-[3rem] bg-blue-600 border border-blue-400 shadow-[0_0_50px_rgba(37,99,235,0.3)] overflow-hidden group">
-                            <div className="absolute top-4 right-8 text-[64px] font-black text-white/10 -z-0 select-none">DOPO</div>
+                            <div className="hidden lg:block absolute top-4 right-8 text-[64px] font-black text-white/10 -z-0 select-none">DOPO</div>
                             <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-white/10 blur-[80px] rounded-full"></div>
                             <div className="relative z-10">
-                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-white/20 backdrop-blur-md">
+                                <div className="flex w-fit items-center gap-2 px-4 py-2 bg-white/10 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-white/20 backdrop-blur-md mx-auto lg:mx-0">
                                     La Nuova Era
                                 </div>
                                 <h3 className="text-4xl font-black text-white mb-8 tracking-tight leading-tight">Precisione e<br/>Controllo Totale</h3>
