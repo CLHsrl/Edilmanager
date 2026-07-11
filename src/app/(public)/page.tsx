@@ -127,19 +127,19 @@ export default function LandingPage() {
                                 <div className="flex w-fit items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-red-100 mx-auto lg:mx-0">
                                     Vecchio Metodo
                                 </div>
-                                <h3 className="text-4xl font-black text-slate-900 mb-8 tracking-tight leading-tight">Inefficienza e<br/>Dati Frammentati</h3>
+                                <h3 className="text-4xl font-black text-slate-900 mb-8 tracking-tight leading-tight text-center lg:text-left">Inefficienza e<br/>Dati Frammentati</h3>
                                 <ul className="space-y-6 mb-12">
                                     {[
                                         "Rapportini cartacei che si perdono o arrivano illeggibili in ufficio.",
                                         "Nessuna visione reale dei margini fino alla chiusura del cantiere."
                                     ].map((item, i) => (
-                                        <li key={i} className="flex gap-4 items-start text-slate-600">
+                                        <li key={i} className="flex flex-col lg:flex-row gap-4 items-center lg:items-start text-center lg:text-left text-slate-600">
                                             <div className="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center shrink-0 border border-red-100"><X size={18} className="text-red-600" /></div>
                                             <p className="font-medium leading-relaxed">{item}</p>
                                         </li>
                                     ))}
                                 </ul>
-                                <div className="flex items-center gap-3 py-4 border-t border-slate-100">
+                                <div className="flex items-center justify-center lg:justify-start gap-3 py-4 border-t border-slate-100">
                                     <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
                                     <span className="text-[10px] font-black uppercase tracking-widest text-red-400">Obsolescenza Operativa</span>
                                 </div>
@@ -154,13 +154,13 @@ export default function LandingPage() {
                                 <div className="flex w-fit items-center gap-2 px-4 py-2 bg-white/10 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-white/20 backdrop-blur-md mx-auto lg:mx-0">
                                     La Nuova Era
                                 </div>
-                                <h3 className="text-4xl font-black text-white mb-8 tracking-tight leading-tight">Precisione e<br/>Controllo Totale</h3>
+                                <h3 className="text-4xl font-black text-white mb-8 tracking-tight leading-tight text-center lg:text-left">Precisione e<br/>Controllo Totale</h3>
                                 <ul className="space-y-6 mb-12">
                                     {[
                                         { title: "Dati Certificati", desc: "Tracciamento istantaneo di ogni euro e ogni ora lavorata." },
                                         { title: "Margine Protetto", desc: "Anticipa i problemi prima che diventino costi vivi." }
                                     ].map((item, i) => (
-                                        <li key={i} className="flex gap-4 items-start">
+                                        <li key={i} className="flex flex-col lg:flex-row gap-4 items-center lg:items-start text-center lg:text-left">
                                             <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center shrink-0 border border-white/20 backdrop-blur-md shadow-inner"><CheckCircle size={22} className="text-white" /></div>
                                             <div>
                                                 <p className="text-white font-black mb-1">{item.title}</p>
@@ -169,7 +169,7 @@ export default function LandingPage() {
                                         </li>
                                     ))}
                                 </ul>
-                                <div className="flex items-center gap-4">
+                                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                                     <div className="px-4 py-2 bg-white/10 rounded-lg text-[10px] font-black uppercase tracking-widest text-white border border-white/20">System Ready</div>
                                     <div className="flex -space-x-2">
                                         {[1,2,3].map(i => <div key={i} className="w-6 h-6 rounded-full border-2 border-blue-600 bg-blue-400/50 overflow-hidden shadow-sm"></div>)}
