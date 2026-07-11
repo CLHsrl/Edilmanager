@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <body className={`${font.className} bg-slate-50 text-slate-900 text-[15px] antialiased min-h-screen print:bg-white print:text-black shadow-inner overflow-x-hidden`}>
+      <body className={`${font.className} bg-slate-50 text-slate-900 text-[15px] antialiased min-h-screen print:bg-white print:text-black shadow-inner`}>
         <Providers>
           <AuthProvider>
             <PWARegistry />
