@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gestionale-edile-v1';
+const CACHE_NAME = 'gestionale-edile-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/manifest.webmanifest',
