@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-edil-blue: #2563eb;
+  --color-edil-blue-hover: #3b82f6;
+  --color-edil-light: #eff6ff;
+  --color-navy-deep: #0f172a;
+  --color-warm-gray: #f8fafc;
+  --font-manrope: "Manrope", sans-serif;
+}
+
 @layer base {
   :root {
     --background: #fdfdfe;
