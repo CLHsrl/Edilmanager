@@ -2,7 +2,7 @@
 
 export default function CookiePolicyPage() {
     return (
-        <div className="bg-white min-h-screen font-manrope">
+        <div className="bg-white min-h-screen">
             {/* HERO LEGALE */}
             <section className="relative pt-28 lg:pt-40 pb-12 lg:pb-20 overflow-hidden bg-corporate border-b border-slate-100">
                 <div className="absolute inset-0 opacity-[0.08] pointer-events-none" 

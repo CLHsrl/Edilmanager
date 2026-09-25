@@ -96,8 +96,8 @@ export default function AIFatturaUploader({ onSuccess, onCancel }: Props) {
                   </div>
               </div>
               <div>
-                  <p className="text-white font-black text-[11px] uppercase tracking-widest mb-2">Analisi AI in corso...</p>
-                  <p className="text-slate-400 text-[9px] font-bold uppercase tracking-[0.2em] italic">Estrapolazione importi, scadenze e dati fornitore</p>
+                  <p className="text-white font-bold text-[11px] uppercase tracking-wide mb-2">Analisi AI in corso...</p>
+                  <p className="text-slate-400 text-[9px] font-bold uppercase tracking-wide italic">Estrapolazione importi, scadenze e dati fornitore</p>
               </div>
             </div>
           )}
@@ -105,7 +105,7 @@ export default function AIFatturaUploader({ onSuccess, onCancel }: Props) {
           {error && (
             <div className="bg-red-50 border border-red-100 p-6 rounded-2xl flex items-center gap-4 text-red-600 reveal">
               <AlertCircle size={20} className="shrink-0" />
-              <p className="text-[10px] font-black uppercase tracking-widest">{error}</p>
+              <p className="text-[10px] font-bold uppercase tracking-wide">{error}</p>
             </div>
           )}
 

@@ -13,7 +13,7 @@ export default function PublicNavbar() {
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                 <Logo />
 
-                <nav className="hidden md:flex items-center gap-10 font-bold text-[11px] uppercase tracking-widest text-slate-500">
+                <nav className="hidden md:flex items-center gap-10 font-bold text-[11px] uppercase tracking-wide text-slate-500">
                     <Link href="/features" className="hover:text-slate-900 transition-colors">Funzionalità</Link>
                     <Link href="/platform" className="hover:text-slate-900 transition-colors">Piattaforma</Link>
                     <Link href="/pricing" className="hover:text-slate-900 transition-colors">Prezzi</Link>
@@ -23,7 +23,7 @@ export default function PublicNavbar() {
 
                 <div className="flex items-center gap-6">
                     <Link href="/login" className="text-xs font-bold text-slate-900 hover:text-blue-600 hidden sm:block">Accedi</Link>
-                    <Link href="/#contatti" className="bg-slate-900 text-white px-6 py-3 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-blue-600 transition-all shadow-sm">
+                    <Link href="/#contatti" className="bg-slate-900 text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-wide hover:bg-blue-600 transition-all shadow-sm">
                         Richiedi Demo
                     </Link>
                     <button 

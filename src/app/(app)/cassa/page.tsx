@@ -1,128 +1,203 @@
 import { getDashboardData } from '../cassa-actions';
 import Link from 'next/link';
-import { ArrowRightLeft, TrendingDown, TrendingUp, Building2, Calendar, MoreHorizontal } from 'lucide-react';
+import { ArrowRightLeft, TrendingDown, TrendingUp, Building2, Calendar, Euro, Plus, Wallet, ChevronRight } from 'lucide-react';
 
 export default async function CassaDashboard() {
   const data = await getDashboardData();
 
   return (
-    <div className="flex flex-col gap-10 pb-20 reveal">
-      {/* Unified Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 no-print">
+    <div className="flex flex-col gap-6 pb-12">
+      {/* Header Card */}
+      <div className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="page-label">
-            <ArrowRightLeft className="text-blue-600" size={14} />
-            Cashflow Integrity & Liquidity
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-1">
+            <Euro size={14} className="text-[#003F61]" />
+            <span>Finanza / Tesoreria & Flussi di Cassa</span>
           </div>
-          <h1 className="page-title">Gestione Tesoreria</h1>
-          <p className="page-description">Monitoraggio flussi di cassa, conti correnti e liquidità operativa</p>
+          <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">Cassa & Tesoreria</h1>
+          <p className="text-sm text-slate-500 mt-1">Monitoraggio liquidità consolidata, conti correnti bancari e cashflow operativo.</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Link 
+            href="/cassa/movimenti" 
+            className="h-10 px-4 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
+          >
+            Tutti i Movimenti
+          </Link>
+          <Link 
+            href="/cassa/conti" 
+            className="h-10 px-4 bg-[#003F61] text-white hover:bg-[#002f49] text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
+          >
+            <Plus size={16} /> Gestione Conti
+          </Link>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* KPI 1: Saldo Totale */}
-        <div className="bg-slate-900 p-6 rounded-3xl shadow-2xl relative overflow-hidden group hover:shadow-blue-900/20 transition-all col-span-1">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-600"></div>
-            <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white">
-                    <Building2 size={20} />
-                </div>
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Saldo Consolidato</p>
+      {/* 4 KPI Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider">Saldo Consolidato</span>
+            <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+              <Wallet size={16} />
             </div>
-            <p className="text-3xl font-black text-white tracking-tighter">
-                € {data.saldoTotale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
-            </p>
-            <div className="mt-6 flex gap-4 text-[10px] font-black uppercase tracking-widest">
-                <div className="text-emerald-400 flex items-center gap-1">
-                    <TrendingUp size={12}/> +€ {data.entrate30.toLocaleString('it-IT')}
-                </div>
-                <div className="text-rose-400 flex items-center gap-1">
-                    <TrendingDown size={12}/> -€ {data.uscite30.toLocaleString('it-IT')}
-                </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-[#003F61] tracking-tight">
+              € {data.saldoTotale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
             </div>
+            <div className="text-xs text-slate-500 mt-1">Liquidità totale disponibile</div>
+          </div>
         </div>
 
-        {/* Elenco Casse Rapido */}
-        <div className="md:col-span-2 bg-white border border-gray-100 rounded-xl p-6 shadow-sm flex flex-col">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="font-bold text-gray-800">Situazione Conti</h2>
-            <Link href="/cassa/conti" className="text-sm text-blue-600 font-semibold hover:underline">Vedi tutti &rarr;</Link>
-          </div>
-          
-          {data.conti.length === 0 ? (
-            <div className="flex-1 flex flex-col items-center justify-center text-gray-400 py-4">
-              <p className="text-sm">Nessun conto configurato.</p>
-              <Link href="/cassa/conti" className="mt-2 text-sm text-blue-600 font-medium">Configura il primo conto</Link>
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider">Entrate (Ultimi 30gg)</span>
+            <div className="p-2 bg-slate-50 text-emerald-600 border border-slate-100">
+              <TrendingUp size={16} />
             </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
-              {data.conti.slice(0, 4).map(conto => (
-                <div key={conto.id} className="border border-gray-100 rounded-xl p-4 bg-gray-50 flex justify-between items-center">
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-emerald-600 tracking-tight">
+              +€ {data.entrate30.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
+            </div>
+            <div className="text-xs text-slate-500 mt-1">Incassi registrati a libro</div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider">Uscite (Ultimi 30gg)</span>
+            <div className="p-2 bg-slate-50 text-rose-600 border border-slate-100">
+              <TrendingDown size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-rose-600 tracking-tight">
+              -€ {data.uscite30.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
+            </div>
+            <div className="text-xs text-slate-500 mt-1">Pagamenti e spese effettuate</div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider">Conti Attivi</span>
+            <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+              <Building2 size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-[#003F61] tracking-tight">{data.conti.length}</div>
+            <div className="text-xs text-slate-500 mt-1">Banche e casse operative</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Grid: 2/3 and 1/3 */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column (2/3): Ultimi Movimenti */}
+        <div className="lg:col-span-2 bg-white border border-slate-200 flex flex-col">
+          <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-white">
+            <div className="flex items-center gap-2 font-bold text-sm text-slate-800">
+              <ArrowRightLeft size={16} className="text-[#003F61]" />
+              <span>Ultimi Movimenti Registrati</span>
+            </div>
+            <Link href="/cassa/movimenti" className="text-xs font-semibold text-[#003F61] hover:underline">
+              Vedi Tutti &rarr;
+            </Link>
+          </div>
+
+          <div className="flex-1 overflow-x-auto">
+            {data.ultimiMovimenti.length === 0 ? (
+              <div className="p-12 text-center text-slate-400">
+                <ArrowRightLeft size={36} className="mx-auto text-slate-300 mb-3" />
+                <p className="text-sm font-bold uppercase tracking-wider">Nessun movimento recente</p>
+                <p className="text-xs text-slate-400 mt-1">Non risultano transazioni recenti di cassa o banca.</p>
+              </div>
+            ) : (
+              <table className="w-full text-left border-collapse">
+                <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider">
+                  <tr>
+                    <th className="px-4 py-3">Data</th>
+                    <th className="px-4 py-3">Descrizione / Controparte</th>
+                    <th className="px-4 py-3">Conto</th>
+                    <th className="px-4 py-3 text-right">Importo</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-sm">
+                  {data.ultimiMovimenti.map(mov => (
+                    <tr key={mov.id} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="px-4 py-3 text-xs text-slate-500">
+                        {new Date(mov.data).toLocaleDateString('it-IT')}
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="font-semibold text-slate-900 block">
+                          {mov.descrizione || mov.categoria || '—'}
+                        </span>
+                        {mov.controparte && (
+                          <span className="text-[11px] text-slate-500">{mov.controparte}</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border bg-slate-50 text-slate-700 border-slate-200">
+                          {mov.conto.nome}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-right font-bold">
+                        <span className={mov.tipo === 'ENTRATA' ? 'text-emerald-600' : 'text-rose-600'}>
+                          {mov.tipo === 'ENTRATA' ? '+' : '-'}€ {mov.importo.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+
+        {/* Right Column (1/3): Situazione Conti */}
+        <div className="bg-white border border-slate-200 flex flex-col">
+          <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-white">
+            <div className="flex items-center gap-2 font-bold text-sm text-slate-800">
+              <Building2 size={16} className="text-[#003F61]" />
+              <span>Situazione Conti Bancari</span>
+            </div>
+            <Link href="/cassa/conti" className="text-xs font-semibold text-[#003F61] hover:underline">
+              Gestisci &rarr;
+            </Link>
+          </div>
+
+          <div className="p-4 space-y-3 flex-1">
+            {data.conti.length === 0 ? (
+              <div className="text-center py-8 text-slate-400">
+                <Building2 size={32} className="mx-auto text-slate-300 mb-2" />
+                <p className="text-xs font-semibold">Nessun conto configurato</p>
+                <Link href="/cassa/conti" className="text-xs text-[#003F61] font-bold hover:underline block mt-2">
+                  + Aggiungi il primo conto
+                </Link>
+              </div>
+            ) : (
+              data.conti.map(conto => (
+                <div key={conto.id} className="p-3.5 border border-slate-200 bg-slate-50/50 flex justify-between items-center">
                   <div>
-                    <h3 className="font-semibold text-gray-900 text-sm">{conto.nome}</h3>
-                    <p className="text-xs text-gray-500 uppercase">{conto.tipo}</p>
+                    <h3 className="font-bold text-slate-900 text-sm">{conto.nome}</h3>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mt-0.5">
+                      {conto.tipo}
+                    </span>
                   </div>
-                  <p className="font-bold text-gray-900">
-                    € {conto.saldoAttuale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
-                  </p>
+                  <div className="text-right">
+                    <p className="font-bold text-slate-900 text-base">
+                      € {conto.saldoAttuale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Ultimi Movimenti */}
-      <div className="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden">
-        <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-          <h2 className="font-bold text-gray-800 flex items-center gap-2">
-            <ArrowRightLeft size={18} className="text-blue-600"/> Ultimi Movimenti
-          </h2>
-          <Link href="/cassa/movimenti" className="text-sm text-blue-600 font-semibold hover:underline">Tutti i movimenti</Link>
-        </div>
-        
-        {data.ultimiMovimenti.length === 0 ? (
-          <div className="p-8 text-center text-gray-500">
-            <p>Nessun movimento recente registrato.</p>
+              ))
+            )}
           </div>
-        ) : (
-          <table className="w-full text-sm">
-            <thead className="bg-white border-b border-gray-100">
-              <tr>
-                <th className="text-left px-6 py-3 text-xs font-bold text-gray-500 uppercase tracking-wider">Data</th>
-                <th className="text-left px-6 py-3 text-xs font-bold text-gray-500 uppercase tracking-wider">Descrizione</th>
-                <th className="text-left px-6 py-3 text-xs font-bold text-gray-500 uppercase tracking-wider">Conto</th>
-                <th className="text-right px-6 py-3 text-xs font-bold text-gray-500 uppercase tracking-wider">Importo</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {data.ultimiMovimenti.map(mov => (
-                <tr key={mov.id} className="hover:bg-gray-50/50 transition-colors">
-                  <td className="px-6 py-4 text-gray-500 flex items-center gap-2">
-                    <Calendar size={14} className="text-gray-400"/>
-                    {new Date(mov.data).toLocaleDateString('it-IT')}
-                  </td>
-                  <td className="px-6 py-4">
-                    <p className="font-medium text-gray-900">{mov.descrizione || mov.categoria || '—'}</p>
-                    <p className="text-xs text-gray-500">{mov.controparte}</p>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-medium">
-                      {mov.conto.nome}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <span className={`font-bold ${mov.tipo === 'ENTRATA' ? 'text-green-600' : 'text-red-500'}`}>
-                      {mov.tipo === 'ENTRATA' ? '+' : '-'}€ {mov.importo.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+        </div>
       </div>
-
     </div>
   );
 }

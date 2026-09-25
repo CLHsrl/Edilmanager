@@ -17,7 +17,7 @@ export default function ClientPortalActivator({ projectId }: { projectId: string
     <button 
       onClick={handleActivate}
       disabled={isPending}
-      className="w-full bg-white text-blue-700 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-blue-400 disabled:opacity-50"
+      className="w-full bg-white text-blue-700 py-3 rounded-xl font-bold text-[10px] uppercase tracking-wide flex items-center justify-center gap-2 shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-blue-400 disabled:opacity-50"
     >
       {isPending ? (
         <>

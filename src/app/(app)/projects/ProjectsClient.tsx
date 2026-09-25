@@ -4,12 +4,13 @@ import { useState, useTransition } from 'react';
 import { 
     Plus, HardHat, CheckCircle, Clock, Search as SearchIcon, 
     TrendingUp, Wallet, CheckCircle2, ChevronRight, LayoutGrid, 
-    List, ArrowRight, MapPin, Calendar, Activity
+    List, ArrowRight, MapPin, Calendar, Activity, Target
 } from 'lucide-react';
 import Link from 'next/link';
-import { updateProjectStatus } from '../actions';
 import SlideOver from '@/components/SlideOver';
 import ProjectWizard from '@/components/ProjectWizard';
+
+type Previsionale = { tipo: string; importo: number };
 
 type Project = {
     id: string;
@@ -31,7 +32,19 @@ type Project = {
         nome: string;
         cognome: string;
     }[];
+    previsionali: Previsionale[];
+    ddts: { importo: number | null }[];
 };
+
+// Helper: calcola margine netto di un singolo progetto
+function calcMargine(project: Project): { margine: number; perc: number; ricavi: number; costi: number } {
+    const entrate = project.previsionali.filter(p => p.tipo === 'ENTRATA').reduce((s, p) => s + p.importo, 0);
+    const uscite  = project.previsionali.filter(p => p.tipo === 'USCITA').reduce((s, p) => s + p.importo, 0);
+    const ricavi  = entrate > 0 ? entrate : (project.budget || 0);
+    const margine = ricavi - uscite;
+    const perc    = ricavi > 0 ? (margine / ricavi) * 100 : 0;
+    return { margine, perc, ricavi, costi: uscite };
+}
 
 type SortKey = 'name' | 'startDate' | 'budget';
 type SortOrder = 'asc' | 'desc';
@@ -43,10 +56,14 @@ type Props = {
         activeProjects: number;
         completedProjects: number;
         totalBudget: number;
+        totalMargine: number;
+        marginePerc: number;
+        hasMargineData: boolean;
     };
 };
 
 export default function ProjectsClient({ projects, isAdmin, stats }: Props) {
+    const { activeProjects, completedProjects, totalBudget, totalMargine = 0, marginePerc = 0, hasMargineData = false } = stats;
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState<'ALL' | 'ONGOING' | 'COMPLETED'>('ALL');
     const [locationFilter, setLocationFilter] = useState<string>('ALL');
@@ -85,136 +102,173 @@ export default function ProjectsClient({ projects, isAdmin, stats }: Props) {
     });
 
     return (
-        <div className="flex flex-col gap-8 pb-20 reveal">
-            {/* Unified Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 no-print">
+        <div className="flex flex-col gap-6 pb-12">
+            {/* Header Card */}
+            <div className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <div className="page-label">
-                        <HardHat className="text-blue-600" size={14} />
-                        Asset Operativi & Commesse
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-1">
+                        <HardHat size={14} className="text-[#003F61]" />
+                        <span>Operazioni / Gestione Cantieri</span>
                     </div>
-                    <h1 className="page-title text-4xl">Strategic Asset Ledger</h1>
-                    <p className="page-description text-base font-medium text-slate-500">Monitoraggio flussi di cassa e avanzamento tecnico commesse</p>
+                    <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">Commesse & Cantieri</h1>
+                    <p className="text-sm text-slate-500 mt-1">Supervisione avanzamento operativo, budget e marginalità per commessa.</p>
                 </div>
                 {isAdmin && (
-                    <button 
-                        onClick={() => setIsWizardOpen(true)}
-                        className="bg-slate-900 hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-slate-900/10 transition-all flex items-center gap-2 transform active:scale-95"
-                    >
-                        <Plus size={18} /> Nuova Commessa
-                    </button>
+                    <div className="flex items-center gap-3">
+                        <button 
+                            onClick={() => setIsWizardOpen(true)}
+                            className="h-10 px-4 bg-[#003F61] text-white hover:bg-[#002f49] text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
+                        >
+                            <Plus size={16} /> Nuovo Cantiere
+                        </button>
+                    </div>
                 )}
             </div>
 
-            {/* Strategic KPI Section */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 no-print">
-                <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm group hover:border-emerald-500 transition-all">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                       <CheckCircle2 size={12} className="text-emerald-500" /> Cantieri Attivi
-                    </p>
-                    <p className="text-4xl font-black text-slate-900 tracking-tighter leading-none">{stats.activeProjects}</p>
-                    <p className="text-[9px] font-bold text-slate-400 uppercase mt-4 italic">Capacità operativa ottimale</p>
-                </div>
-                <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm group hover:border-blue-500 transition-all">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                       <Wallet size={12} className="text-blue-500" /> Capitalizzazione
-                    </p>
-                    <p className="text-4xl font-black text-slate-900 tracking-tighter leading-none">€ {(stats.totalBudget / 1000).toFixed(1)}k</p>
-                    <p className="text-[9px] font-bold text-blue-600 uppercase mt-4 italic tracking-widest">Asset sotto gestione</p>
-                </div>
-                <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm group hover:border-purple-500 transition-all">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                       <TrendingUp size={12} className="text-purple-500" /> Health Score
-                    </p>
-                    <p className="text-4xl font-black text-slate-900 tracking-tighter leading-none">8.4<span className="text-lg text-slate-300">/10</span></p>
-                    <p className="text-[9px] font-bold text-slate-400 uppercase mt-4 italic">Basato su delta budget</p>
-                </div>
-                <div className="bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl flex flex-col justify-between relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-600/10 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-150"></div>
-                    <div>
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Crescita Netta</p>
-                        <p className="text-3xl font-black text-emerald-400 tracking-tighter">+12.4%</p>
+            {/* 4 KPI Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-3">
+                        <span className="text-[11px] font-bold uppercase tracking-wider">Cantieri Attivi</span>
+                        <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+                            <CheckCircle2 size={16} />
+                        </div>
                     </div>
-                    <Link href="/bi" className="text-[9px] font-black text-white uppercase tracking-[0.2em] hover:text-blue-400 transition-colors flex items-center gap-2 mt-4">
-                       Deep Analytics <ArrowRight size={12} />
-                    </Link>
+                    <div>
+                        <div className="text-2xl font-bold text-[#003F61] tracking-tight">{activeProjects}</div>
+                        <div className="text-xs text-slate-500 mt-1">
+                            Su {projects.length} commesse totali
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-3">
+                        <span className="text-[11px] font-bold uppercase tracking-wider">Volume Portafoglio</span>
+                        <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+                            <Wallet size={16} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-[#003F61] tracking-tight">
+                            € {totalBudget.toLocaleString('it-IT')}
+                        </div>
+                        <div className="text-xs text-slate-500 mt-1">
+                            Budget totale commesse
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-3">
+                        <span className="text-[11px] font-bold uppercase tracking-wider">Margine Globale</span>
+                        <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+                            <Target size={16} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className={`text-2xl font-bold tracking-tight ${hasMargineData && totalMargine >= 0 ? 'text-emerald-600' : hasMargineData ? 'text-red-600' : 'text-slate-900'}`}>
+                            {hasMargineData ? `${totalMargine >= 0 ? '+' : ''}€ ${Math.abs(totalMargine).toLocaleString('it-IT')}` : '0%'}
+                        </div>
+                        <div className="text-xs text-slate-500 mt-1">
+                            {hasMargineData ? `Margine: ${marginePerc.toFixed(1)}%` : 'In attesa di consuntivazione'}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-3">
+                        <span className="text-[11px] font-bold uppercase tracking-wider">Commesse Concluse</span>
+                        <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+                            <CheckCircle size={16} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-[#003F61] tracking-tight">{completedProjects}</div>
+                        <div className="text-xs text-slate-500 mt-1 flex items-center justify-between">
+                            <span>Collaudati & chiusi</span>
+                            <Link href="/bi" className="text-[#003F61] font-semibold hover:underline">BI Analytics &rarr;</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             {/* Filter Bar */}
-            <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm space-y-6">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="bg-white border border-slate-200 p-4 space-y-4">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                     <div className="flex-1 w-full relative">
-                        <SearchIcon size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <SearchIcon size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                         <input 
                             type="text" 
-                            placeholder="Cerca missione, cliente o localizzazione..." 
+                            placeholder="Cerca cantiere, cliente o indirizzo..." 
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-14 pr-6 py-4 text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all placeholder:text-slate-400"
+                            className="w-full bg-slate-50 border border-slate-200 pl-10 pr-4 py-2 text-sm text-slate-800 outline-none focus:bg-white focus:border-[#003F61] transition-all placeholder:text-slate-400"
                         />
                     </div>
-                    <div className="flex bg-slate-50 p-1.5 rounded-2xl border border-slate-100">
+                    <div className="flex border border-slate-200 shrink-0">
                         <button 
                             onClick={() => setViewMode('grid')}
-                            className={`p-3 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white text-slate-900 shadow-md border border-slate-100' : 'text-slate-400 hover:text-slate-600'}`}
+                            className={`p-2 transition-colors cursor-pointer ${viewMode === 'grid' ? 'bg-[#003F61] text-white' : 'bg-white text-slate-600 hover:bg-slate-50'}`}
+                            title="Vista a Griglia"
                         >
-                            <LayoutGrid size={20} />
+                            <LayoutGrid size={18} />
                         </button>
                         <button 
                             onClick={() => setViewMode('list')}
-                            className={`p-3 rounded-xl transition-all ${viewMode === 'list' ? 'bg-white text-slate-900 shadow-md border border-slate-100' : 'text-slate-400 hover:text-slate-600'}`}
+                            className={`p-2 transition-colors cursor-pointer ${viewMode === 'list' ? 'bg-[#003F61] text-white' : 'bg-white text-slate-600 hover:bg-slate-50'}`}
+                            title="Vista a Tabella"
                         >
-                            <List size={20} />
+                            <List size={18} />
                         </button>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                    <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Stato Operativo</label>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 pt-2 border-t border-slate-100">
+                    <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Stato</label>
                         <select 
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value as any)}
-                            className="w-full bg-slate-50 border border-slate-100 text-slate-900 text-[11px] font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600/10 cursor-pointer"
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-medium px-3 py-2 outline-none focus:border-[#003F61] cursor-pointer"
                         >
-                            <option value="ALL">Tutti</option>
+                            <option value="ALL">Tutti gli stati</option>
                             <option value="ONGOING">In Corso</option>
-                            <option value="COMPLETED">Archiviati</option>
+                            <option value="COMPLETED">Archiviati / Chiusi</option>
                         </select>
                     </div>
-                    <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Area / Città</label>
+                    <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Città</label>
                         <select 
                             value={locationFilter}
                             onChange={(e) => setLocationFilter(e.target.value)}
-                            className="w-full bg-slate-50 border border-slate-100 text-slate-900 text-[11px] font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600/10 cursor-pointer"
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-medium px-3 py-2 outline-none focus:border-[#003F61] cursor-pointer"
                         >
-                            <option value="ALL">Qualsiasi</option>
+                            <option value="ALL">Tutte le città</option>
                             {uniqueCities.map(city => <option key={city} value={city}>{city}</option>)}
                         </select>
                     </div>
-                    <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Responsabile</label>
+                    <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Responsabile</label>
                         <select 
                             value={employeeFilter}
                             onChange={(e) => setEmployeeFilter(e.target.value)}
-                            className="w-full bg-slate-50 border border-slate-100 text-slate-900 text-[11px] font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600/10 cursor-pointer"
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-medium px-3 py-2 outline-none focus:border-[#003F61] cursor-pointer"
                         >
-                            <option value="ALL">Tutti</option>
+                            <option value="ALL">Tutto il personale</option>
                             {uniqueEmployees.map(emp => <option key={emp.id} value={emp.id}>{emp.nome} {emp.cognome}</option>)}
                         </select>
                     </div>
-                    <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Sort Data</label>
+                    <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Ordina per</label>
                         <select 
                             value={sortKey}
                             onChange={(e) => setSortKey(e.target.value as SortKey)}
-                            className="w-full bg-slate-50 border border-slate-100 text-slate-900 text-[11px] font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600/10 cursor-pointer"
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-medium px-3 py-2 outline-none focus:border-[#003F61] cursor-pointer"
                         >
-                            <option value="startDate">Inizio</option>
-                            <option value="name">Alfabetico</option>
-                            <option value="budget">Valore</option>
+                            <option value="startDate">Data di Avvio</option>
+                            <option value="name">Nome Cantiere</option>
+                            <option value="budget">Importo Budget</option>
                         </select>
                     </div>
                     <div className="flex items-end">
@@ -223,7 +277,7 @@ export default function ProjectsClient({ projects, isAdmin, stats }: Props) {
                                 setSearchTerm(''); setStatusFilter('ALL'); setLocationFilter('ALL');
                                 setEmployeeFilter('ALL'); setSortKey('startDate'); setSortOrder('desc');
                             }}
-                            className="w-full h-[46px] border border-slate-100 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"
+                            className="w-full h-[34px] border border-slate-200 text-xs font-bold text-slate-600 hover:text-red-600 hover:bg-red-50 uppercase tracking-wider transition-colors cursor-pointer"
                         >
                             Reset Filtri
                         </button>
@@ -233,143 +287,169 @@ export default function ProjectsClient({ projects, isAdmin, stats }: Props) {
 
             {/* Content View */}
             {viewMode === 'grid' ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredProjects.map((project) => (
-                        <div key={project.id} className="group relative bg-white rounded-[2.5rem] shadow-xl border border-slate-50 overflow-hidden flex flex-col transition-all hover:shadow-2xl hover:border-blue-600/20 transform hover:-translate-y-1">
-                            {/* Card Header Image Placeholder / Gradient */}
-                            <div className="h-32 bg-slate-900 relative p-8 flex justify-between items-start">
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent"></div>
-                                <span className={`relative z-10 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/20 backdrop-blur-md ${
-                                    project.status === 'ONGOING' ? 'bg-emerald-500/80 text-white' : 'bg-slate-700/80 text-slate-300'
-                                }`}>
-                                    {project.status === 'ONGOING' ? 'In Corso' : 'Archiviato'}
-                                </span>
-                                <div className="relative z-10 w-12 h-12 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 flex items-center justify-center text-white">
-                                    <HardHat size={20} />
-                                </div>
-                            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {filteredProjects.map((project) => {
+                        const { margine, perc, costi } = calcMargine(project);
+                        const isPos = margine >= 0;
 
-                            <div className="p-8 flex-1 flex flex-col">
-                                <div className="mb-6">
-                                    <h3 className="text-2xl font-black text-slate-900 tracking-tighter leading-none group-hover:text-blue-600 transition-colors uppercase mb-2">
-                                        <Link href={`/projects/${project.id}`}>{project.name}</Link>
-                                    </h3>
-                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                                        <MapPin size={10} className="text-blue-500" /> {project.citta || 'Location non specificata'}
-                                    </p>
-                                </div>
-
-                                <div className="grid grid-cols-2 gap-6 pt-6 border-t border-slate-50 mb-8">
+                        return (
+                            <div key={project.id} className="bg-white border border-slate-200 hover:border-slate-400 transition-all flex flex-col">
+                                <div className="p-4 border-b border-slate-100 flex items-start justify-between bg-slate-50">
                                     <div>
-                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Committente</p>
-                                        <p className="text-xs font-bold text-slate-900 truncate">{project.client.name}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Asset Value</p>
-                                        <p className="text-xs font-black text-slate-900">€ {project.budget?.toLocaleString('it-IT') || '—'}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Launch Date</p>
-                                        <p className="text-xs font-bold text-slate-900">{new Date(project.startDate).toLocaleDateString('it-IT')}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Project Code</p>
-                                        <p className="text-xs font-black text-blue-600 uppercase tracking-tighter">PRJ-{String(project.number).padStart(3, '0')}</p>
-                                    </div>
-                                </div>
-
-                                <div className="mt-auto flex items-center justify-between">
-                                    <div className="flex -space-x-2">
-                                        {project.lavoratori.slice(0, 4).map((l) => (
-                                            <div key={l.id} className="w-8 h-8 rounded-xl bg-slate-50 border-2 border-white flex items-center justify-center text-[10px] font-black text-slate-900 uppercase shadow-sm" title={`${l.nome} ${l.cognome}`}>
-                                                {l.nome[0]}
-                                            </div>
-                                        ))}
-                                        {project.lavoratori.length > 4 && (
-                                            <div className="w-8 h-8 rounded-xl bg-slate-900 border-2 border-white flex items-center justify-center text-[8px] font-black text-white">
-                                                +{project.lavoratori.length - 4}
-                                            </div>
-                                        )}
-                                    </div>
-                                    <Link 
-                                        href={`/projects/${project.id}`} 
-                                        className="p-3 bg-slate-50 text-slate-400 hover:bg-slate-900 hover:text-white rounded-2xl transition-all border border-slate-100"
-                                    >
-                                        <ArrowRight size={20} />
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                /* List View */
-                <div className="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden">
-                    <table className="w-full text-left">
-                        <thead className="bg-slate-50 border-b border-slate-100">
-                            <tr className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                <th className="px-10 py-6">Missione / Asset</th>
-                                <th className="px-6 py-6">Status</th>
-                                <th className="px-6 py-6">Location</th>
-                                <th className="px-6 py-6">Staff</th>
-                                <th className="px-6 py-6">Timeline</th>
-                                <th className="px-6 py-6">Budget</th>
-                                <th className="px-10 py-6 text-right">Dettagli</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-50">
-                            {filteredProjects.map((project) => (
-                                <tr key={project.id} className="hover:bg-slate-50/50 transition-all group cursor-pointer">
-                                    <td className="px-10 py-6">
-                                        <p className="font-black text-slate-900 uppercase tracking-tighter text-base group-hover:text-blue-600 transition-colors">
-                                            <Link href={`/projects/${project.id}`}>{project.name}</Link>
-                                        </p>
-                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">CODE: PRJ-{String(project.number).padStart(3, '0')}</p>
-                                    </td>
-                                    <td className="px-6 py-6">
-                                        <span className={`text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest border ${
-                                            project.status === 'ONGOING' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-slate-100 text-slate-500 border-slate-200'
-                                        }`}>
-                                            {project.status}
+                                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                                            COD: PRJ-{String(project.number || 0).padStart(3, '0')}
                                         </span>
-                                    </td>
-                                    <td className="px-6 py-6">
-                                        <div className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase tracking-tight">
-                                            <MapPin size={14} className="text-blue-500" /> {project.citta || 'HQ'}
+                                        <h3 className="text-base font-bold text-slate-900 tracking-tight mt-0.5 hover:text-[#003F61] transition-colors">
+                                            <Link href={`/projects/${project.id}`}>{project.name}</Link>
+                                        </h3>
+                                    </div>
+                                    <span className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+                                        project.status === 'ONGOING' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-slate-100 text-slate-600 border-slate-200'
+                                    }`}>
+                                        {project.status === 'ONGOING' ? 'In Corso' : 'Archiviato'}
+                                    </span>
+                                </div>
+
+                                <div className="p-4 flex-1 flex flex-col justify-between space-y-4">
+                                    <div className="space-y-2 text-xs">
+                                        <div className="flex justify-between items-center text-slate-500">
+                                            <span>Committente:</span>
+                                            <span className="font-semibold text-slate-800 truncate max-w-[180px]">{project.client.name}</span>
                                         </div>
-                                    </td>
-                                    <td className="px-6 py-6">
-                                        <div className="flex -space-x-1.5">
+                                        <div className="flex justify-between items-center text-slate-500">
+                                            <span>Località:</span>
+                                            <span className="font-medium text-slate-700 flex items-center gap-1">
+                                                <MapPin size={12} className="text-[#003F61]" />
+                                                {project.citta || 'Non specificata'}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-between items-center text-slate-500">
+                                            <span>Budget di Commessa:</span>
+                                            <span className="font-bold text-slate-900">€ {project.budget?.toLocaleString('it-IT') || '—'}</span>
+                                        </div>
+                                        <div className="flex justify-between items-center text-slate-500">
+                                            <span>Data di Avvio:</span>
+                                            <span className="text-slate-700">{new Date(project.startDate).toLocaleDateString('it-IT')}</span>
+                                        </div>
+                                    </div>
+
+                                    {costi > 0 && (
+                                        <div className={`p-2.5 border text-xs ${isPos ? 'bg-emerald-50/50 border-emerald-200' : 'bg-red-50/50 border-red-200'}`}>
+                                            <div className="flex justify-between items-center mb-1">
+                                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Margine Stimato</span>
+                                                <span className={`font-bold ${isPos ? 'text-emerald-700' : 'text-red-600'}`}>
+                                                    {isPos ? '+' : ''}{perc.toFixed(1)}%
+                                                </span>
+                                            </div>
+                                            <div className="text-sm font-bold text-slate-900">
+                                                {isPos ? '+' : ''}€ {margine.toLocaleString('it-IT')}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                                        <div className="flex items-center gap-1">
                                             {project.lavoratori.slice(0, 3).map((l) => (
-                                                <div key={l.id} className="w-8 h-8 rounded-xl bg-slate-900 border-2 border-white flex items-center justify-center text-[8px] font-black text-white uppercase shadow-sm">
+                                                <div key={l.id} className="w-6 h-6 bg-slate-100 border border-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-700" title={`${l.nome} ${l.cognome}`}>
                                                     {l.nome[0]}
                                                 </div>
                                             ))}
+                                            {project.lavoratori.length > 3 && (
+                                                <span className="text-[10px] text-slate-500 font-semibold pl-1">+{project.lavoratori.length - 3}</span>
+                                            )}
                                         </div>
-                                    </td>
-                                    <td className="px-6 py-6 text-sm font-black text-slate-900 tracking-tighter">
-                                        {new Date(project.startDate).toLocaleDateString('it-IT')}
-                                    </td>
-                                    <td className="px-6 py-6 font-black text-slate-900 text-sm">
-                                        {project.budget ? `€ ${project.budget.toLocaleString('it-IT')}` : <span className="text-slate-200">—</span>}
-                                    </td>
-                                    <td className="px-10 py-6 text-right">
-                                        <Link href={`/projects/${project.id}`} className="inline-flex items-center justify-center w-10 h-10 bg-slate-50 text-slate-400 hover:text-slate-900 rounded-2xl transition-all border border-slate-100">
-                                            <ChevronRight size={18} />
+                                        <Link 
+                                            href={`/projects/${project.id}`} 
+                                            className="px-3 py-1.5 bg-slate-50 hover:bg-[#003F61] text-slate-700 hover:text-white border border-slate-200 text-xs font-bold transition-colors flex items-center gap-1"
+                                        >
+                                            Scheda Cantiere <ArrowRight size={12} />
                                         </Link>
-                                    </td>
-                                </tr>
-                            ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            ) : (
+                /* List View (Table) */
+                <div className="bg-white border border-slate-200 overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                        <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider">
+                            <tr>
+                                <th className="px-4 py-3">Cantiere / Codice</th>
+                                <th className="px-4 py-3">Committente</th>
+                                <th className="px-4 py-3">Stato</th>
+                                <th className="px-4 py-3">Località</th>
+                                <th className="px-4 py-3">Avvio</th>
+                                <th className="px-4 py-3 text-right">Budget</th>
+                                <th className="px-4 py-3 text-right">Margine</th>
+                                <th className="px-4 py-3 text-center">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 text-sm">
+                            {filteredProjects.map((project) => {
+                                const { margine, perc, costi } = calcMargine(project);
+                                const isPos = margine >= 0;
+
+                                return (
+                                    <tr key={project.id} className="hover:bg-slate-50/80 transition-colors">
+                                        <td className="px-4 py-3.5">
+                                            <Link href={`/projects/${project.id}`} className="font-bold text-slate-900 hover:text-[#003F61]">
+                                                {project.name}
+                                            </Link>
+                                            <span className="block text-[10px] text-slate-400 font-medium mt-0.5">
+                                                PRJ-{String(project.number || 0).padStart(3, '0')}
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3.5 text-slate-700 font-medium">
+                                            {project.client.name}
+                                        </td>
+                                        <td className="px-4 py-3.5">
+                                            <span className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+                                                project.status === 'ONGOING' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-slate-100 text-slate-600 border-slate-200'
+                                            }`}>
+                                                {project.status === 'ONGOING' ? 'In Corso' : 'Archiviato'}
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3.5 text-slate-600 text-xs">
+                                            {project.citta || '—'}
+                                        </td>
+                                        <td className="px-4 py-3.5 text-slate-600 text-xs">
+                                            {new Date(project.startDate).toLocaleDateString('it-IT')}
+                                        </td>
+                                        <td className="px-4 py-3.5 text-right font-bold text-slate-900">
+                                            {project.budget ? `€ ${project.budget.toLocaleString('it-IT')}` : '—'}
+                                        </td>
+                                        <td className="px-4 py-3.5 text-right">
+                                            {costi > 0 ? (
+                                                <span className={`font-bold text-xs ${isPos ? 'text-emerald-700' : 'text-red-600'}`}>
+                                                    {isPos ? '+' : ''}{perc.toFixed(1)}%
+                                                </span>
+                                            ) : (
+                                                <span className="text-slate-400 text-xs">—</span>
+                                            )}
+                                        </td>
+                                        <td className="px-4 py-3.5 text-center">
+                                            <Link 
+                                                href={`/projects/${project.id}`} 
+                                                className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-[#003F61] bg-slate-50 hover:bg-[#003F61] hover:text-white border border-slate-200 transition-colors"
+                                            >
+                                                Apri <ChevronRight size={12} />
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>
             )}
 
             {filteredProjects.length === 0 && (
-                <div className="text-center py-24 bg-slate-50 rounded-[2.5rem] border-2 border-dashed border-slate-100">
-                    <Activity size={48} className="mx-auto text-slate-200 mb-6" />
-                    <p className="text-slate-400 font-black uppercase tracking-widest">Nessuna commessa rilevata</p>
-                    <p className="text-xs text-slate-400 mt-2">Modifica i criteri di ricerca per sbloccare i dati.</p>
+                <div className="bg-white border border-slate-200 p-12 text-center">
+                    <Activity size={36} className="mx-auto text-slate-300 mb-3" />
+                    <p className="text-sm font-bold text-slate-800 uppercase tracking-wider">Nessuna commessa trovata</p>
+                    <p className="text-xs text-slate-500 mt-1">Nessun cantiere corrisponde ai filtri selezionati o al termine di ricerca.</p>
                 </div>
             )}
 
@@ -377,7 +457,7 @@ export default function ProjectsClient({ projects, isAdmin, stats }: Props) {
             <SlideOver 
                 isOpen={isWizardOpen} 
                 onClose={() => setIsWizardOpen(false)} 
-                title={<div className="flex items-center gap-3 text-slate-900 font-black uppercase tracking-tighter text-2xl">🚀 <span className="italic">Nuovo Cantiere</span></div>}
+                title={<div className="text-lg font-bold text-slate-900 tracking-tight">Nuovo Cantiere</div>}
             >
                 <div className="pb-10">
                     <ProjectWizard onSuccess={() => setIsWizardOpen(false)} />
@@ -386,4 +466,3 @@ export default function ProjectsClient({ projects, isAdmin, stats }: Props) {
         </div>
     );
 }
-

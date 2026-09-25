@@ -11,7 +11,7 @@ export default function NewQuotePage() {
                         <ArrowLeft size={16} />
                         <Link href="/quotes" className="text-sm font-medium">Torna ai Preventivi</Link>
                     </div>
-                    <h1 className="text-3xl font-black text-gray-900 tracking-tight flex items-center gap-3">
+                    <h1 className="text-3xl font-bold text-gray-900 tracking-tight flex items-center gap-3">
                         <FileText className="text-blue-600" size={32} />
                         Nuovo Preventivo
                     </h1>

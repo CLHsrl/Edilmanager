@@ -130,7 +130,7 @@ export default function ContiClient({ conti }: { conti: Conto[] }) {
               </div>
               <div className="pr-8">
                 <h3 className="font-bold text-gray-900 leading-tight">{conto.nome}</h3>
-                <p className="text-xs text-gray-500 uppercase tracking-widest">{conto.tipo}</p>
+                <p className="text-xs text-gray-500 uppercase tracking-wide">{conto.tipo}</p>
               </div>
             </div>
 
@@ -143,7 +143,7 @@ export default function ContiClient({ conti }: { conti: Conto[] }) {
 
             {conto.iban && (
               <div className="mt-4 pt-3 border-t border-gray-50">
-                <p className="text-xs text-center font-mono text-gray-500 tracking-wider">
+                <p className="text-xs text-center text-gray-500 tracking-wider">
                   {conto.iban}
                 </p>
               </div>

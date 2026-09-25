@@ -8,7 +8,7 @@ import MaturityQuiz from '@/components/MaturityQuiz';
 
 export default function PricingPage() {
     return (
-        <div className="bg-white font-sans">
+        <div className="bg-white">
             {/* HERO SECTION */}
             <section className="relative pt-24 pb-20 overflow-hidden bg-slate-900 text-white">
                 <div className="absolute inset-0 bg-blue-600/5 blur-[120px] rounded-full"></div>

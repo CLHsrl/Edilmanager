@@ -53,10 +53,10 @@ export default function StrategicFAQ({ mode = 'general' }: FAQProps) {
         <section id="faq" className="py-32 bg-slate-50">
             <div className="max-w-4xl mx-auto px-6">
                 <div className="text-center mb-20 reveal">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-white text-slate-400 rounded-lg text-[10px] font-black uppercase tracking-widest mb-6 border border-slate-100">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-white text-slate-400 rounded-lg text-[10px] font-bold uppercase tracking-wide mb-6 border border-slate-100">
                         {mode === 'pricing' ? 'Billing Support' : 'Supporto Tecnico'}
                     </div>
-                    <h2 className="text-4xl font-black text-slate-900 tracking-tighter mb-6">
+                    <h2 className="text-4xl font-bold text-slate-900 tracking-tighter mb-6">
                         {mode === 'pricing' ? 'Dettagli sull\'investimento.' : 'Risposte alle tue domande.'}
                     </h2>
                     <p className="text-slate-600">

@@ -57,8 +57,8 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
                 <MessageSquare size={20} />
              </div>
              <div>
-                <h3 className="font-black text-gray-900 uppercase tracking-tighter">Diario di Cantiere</h3>
-                <p className="text-[9px] font-black text-blue-600 uppercase tracking-widest">Aggiornamenti in tempo reale</p>
+                <h3 className="font-bold text-gray-900 uppercase tracking-tighter">Diario di Cantiere</h3>
+                <p className="text-[9px] font-bold text-blue-600 uppercase tracking-wide">Aggiornamenti in tempo reale</p>
              </div>
           </div>
           
@@ -75,13 +75,13 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
                </button>
                <button 
                   disabled={!content.trim() || isPending}
-                  className="bg-gray-900 hover:bg-black text-white px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-xl disabled:opacity-50 flex items-center gap-2"
+                  className="bg-gray-900 hover:bg-black text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide transition-all shadow-xl disabled:opacity-50 flex items-center gap-2"
                >
                   {isPending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />} PUBBLICA
                </button>
             </div>
           </div>
-          <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1.5 ml-1">
+          <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wide flex items-center gap-1.5 ml-1">
              <ShieldCheck size={12} className="text-gray-300" /> I post sono inizialmente solo interni. Richiedono approvazione per il Portale Cliente.
           </p>
         </form>
@@ -95,9 +95,9 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
             <div className="space-y-1">
                <div className="flex items-center gap-2">
                  <Sparkles size={16} className="text-blue-400" />
-                 <h3 className="text-xs font-black uppercase tracking-[0.2em] text-blue-400">Smart Executive Summary</h3>
+                 <h3 className="text-xs font-bold uppercase tracking-wide text-blue-400">Smart Executive Summary</h3>
                </div>
-               <p className="text-xl font-black tracking-tight">Analisi intelligente degli ultimi 7 giorni</p>
+               <p className="text-xl font-bold tracking-tight">Analisi intelligente degli ultimi 7 giorni</p>
             </div>
             <button 
               onClick={async () => {
@@ -107,7 +107,7 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
                 setIsAiLoading(false);
               }}
               disabled={isAiLoading}
-              className="bg-white text-slate-900 px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-400 hover:text-white transition-all shadow-xl flex items-center gap-2 group/btn"
+              className="bg-white text-slate-900 px-8 py-4 rounded-2xl font-bold text-[10px] uppercase tracking-wide hover:bg-blue-400 hover:text-white transition-all shadow-xl flex items-center gap-2 group/btn"
             >
               {isAiLoading ? <Loader2 size={16} className="animate-spin" /> : <Zap size={16} />} 
               {aiSummary ? 'RIGENERA REPORT' : 'GENERA REPORT AI'}
@@ -122,10 +122,10 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
               <div className="mt-4 flex items-center gap-4 border-t border-white/5 pt-4">
                  <div className="flex -space-x-2">
                     {[1,2,3].map(i => (
-                      <div key={i} className="w-6 h-6 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-[8px] font-black">AI</div>
+                      <div key={i} className="w-6 h-6 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-[8px] font-bold">AI</div>
                     ))}
                  </div>
-                 <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Generato istantaneamente da EdilManager AI Guardian</p>
+                 <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wide">Generato istantaneamente da EdilManager AI Guardian</p>
               </div>
            </div>
          )}
@@ -135,13 +135,13 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
       <div className="flex p-1.5 bg-gray-100 rounded-2xl w-max no-print">
         <button 
           onClick={() => setActiveTab('ALL')}
-          className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'ALL' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+          className={`px-6 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wide transition-all ${activeTab === 'ALL' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
         >
           Tutti i log
         </button>
         <button 
           onClick={() => setActiveTab('CLIENT')}
-          className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'CLIENT' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+          className={`px-6 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wide transition-all ${activeTab === 'CLIENT' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
         >
           Visibili al Cliente
         </button>
@@ -152,7 +152,7 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
         {filteredUpdates.length === 0 && (
           <div className="py-20 text-center bg-gray-50/50 rounded-[2rem] border-2 border-dashed border-gray-100">
              <Clock size={40} className="mx-auto text-gray-200 mb-4" />
-             <p className="text-gray-400 font-bold uppercase text-[10px] tracking-widest">Nessun aggiornamento registrato</p>
+             <p className="text-gray-400 font-bold uppercase text-[10px] tracking-wide">Nessun aggiornamento registrato</p>
           </div>
         )}
 
@@ -160,11 +160,11 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
           <div key={update.id} className={`group bg-white rounded-[2rem] border border-gray-100 p-6 shadow-sm transition-all hover:shadow-md ${!update.isVisibleToClient ? 'border-l-4 border-l-orange-400' : 'border-l-4 border-l-green-400'}`}>
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center font-black text-gray-400">
+                <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center font-bold text-gray-400">
                   {update.authorName?.charAt(0) || 'S'}
                 </div>
                 <div>
-                  <p className="font-black text-gray-900 text-sm uppercase leading-tight">{update.authorName || 'Sistema'}</p>
+                  <p className="font-bold text-gray-900 text-sm uppercase leading-tight">{update.authorName || 'Sistema'}</p>
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">{new Date(update.createdAt).toLocaleString('it-IT')}</p>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
                  {isManager && (
                    <button 
                     onClick={() => startTransition(() => approveUpdateForClient(update.id, !update.isVisibleToClient))}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${update.isVisibleToClient ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600 hover:bg-green-50'}`}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[9px] font-bold uppercase tracking-wide transition-all ${update.isVisibleToClient ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600 hover:bg-green-50'}`}
                    >
                      {update.isVisibleToClient ? <><Eye size={12} /> Pubblicato</> : <><EyeOff size={12} /> Approva per Cliente</>}
                    </button>
@@ -206,7 +206,7 @@ export default function SiteDiary({ projectId, updates, isManager }: Props) {
             {!update.isVisibleToClient && (
               <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">
                  <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                 <span className="text-[9px] font-black text-orange-600 uppercase tracking-widest italic">Visibile solo allo staff interno</span>
+                 <span className="text-[9px] font-bold text-orange-600 uppercase tracking-wide italic">Visibile solo allo staff interno</span>
               </div>
             )}
           </div>

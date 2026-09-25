@@ -32,23 +32,23 @@ export default function CashflowClient({ data, saldoAttuale }: { data: MonthlyDa
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white border text-left border-slate-100 rounded-2xl p-6 shadow-sm group">
-          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Saldo Attuale Reale</p>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1">Saldo Attuale Reale</p>
           <div className="flex items-end gap-3">
-            <p className="text-3xl font-black text-slate-900 mt-2">
+            <p className="text-3xl font-bold text-slate-900 mt-2">
               € {new Intl.NumberFormat('it-IT', { minimumFractionDigits: 2 }).format(saldoAttuale)}
             </p>
           </div>
         </div>
         <div className="bg-white border text-left border-slate-100 rounded-2xl p-6 shadow-sm group">
-          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 text-green-600">Totale Entrate (Mensile)</p>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1 text-green-600">Totale Entrate (Mensile)</p>
           <div className="flex items-end gap-3">
-            <p className="text-3xl font-black text-slate-900 mt-2">€ {chartData[chartData.length-1]?.entrate.toLocaleString('it-IT')}</p>
+            <p className="text-3xl font-bold text-slate-900 mt-2">€ {chartData[chartData.length-1]?.entrate.toLocaleString('it-IT')}</p>
           </div>
         </div>
         <div className="bg-white border text-left border-slate-100 rounded-2xl p-6 shadow-sm group">
-          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 text-red-500">Totale Uscite (Mensile)</p>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1 text-red-500">Totale Uscite (Mensile)</p>
           <div className="flex items-end gap-3">
-            <p className="text-3xl font-black text-slate-900 mt-2">€ {chartData[chartData.length-1]?.uscite.toLocaleString('it-IT')}</p>
+            <p className="text-3xl font-bold text-slate-900 mt-2">€ {chartData[chartData.length-1]?.uscite.toLocaleString('it-IT')}</p>
           </div>
         </div>
       </div>
@@ -56,10 +56,10 @@ export default function CashflowClient({ data, saldoAttuale }: { data: MonthlyDa
       {/* Header Info */}
       <div className="flex flex-col md:flex-row justify-between md:items-end gap-4">
         <div>
-          <h2 className="text-xl font-black text-slate-900 flex items-center gap-2 uppercase tracking-tighter">
+          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2 uppercase tracking-tighter">
             <TrendingUp size={20} className="text-blue-600" /> Cashflow Globale & Previsioni
           </h2>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1">Confronto tra movimenti reali e proiezioni stimate dai cantieri.</p>
+          <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400 mt-1">Confronto tra movimenti reali e proiezioni stimate dai cantieri.</p>
         </div>
       </div>
 
@@ -67,7 +67,7 @@ export default function CashflowClient({ data, saldoAttuale }: { data: MonthlyDa
 
         {/* 1. Grafico a Barre: Entrate vs Uscite Effettive Mensili */}
         <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
-          <h3 className="font-black text-slate-900 mb-6 uppercase text-[10px] tracking-widest flex items-center gap-2">
+          <h3 className="font-bold text-slate-900 mb-6 uppercase text-[10px] tracking-wide flex items-center gap-2">
             Movimenti Reali Mensili
           </h3>
           <div className="h-72 w-full text-sm">
@@ -91,7 +91,7 @@ export default function CashflowClient({ data, saldoAttuale }: { data: MonthlyDa
 
         {/* 2. Andamento Cumulativo Saldo reale vs Previsione */}
         <div className="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
-          <h3 className="font-black text-slate-900 mb-6 uppercase text-[10px] tracking-widest flex items-center gap-2">
+          <h3 className="font-bold text-slate-900 mb-6 uppercase text-[10px] tracking-wide flex items-center gap-2">
             Proiezione Saldo Netto
             <div className="group relative">
                <Info size={14} className="text-slate-400" />

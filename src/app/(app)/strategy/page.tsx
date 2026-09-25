@@ -7,9 +7,5 @@ export default async function StrategyPage() {
   
   const data = await getStrategicData();
 
-  return (
-    <div className="p-4 md:p-8">
-      <StrategicAdvisorClient data={data} />
-    </div>
-  );
+  return <StrategicAdvisorClient data={data} />;
 }

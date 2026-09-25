@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PiattaformaPage() {
     return (
-        <div className="bg-white font-manrope">
+        <div className="bg-white">
             {/* 1. HERO */}
             <section className="relative pt-28 lg:pt-40 pb-12 lg:pb-20 overflow-hidden bg-corporate">
                 <div className="absolute inset-0 opacity-[0.08] pointer-events-none" 

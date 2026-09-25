@@ -184,12 +184,10 @@ export async function getProjects(query?: string) {
             include: { 
                 client: true,
                 lavoratori: {
-                    select: {
-                        id: true,
-                        nome: true,
-                        cognome: true
-                    }
-                }
+                    select: { id: true, nome: true, cognome: true }
+                },
+                previsionali: { select: { tipo: true, importo: true } },
+                ddts: { select: { importo: true } }
             },
             orderBy: { createdAt: 'desc' }
         });
@@ -198,12 +196,10 @@ export async function getProjects(query?: string) {
         include: { 
             client: true,
             lavoratori: {
-                select: {
-                    id: true,
-                    nome: true,
-                    cognome: true
-                }
-            }
+                select: { id: true, nome: true, cognome: true }
+            },
+            previsionali: { select: { tipo: true, importo: true } },
+            ddts: { select: { importo: true } }
         },
         orderBy: { createdAt: 'desc' }
     });

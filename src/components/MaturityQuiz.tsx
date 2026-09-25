@@ -78,11 +78,11 @@ export default function MaturityQuiz() {
                 <div className="w-20 h-20 bg-blue-600 text-white rounded-3xl flex items-center justify-center mb-10 shadow-[0_10px_30px_rgba(37,99,235,0.3)] mx-auto lg:mx-0">
                     <Sparkles size={40} />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-black text-white mb-6 tracking-tight leading-tight">Analisi Tecnica <br/>dei Processi</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight leading-tight">Analisi Tecnica <br/>dei Processi</h2>
                 <p className="text-slate-400 mb-10 text-lg leading-relaxed max-w-lg">Identifichiamo i colli di bottiglia operativi e le opportunità di ottimizzazione della tua impresa in tempo reale.</p>
                 <button 
                     onClick={() => setStep(1)}
-                    className="w-full sm:w-auto bg-blue-600 text-white px-12 py-5 rounded-2xl font-black uppercase tracking-[0.15em] text-xs hover:bg-blue-500 transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/20 group"
+                    className="w-full sm:w-auto bg-blue-600 text-white px-12 py-5 rounded-2xl font-bold uppercase tracking-[0.15em] text-xs hover:bg-blue-500 transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/20 group"
                 >
                     Inizia Audit Strategico <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -96,14 +96,14 @@ export default function MaturityQuiz() {
             <div className={containerClasses}>
                 <div className="flex justify-between items-center mb-12">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-xs">{step}</div>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">di 4 domande</span>
+                        <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xs">{step}</div>
+                        <span className="text-[10px] font-bold uppercase tracking-wide text-slate-500">di 4 domande</span>
                     </div>
                     <div className="w-32 h-1.5 bg-white/5 rounded-full overflow-hidden">
                         <div className="h-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.5)] transition-all duration-700 ease-out" style={{ width: `${(step / 4) * 100}%` }}></div>
                     </div>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-10 tracking-tight leading-tight">{question.text}</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-10 tracking-tight leading-tight">{question.text}</h3>
                 <div className="space-y-4">
                     {question.options.map((opt, i) => (
                         <button 
@@ -128,7 +128,7 @@ export default function MaturityQuiz() {
                 <div className="w-20 h-20 bg-emerald-500/20 text-emerald-400 rounded-3xl flex items-center justify-center mx-auto mb-10 border border-emerald-500/30">
                     <ShieldCheck size={40} />
                 </div>
-                <h2 className="text-3xl font-black text-white mb-6 tracking-tight">Elaborazione Completata</h2>
+                <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Elaborazione Completata</h2>
                 <p className="text-slate-400 mb-10 text-lg leading-relaxed">Inserisci l'indirizzo email dove desideri ricevere il report tecnico completo e i consigli personalizzati.</p>
                 <form 
                     onSubmit={(e) => { e.preventDefault(); setStep(6); }}
@@ -144,7 +144,7 @@ export default function MaturityQuiz() {
                     />
                     <button 
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:bg-blue-500 transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/20"
+                        className="w-full bg-blue-600 text-white py-6 rounded-2xl font-bold uppercase tracking-wide text-xs hover:bg-blue-500 transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/20"
                     >
                         Genera Report <Send size={18} />
                     </button>
@@ -157,9 +157,9 @@ export default function MaturityQuiz() {
     return (
         <div className={containerClasses}>
             <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-full text-[10px] font-black uppercase tracking-widest mb-8">Score Digitale</div>
-                <div className="text-8xl font-black text-white mb-6 tracking-tighter drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">{score}%</div>
-                <h2 className={`text-3xl font-black mb-4 ${diagnosis.color}`}>{diagnosis.title}</h2>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-full text-[10px] font-bold uppercase tracking-wide mb-8">Score Digitale</div>
+                <div className="text-8xl font-bold text-white mb-6 tracking-tighter drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">{score}%</div>
+                <h2 className={`text-3xl font-bold mb-4 ${diagnosis.color}`}>{diagnosis.title}</h2>
                 <p className="text-slate-400 mb-10 text-lg leading-relaxed max-w-xl mx-auto">{diagnosis.desc}</p>
             </div>
             
@@ -186,12 +186,12 @@ export default function MaturityQuiz() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-white text-slate-900 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-blue-600 hover:text-white transition-all shadow-xl">
+                <button className="bg-white text-slate-900 px-10 py-5 rounded-2xl font-bold uppercase tracking-wide text-[10px] hover:bg-blue-600 hover:text-white transition-all shadow-xl">
                     Richiedi Onboarding Strategico
                 </button>
                 <button 
                     onClick={() => { setStep(0); setScore(0); }}
-                    className="bg-transparent text-slate-500 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:text-white border border-white/10 transition-all"
+                    className="bg-transparent text-slate-500 px-10 py-5 rounded-2xl font-bold uppercase tracking-wide text-[10px] hover:text-white border border-white/10 transition-all"
                 >
                     Ripeti Audit
                 </button>

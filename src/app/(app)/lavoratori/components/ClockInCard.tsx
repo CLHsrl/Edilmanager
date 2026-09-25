@@ -58,8 +58,8 @@ export default function ClockInCard({ lavoratoreId, currentPresenza }: { lavorat
     }`}>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Timbratrice Digitale Georeferenziata</h4>
-          <p className={`text-sm font-black mt-1 ${active ? 'text-green-600' : 'text-gray-600'}`}>
+          <h4 className="text-[10px] font-bold uppercase tracking-wide text-gray-400">Timbratrice Digitale Georeferenziata</h4>
+          <p className={`text-sm font-bold mt-1 ${active ? 'text-green-600' : 'text-gray-600'}`}>
             {active ? 'SERVIZIO ATTIVO' : 'FUORI SERVIZIO'}
           </p>
         </div>
@@ -77,7 +77,7 @@ export default function ClockInCard({ lavoratoreId, currentPresenza }: { lavorat
           <button 
             onClick={handleClockOut}
             disabled={isPending}
-            className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white py-4 rounded-2xl font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-red-100 transition-all active:scale-95"
+            className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-xl shadow-red-100 transition-all active:scale-95"
           >
             {isPending ? <Loader2 size={18} className="animate-spin" /> : <LogOut size={18} />}
             FINE TURNO (CHECK-OUT)
@@ -87,7 +87,7 @@ export default function ClockInCard({ lavoratoreId, currentPresenza }: { lavorat
         <button 
           onClick={handleClockIn}
           disabled={isPending}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-5 rounded-2xl font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-blue-100 transition-all active:scale-95"
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-xl shadow-blue-100 transition-all active:scale-95"
         >
           {isPending ? <Loader2 size={18} className="animate-spin" /> : <LogIn size={18} />}
           INIZIA TURNO (CHECK-IN) 

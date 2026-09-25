@@ -15,7 +15,7 @@ export default function PublicFooter() {
                 </div>
 
                 <div>
-                    <h4 className="text-white font-black mb-6 uppercase tracking-widest text-[10px]">Prodotto</h4>
+                    <h4 className="text-white font-bold mb-6 uppercase tracking-wide text-[10px]">Prodotto</h4>
                     <ul className="space-y-4 text-sm">
                         <li><Link href="/features" className="hover:text-white transition-colors">Funzionalità</Link></li>
                         <li><Link href="/platform" className="hover:text-white transition-colors">Piattaforma</Link></li>
@@ -24,7 +24,7 @@ export default function PublicFooter() {
                 </div>
 
                 <div>
-                    <h4 className="text-white font-black mb-6 uppercase tracking-widest text-[10px]">Risorse</h4>
+                    <h4 className="text-white font-bold mb-6 uppercase tracking-wide text-[10px]">Risorse</h4>
                     <ul className="space-y-4 text-sm">
                         <li><Link href="/blog" className="hover:text-white transition-colors">Blog & Guide</Link></li>
                         <li><Link href="/#quiz" className="hover:text-white transition-colors">Maturity Quiz</Link></li>
@@ -32,7 +32,7 @@ export default function PublicFooter() {
                 </div>
 
                 <div>
-                    <h4 className="text-white font-black mb-6 uppercase tracking-widest text-[10px]">Azienda</h4>
+                    <h4 className="text-white font-bold mb-6 uppercase tracking-wide text-[10px]">Azienda</h4>
                     <ul className="space-y-4 text-sm">
                         <li><Link href="/about" className="hover:text-white transition-colors">Chi Siamo</Link></li>
                         <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
@@ -42,7 +42,7 @@ export default function PublicFooter() {
             
             <div className="max-w-7xl mx-auto px-6 border-t border-gray-900 py-8 flex flex-col md:flex-row justify-between items-center text-xs gap-4">
                 <p>© {new Date().getFullYear()} EdilManager Srl — P.IVA IT12345678900. Tutti i diritti riservati.</p>
-                <span className="font-bold text-gray-600 uppercase tracking-widest text-[9px]">Made in Italy · GDPR Compliant</span>
+                <span className="font-bold text-gray-600 uppercase tracking-wide text-[9px]">Made in Italy · GDPR Compliant</span>
             </div>
         </footer>
     );

@@ -16,7 +16,7 @@ const config: Config = {
                 secondary: "#5f6368", // Google Grey
             },
             fontFamily: {
-                sans: ['Inter', 'Roboto', 'Arial', 'sans-serif'],
+                sans: ['var(--font-inter)', 'sans-serif'],
             },
         },
     },

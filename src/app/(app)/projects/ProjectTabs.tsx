@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { 
-  HardHat, FileText, Truck, BarChart2, TrendingUp, 
+  FileText, Truck, BarChart2, TrendingUp, 
   Wrench, GanttChartSquare, ShieldCheck, FolderOpen, 
   HelpCircle, Activity, Layout
 } from 'lucide-react';
@@ -13,13 +13,13 @@ const TABS = [
   { id: 'sicurezza', label: 'Sicurezza & POS', icon: ShieldCheck },
   { id: 'documenti', label: 'Documenti', icon: FolderOpen },
   { id: 'rfis', label: 'RFIs', icon: HelpCircle },
-  { id: 'budget-ai', label: 'Analisi AI', icon: TrendingUp, roles: ['ADMIN', 'PM'] },
-  { id: 'gantt', label: 'Planning', icon: GanttChartSquare },
-  { id: 'lavorazioni', label: 'Task List', icon: Wrench },
+  { id: 'budget-ai', label: 'Analisi Budget', icon: TrendingUp },
+  { id: 'gantt', label: 'Cronoprogramma', icon: GanttChartSquare },
+  { id: 'lavorazioni', label: 'Lavorazioni', icon: Wrench },
   { id: 'rapportini', label: 'Rapportini', icon: FileText },
   { id: 'ddt', label: 'DDT', icon: Truck },
   { id: 'sal', label: 'SAL', icon: BarChart2 },
-  { id: 'previsionale', label: 'Forecast', icon: TrendingUp },
+  { id: 'previsionale', label: 'Previsionale', icon: TrendingUp },
 ];
 
 interface ProjectTabsProps {
@@ -30,10 +30,10 @@ export default function ProjectTabs({ children }: ProjectTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Tab Bar Container */}
-      <div className="bg-white p-2 rounded-[2rem] border border-slate-100 shadow-sm overflow-x-auto no-scrollbar">
-        <div className="flex gap-2 min-w-max">
+      <div className="bg-white border border-slate-200 p-1.5 overflow-x-auto no-scrollbar">
+        <div className="flex gap-1 min-w-max">
           {TABS.map((tab, i) => {
             const Icon = tab.icon;
             const isActive = activeTab === i;
@@ -41,13 +41,13 @@ export default function ProjectTabs({ children }: ProjectTabsProps) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(i)}
-                className={`flex items-center gap-3 px-6 py-4 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest transition-all ${
+                className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider transition-colors ${
                   isActive
-                    ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/10'
-                    : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'
+                    ? 'bg-[#003F61] text-white'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
               >
-                <Icon size={16} className={isActive ? 'text-blue-400' : ''} />
+                <Icon size={15} className={isActive ? 'text-[#FEDE59]' : 'text-slate-400'} />
                 {tab.label}
               </button>
             );
@@ -56,9 +56,9 @@ export default function ProjectTabs({ children }: ProjectTabsProps) {
       </div>
 
       {/* Tab Content */}
-      <div className="transition-all duration-500">
+      <div className="transition-all">
         {children.map((child, i) => (
-          <div key={i} className={activeTab === i ? 'block animate-in fade-in slide-in-from-bottom-4 duration-500' : 'hidden'}>
+          <div key={i} className={activeTab === i ? 'block' : 'hidden'}>
             {child}
           </div>
         ))}
@@ -66,4 +66,3 @@ export default function ProjectTabs({ children }: ProjectTabsProps) {
     </div>
   );
 }
-

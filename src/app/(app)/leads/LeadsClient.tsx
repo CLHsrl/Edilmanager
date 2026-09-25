@@ -3,16 +3,12 @@
 import { useState, useTransition } from 'react';
 import { 
     Plus, Search, TrendingUp, User, MapPin, 
-    Phone, Mail, Calendar, Target, DollarSign, 
-    ChevronRight, MoreVertical, Trash2, CheckCircle2, 
-    XCircle, Clock, Filter, Wand2, LayoutGrid, List, Sparkles, Trophy, Zap 
+    Phone, Mail, Calendar, Target, 
+    Trash2, CheckCircle2, 
+    Clock, Filter, LayoutGrid, List
 } from 'lucide-react';
 import { createLead, updateLeadStatus, deleteLead } from '../lead-actions';
 import SlideOver from '@/components/SlideOver';
-import GlobalRankWidget from '@/components/GlobalRankWidget';
-import RankUpModal from '@/components/RankUpModal';
-import CRMMissionBoard from './CRMMissionBoard';
-import ContractBossFight from './ContractBossFight';
 
 type Lead = {
     id: string;
@@ -47,51 +43,37 @@ type Props = {
       name: string | null;
       totalXp: number;
       rank: string;
-    }
+    };
 };
 
-export default function LeadsClient({ leads, stats, isAdmin, user }: Props) {
+const STAGES = [
+    { key: 'NEW', label: 'Nuovi Lead', color: 'border-slate-300' },
+    { key: 'CONTACTED', label: 'Contattati', color: 'border-blue-400' },
+    { key: 'SURVEY_SCHEDULED', label: 'Sopralluogo', color: 'border-amber-400' },
+    { key: 'QUOTED', label: 'Preventivato', color: 'border-purple-400' },
+    { key: 'WON', label: 'Contratto Chiuso', color: 'border-emerald-500' }
+];
+
+export default function LeadsClient({ leads, stats, isAdmin }: Props) {
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('ALL');
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [viewMode, setViewMode] = useState<'BOARD' | 'TABLE'>('BOARD');
     const [isPending, startTransition] = useTransition();
-    const [bossFightLead, setBossFightLead] = useState<Lead | null>(null);
-    const [rankUpData, setRankUpData] = useState<{ old: string, new: string } | null>(null);
-    const [prevRank, setPrevRank] = useState(user?.rank || 'GARZONE DI CANTIERE');
-
-    // Detect Rank Up
-    if (user?.rank && user.rank !== prevRank) {
-      setRankUpData({ old: prevRank, new: user.rank });
-      setPrevRank(user.rank);
-    }
 
     const handleStatusUpdate = (id: string, status: string) => {
-      if (status === 'WON') {
-        const lead = leads.find(l => l.id === id);
-        if (lead) {
-          setBossFightLead(lead);
-          return;
-        }
-      }
-      startTransition(async () => { await updateLeadStatus(id, status); });
+        startTransition(async () => {
+            await updateLeadStatus(id, status);
+        });
     };
 
     const filteredLeads = leads.filter(l => {
         const matchesSearch = l.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                             (l.clientName && l.clientName.toLowerCase().includes(searchTerm.toLowerCase()));
+                             (l.clientName && l.clientName.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                             (l.city && l.city.toLowerCase().includes(searchTerm.toLowerCase()));
         const matchesStatus = statusFilter === 'ALL' || l.status === statusFilter;
         return matchesSearch && matchesStatus;
     });
-
-    const statusColors: Record<string, string> = {
-        'NEW': 'bg-blue-50 text-blue-700 border-blue-100',
-        'CONTACTED': 'bg-purple-50 text-purple-700 border-purple-100',
-        'SURVEY_SCHEDULED': 'bg-orange-50 text-orange-700 border-orange-100',
-        'QUOTED': 'bg-yellow-50 text-yellow-700 border-yellow-100',
-        'WON': 'bg-green-50 text-green-700 border-green-100',
-        'LOST': 'bg-red-50 text-red-700 border-red-100'
-    };
 
     const statusLabels: Record<string, string> = {
         'NEW': 'Nuovo',
@@ -103,237 +85,338 @@ export default function LeadsClient({ leads, stats, isAdmin, user }: Props) {
     };
 
     return (
-    <div className="flex flex-col gap-10 pb-20 reveal">
-      {/* Unified Header (Gamified) */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 no-print">
-        <div>
-          <div className="page-label">
-            <Sparkles className="text-blue-600" size={14} />
-            Opportunity Pipeline & CRM Gamification
-          </div>
-          <h1 className="page-title">Campaign Conquest</h1>
-          <p className="page-description">Chiudi contratti, guadagna XP e scala le vette mondiali del CRM</p>
-        </div>
-        
-        <div className="flex items-center gap-4 w-full md:w-auto">
-            <div className="flex bg-slate-100 p-1 rounded-2xl border border-slate-200 shadow-inner">
-                <button 
-                    onClick={() => setViewMode('BOARD')}
-                    className={`px-6 py-3 rounded-xl flex items-center gap-2 text-[10px] font-black uppercase tracking-tight transition-all ${viewMode === 'BOARD' ? 'bg-white text-slate-900 shadow-md' : 'text-slate-400 hover:text-slate-600'}`}
-                >
-                    <LayoutGrid size={14} /> Mission Board
-                </button>
-                <button 
-                    onClick={() => setViewMode('TABLE')}
-                    className={`px-6 py-3 rounded-xl flex items-center gap-2 text-[10px] font-black uppercase tracking-tight transition-all ${viewMode === 'TABLE' ? 'bg-white text-slate-900 shadow-md' : 'text-slate-400 hover:text-slate-600'}`}
-                >
-                    <List size={14} /> Lista Lead
-                </button>
+        <div className="flex flex-col gap-6 pb-12">
+            {/* 1. Header Card */}
+            <div className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div className="flex items-center gap-2 mb-1">
+                        <span className="h-2 w-2 bg-[#003F61]" />
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                            CRM & Pipeline Commerciale
+                        </span>
+                    </div>
+                    <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">
+                        Opportunità & Trattative Commerciali
+                    </h1>
+                    <p className="text-sm text-slate-500 mt-1">
+                        Monitoraggio lead, sopralluoghi tecnici e avanzamento delle offerte contrattuali.
+                    </p>
+                </div>
+
+                <div className="flex items-center gap-3">
+                    <button 
+                        onClick={() => setIsFormOpen(true)}
+                        className="h-10 px-4 bg-[#003F61] text-white hover:bg-[#002f49] text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors"
+                    >
+                        <Plus size={16} /> Nuova Trattativa
+                    </button>
+                </div>
             </div>
-            <button 
-                onClick={() => setIsFormOpen(true)}
-                className="action-btn-primary"
-            >
-                <Plus size={16} /> Lancia Nuova Missione
-            </button>
-        </div>
-      </div>
 
-            {/* Top Stats Area - Gamification Focus */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <GlobalRankWidget user={user} />
-                
-                <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* KPI 1 */}
-                    <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
-                        <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
-                                <Target size={20} />
-                            </div>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Tesoro Potenziale</p>
+            {/* 2. KPI Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-2">
+                        <span className="text-xs font-bold uppercase tracking-wider">Budget Potenziale</span>
+                        <div className="p-2 bg-slate-50 border border-slate-100 text-[#003F61]">
+                            <Target size={16} />
                         </div>
-                        <p className="text-3xl font-black text-slate-900 tracking-tighter">€{stats.potentialBudget.toLocaleString('it-IT')}</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase mt-2">Valore missioni attive</p>
                     </div>
-
-                    {/* KPI 2 */}
-                    <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
-                        <div className="absolute top-0 left-0 w-1.5 h-full bg-purple-500"></div>
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600">
-                                <TrendingUp size={20} />
-                            </div>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Win Rate</p>
+                    <div>
+                        <div className="text-2xl font-bold text-[#003F61]">
+                            € {stats.potentialBudget.toLocaleString('it-IT')}
                         </div>
-                        <p className="text-3xl font-black text-slate-900 tracking-tighter">{stats.total > 0 ? Math.round((stats.won / stats.total) * 100) : 0}%</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase mt-2">Tasso di conquista globale</p>
+                        <div className="text-[11px] text-slate-500 mt-1">Valore pipeline attiva</div>
                     </div>
+                </div>
 
-                    {/* KPI 3 */}
-                    <div className="bg-slate-900 p-6 rounded-3xl shadow-2xl relative overflow-hidden group hover:shadow-blue-900/20 transition-all">
-                        <div className="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white">
-                                <Trophy size={20} />
-                            </div>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Contratti Chiusi</p>
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-2">
+                        <span className="text-xs font-bold uppercase tracking-wider">Trattative Aperte</span>
+                        <div className="p-2 bg-blue-50 border border-blue-100 text-[#003F61]">
+                            <Clock size={16} />
                         </div>
-                        <p className="text-3xl font-black text-white tracking-tighter">{stats.won}</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase mt-2">Missioni completate con successo</p>
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-slate-900">
+                            {stats.open}
+                        </div>
+                        <div className="text-[11px] text-slate-500 mt-1">Lead in corso di negoziazione</div>
+                    </div>
+                </div>
+
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-2">
+                        <span className="text-xs font-bold uppercase tracking-wider">Contratti Chiusi</span>
+                        <div className="p-2 bg-emerald-50 border border-emerald-100 text-emerald-700">
+                            <CheckCircle2 size={16} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-emerald-700">
+                            {stats.won}
+                        </div>
+                        <div className="text-[11px] text-slate-500 mt-1">Trattative convertite in commesse</div>
+                    </div>
+                </div>
+
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-2">
+                        <span className="text-xs font-bold uppercase tracking-wider">Tasso di Chiusura</span>
+                        <div className="p-2 bg-amber-50 border border-amber-100 text-amber-700">
+                            <TrendingUp size={16} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-[#003F61]">
+                            {stats.total > 0 ? Math.round((stats.won / stats.total) * 100) : 0}%
+                        </div>
+                        <div className="text-[11px] text-slate-500 mt-1">Tasso medio di conversione</div>
                     </div>
                 </div>
             </div>
 
-            {/* View Switching */}
-            {viewMode === 'BOARD' ? (
-                <CRMMissionBoard leads={leads} onStatusUpdate={handleStatusUpdate} />
-            ) : (
-                <div className="space-y-6 animate-in fade-in duration-500">
-                    <div className="bg-white p-4 rounded-[1.5rem] border border-gray-100 shadow-sm flex flex-col md:flex-row gap-4 items-center">
-                        <div className="flex-1 w-full relative">
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                            <input 
-                                type="text" 
-                                placeholder="Cerca tradttative nel database..." 
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 pl-12 pr-4 text-sm font-bold focus:outline-none focus:border-blue-500 transition-all"
-                            />
-                        </div>
-                        <div className="flex items-center gap-2 w-full md:w-auto">
-                            <Filter size={16} className="text-gray-400 ml-2" />
-                            <select 
-                                value={statusFilter}
-                                onChange={(e) => setStatusFilter(e.target.value)}
-                                className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-xs font-black uppercase tracking-widest outline-none transition-all"
-                            >
-                                <option value="ALL">Tutti gli stati</option>
-                                {Object.entries(statusLabels).map(([val, label]) => (
-                                    <option key={val} value={val}>{label.toUpperCase()}</option>
-                                ))}
-                            </select>
-                        </div>
+            {/* 3. Filter Bar */}
+            <div className="bg-white border border-slate-200 p-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                <div className="flex-1 flex items-center gap-3">
+                    <div className="relative flex-1 max-w-md">
+                        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <input
+                            type="text"
+                            placeholder="Cerca per trattativa, cliente o città..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#003F61]"
+                        />
                     </div>
 
-                    <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden overflow-x-auto">
-                        <table className="w-full text-left min-w-[1000px]">
-                            <thead className="bg-gray-50/50 border-b border-gray-50">
-                                <tr className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                                    <th className="px-8 py-5">Opportunità</th>
-                                    <th className="px-8 py-5">Livello</th>
-                                    <th className="px-8 py-5">Contatto</th>
-                                    <th className="px-8 py-5">Dettagli</th>
-                                    <th className="px-8 py-5">Budget</th>
-                                    <th className="px-8 py-5 text-right">Azioni</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-50">
-                                {filteredLeads.map((lead) => (
-                                    <tr key={lead.id} className="hover:bg-blue-50/30 transition-all group">
-                                        <td className="px-8 py-6">
-                                            <div className="flex items-center gap-4">
-                                                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-bold ${statusColors[lead.status].replace('text-', 'bg-').replace('border-', 'text-')}`}>
-                                                    {lead.name.charAt(0)}
-                                                </div>
-                                                <div>
-                                                    <p className="font-black text-gray-900 group-hover:text-blue-600 transition-colors uppercase leading-tight">{lead.name}</p>
-                                                    <p className="text-[10px] text-gray-400 font-bold uppercase mt-0.5">{lead.source || 'Lead standard'}</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="px-8 py-6">
-                                            <div className="flex items-center gap-2">
-                                                <span className={`text-[9px] font-black px-3 py-1.5 rounded-full uppercase border ${statusColors[lead.status]}`}>
-                                                    Lvl {lead.level}: {statusLabels[lead.status]}
-                                                </span>
-                                                <span className="text-[9px] font-black text-blue-600">{lead.xp} XP</span>
-                                            </div>
-                                        </td>
-                                        <td className="px-8 py-6">
-                                            <div className="flex flex-col gap-1 text-xs">
-                                                <span className="font-bold text-gray-800 flex items-center gap-1.5">
-                                                    <User size={12} className="text-gray-300" /> {lead.clientName || 'N/A'}
-                                                </span>
-                                                <span className="text-gray-400 flex items-center gap-1.5">
-                                                    <Mail size={12} className="text-gray-300" /> {lead.clientEmail || '-'}
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="px-8 py-6">
-                                            <div className="flex flex-col gap-1 text-xs">
-                                                <span className="font-bold text-gray-700 flex items-center gap-1.5 uppercase tracking-tighter">
-                                                    <MapPin size={12} className="text-gray-300" /> {lead.city || 'N/A'}
-                                                </span>
-                                                <span className="text-gray-400 font-bold uppercase text-[9px]">
-                                                    {lead.workType || '-'}
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="px-8 py-6">
-                                            <p className="font-black text-gray-900 leading-tight">€{lead.estimatedBudget?.toLocaleString('it-IT') || '0'}</p>
-                                        </td>
-                                        <td className="px-8 py-6 text-right">
-                                            <div className="flex justify-end gap-2">
-                                                <button 
-                                                    onClick={() => isAdmin && confirm('Eliminare lead?') && startTransition(async () => { await deleteLead(lead.id); })}
-                                                    className="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
-                                                >
-                                                    <Trash2 size={16} />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                    <select
+                        value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value)}
+                        className="h-10 px-3 bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 uppercase focus:outline-none focus:border-[#003F61]"
+                    >
+                        <option value="ALL">TUTTI GLI STATI</option>
+                        {Object.entries(statusLabels).map(([val, label]) => (
+                            <option key={val} value={val}>{label.toUpperCase()}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <div className="flex border border-slate-200">
+                        <button
+                            onClick={() => setViewMode('BOARD')}
+                            className={`p-2 transition-colors ${
+                                viewMode === 'BOARD'
+                                    ? 'bg-[#003F61] text-white'
+                                    : 'bg-white text-slate-500 hover:bg-slate-50'
+                            }`}
+                            title="Vista Pipeline"
+                        >
+                            <LayoutGrid size={16} />
+                        </button>
+                        <button
+                            onClick={() => setViewMode('TABLE')}
+                            className={`p-2 transition-colors ${
+                                viewMode === 'TABLE'
+                                    ? 'bg-[#003F61] text-white'
+                                    : 'bg-white text-slate-500 hover:bg-slate-50'
+                            }`}
+                            title="Vista Tabella"
+                        >
+                            <List size={16} />
+                        </button>
                     </div>
+                </div>
+            </div>
+
+            {/* 4. Content */}
+            {viewMode === 'BOARD' ? (
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 overflow-x-auto pb-4">
+                    {STAGES.map((stage) => {
+                        const stageLeads = filteredLeads.filter(l => l.status === stage.key);
+                        return (
+                            <div key={stage.key} className="bg-slate-100 border border-slate-200 flex flex-col min-h-[500px]">
+                                <div className="p-3 bg-white border-b border-slate-200 flex items-center justify-between">
+                                    <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                                        {stage.label}
+                                    </span>
+                                    <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold border border-slate-200">
+                                        {stageLeads.length}
+                                    </span>
+                                </div>
+
+                                <div className="p-2 space-y-2 flex-1 overflow-y-auto">
+                                    {stageLeads.map((lead) => (
+                                        <div key={lead.id} className="bg-white border border-slate-200 p-3 hover:border-slate-400 transition-colors">
+                                            <h4 className="font-bold text-xs text-slate-900 mb-1 leading-tight">{lead.name}</h4>
+                                            {lead.clientName && (
+                                                <p className="text-[11px] text-slate-600 flex items-center gap-1 mb-1">
+                                                    <User size={11} className="text-slate-400" /> {lead.clientName}
+                                                </p>
+                                            )}
+                                            {lead.city && (
+                                                <p className="text-[10px] text-slate-500 flex items-center gap-1 mb-2">
+                                                    <MapPin size={11} className="text-slate-400" /> {lead.city}
+                                                </p>
+                                            )}
+                                            <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                                                <span className="text-xs font-bold text-[#003F61]">
+                                                    € {lead.estimatedBudget?.toLocaleString('it-IT') || '—'}
+                                                </span>
+                                                <select
+                                                    value={lead.status}
+                                                    onChange={(e) => handleStatusUpdate(lead.id, e.target.value)}
+                                                    className="text-[10px] font-bold uppercase bg-slate-50 border border-slate-200 px-1.5 py-0.5 text-slate-700"
+                                                >
+                                                    {Object.entries(statusLabels).map(([val, label]) => (
+                                                        <option key={val} value={val}>{label}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    {stageLeads.length === 0 && (
+                                        <div className="p-4 text-center text-xs text-slate-400 italic">
+                                            Nessuna trattativa
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            ) : (
+                <div className="bg-white border border-slate-200 overflow-x-auto">
+                    <table className="w-full text-left border-collapse min-w-[800px]">
+                        <thead>
+                            <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                                <th className="py-3 px-4">Trattativa</th>
+                                <th className="py-3 px-4">Stato</th>
+                                <th className="py-3 px-4">Contatto</th>
+                                <th className="py-3 px-4">Ubicazione</th>
+                                <th className="py-3 px-4 text-right">Budget Stimato</th>
+                                <th className="py-3 px-4 text-right">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 text-sm">
+                            {filteredLeads.map((lead) => (
+                                <tr key={lead.id} className="hover:bg-slate-50 transition-colors">
+                                    <td className="py-3 px-4">
+                                        <div className="font-bold text-slate-900">{lead.name}</div>
+                                        <div className="text-[11px] text-slate-500">{lead.source || 'Lead diretto'}</div>
+                                    </td>
+                                    <td className="py-3 px-4">
+                                        <span className="inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border bg-slate-100 text-slate-700 border-slate-200">
+                                            {statusLabels[lead.status] || lead.status}
+                                        </span>
+                                    </td>
+                                    <td className="py-3 px-4 text-xs text-slate-600">
+                                        <div>{lead.clientName || '—'}</div>
+                                        <div className="text-slate-400">{lead.clientPhone || lead.clientEmail || ''}</div>
+                                    </td>
+                                    <td className="py-3 px-4 text-xs text-slate-600">
+                                        {lead.city || '—'}
+                                    </td>
+                                    <td className="py-3 px-4 text-right font-bold text-slate-900">
+                                        € {lead.estimatedBudget?.toLocaleString('it-IT') || '0'}
+                                    </td>
+                                    <td className="py-3 px-4 text-right">
+                                        <div className="flex items-center justify-end gap-2">
+                                            <select
+                                                value={lead.status}
+                                                onChange={(e) => handleStatusUpdate(lead.id, e.target.value)}
+                                                className="text-xs bg-slate-50 border border-slate-200 px-2 py-1 font-semibold"
+                                            >
+                                                {Object.entries(statusLabels).map(([val, label]) => (
+                                                    <option key={val} value={val}>{label}</option>
+                                                ))}
+                                            </select>
+                                            {isAdmin && (
+                                                <button
+                                                    onClick={() => confirm('Eliminare questo lead?') && startTransition(async () => { await deleteLead(lead.id); })}
+                                                    className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 border border-transparent hover:border-red-200"
+                                                >
+                                                    <Trash2 size={14} />
+                                                </button>
+                                            )}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             )}
 
-            {/* Create Lead SlideOver */}
-            <SlideOver 
-                isOpen={isFormOpen} 
-                onClose={() => setIsFormOpen(false)} 
-                title="LANCIA NUOVA MISSIONE"
+            {/* SlideOver for New Lead */}
+            <SlideOver
+                isOpen={isFormOpen}
+                onClose={() => setIsFormOpen(false)}
+                title="NUOVA TRATTATIVA COMMERCIALE"
             >
-                <form action={async (fd) => {
-                    await createLead(fd);
-                    setIsFormOpen(false);
-                }} className="space-y-6">
-                    <div className="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 mb-6">
-                       <p className="text-[10px] font-black text-blue-600 uppercase mb-2 flex items-center gap-2 animate-pulse">
-                          <Zap size={14} /> Regole d'Ingaggio
-                       </p>
-                       <p className="text-xs font-bold text-blue-800 leading-relaxed">
-                          Inserendo questa missione, inizierai il percorso al **Livello 1 (Reclutamento)**. Completa i compiti quotidiani per scalare e vincere il contratto!
-                       </p>
-                    </div>
-
+                <form
+                    action={async (fd) => {
+                        await createLead(fd);
+                        setIsFormOpen(false);
+                    }}
+                    className="space-y-4"
+                >
                     <div>
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 ml-1">Nome Trattativa *</label>
-                        <input name="name" required placeholder="Es: Ristrutturazione Attico Milano" className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 rounded-2xl px-6 py-4 text-sm focus:outline-none transition-all font-black text-slate-900 placeholder:text-slate-300" />
+                        <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                            Nome Trattativa *
+                        </label>
+                        <input
+                            name="name"
+                            required
+                            placeholder="Es: Ristrutturazione Villa Rossi"
+                            className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#003F61]"
+                        />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 ml-1">Nome Cliente</label>
-                            <input name="clientName" placeholder="Mario Rossi" className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 rounded-2xl px-6 py-4 text-sm focus:outline-none transition-all font-black text-slate-900 placeholder:text-slate-300" />
+                            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                                Nome Committente
+                            </label>
+                            <input
+                                name="clientName"
+                                placeholder="Mario Rossi"
+                                className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#003F61]"
+                            />
                         </div>
                         <div>
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 ml-1">Telefono</label>
-                            <input name="phone" placeholder="+39 333..." className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 rounded-2xl px-6 py-4 text-sm focus:outline-none transition-all font-black text-slate-900 placeholder:text-slate-300" />
+                            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                                Telefono
+                            </label>
+                            <input
+                                name="phone"
+                                placeholder="+39 333..."
+                                className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#003F61]"
+                            />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 ml-1">E-mail</label>
-                            <input name="email" type="email" placeholder="cliente@example.com" className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 rounded-2xl px-6 py-4 text-sm focus:outline-none transition-all font-black text-slate-900 placeholder:text-slate-300" />
+                            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                                Email
+                            </label>
+                            <input
+                                name="email"
+                                type="email"
+                                placeholder="cliente@example.com"
+                                className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#003F61]"
+                            />
                         </div>
                         <div>
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 ml-1">Fonte Lead</label>
-                            <select name="source" className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 rounded-2xl px-6 py-4 text-sm focus:outline-none transition-all font-black text-slate-900">
+                            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                                Origine Lead
+                            </label>
+                            <select
+                                name="source"
+                                className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#003F61]"
+                            >
                                 <option value="WEB">Sito Web</option>
                                 <option value="SOCIAL">Social Media</option>
                                 <option value="REFERRAL">Passaparola</option>
@@ -345,45 +428,45 @@ export default function LeadsClient({ leads, stats, isAdmin, user }: Props) {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 ml-1">Città</label>
-                            <input name="city" placeholder="Milano" className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 rounded-2xl px-6 py-4 text-sm focus:outline-none transition-all font-black text-slate-900 placeholder:text-slate-300" />
+                            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                                Città
+                            </label>
+                            <input
+                                name="city"
+                                placeholder="Milano"
+                                className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#003F61]"
+                            />
                         </div>
                         <div>
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 ml-1">Budget Stimato (€)</label>
-                            <input name="estimatedBudget" type="number" placeholder="50000" className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 rounded-2xl px-6 py-4 text-sm focus:outline-none transition-all font-black text-slate-900 placeholder:text-slate-300" />
+                            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                                Budget Stimato (€)
+                            </label>
+                            <input
+                                name="estimatedBudget"
+                                type="number"
+                                placeholder="50000"
+                                className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#003F61]"
+                            />
                         </div>
                     </div>
 
-                    <div className="pt-8">
-                        <button 
-                            type="submit"
-                            className="w-full bg-slate-900 hover:bg-blue-600 disabled:opacity-50 text-white py-5 rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl transition-all transform active:scale-95 flex items-center justify-center gap-2"
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setIsFormOpen(false)}
+                            className="h-10 px-4 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-bold uppercase tracking-wider"
                         >
-                            <Target size={20} /> INIZIA MISSIONE
+                            Annulla
+                        </button>
+                        <button
+                            type="submit"
+                            className="h-10 px-4 bg-[#003F61] text-white hover:bg-[#002f49] text-xs font-bold uppercase tracking-wider"
+                        >
+                            Salva Trattativa
                         </button>
                     </div>
                 </form>
             </SlideOver>
-
-            {bossFightLead && (
-              <ContractBossFight 
-                lead={bossFightLead} 
-                onWin={() => {
-                  startTransition(async () => { await updateLeadStatus(bossFightLead.id, 'WON'); });
-                  setBossFightLead(null);
-                }}
-                onCancel={() => setBossFightLead(null)}
-              />
-            )}
-
-            {rankUpData && (
-              <RankUpModal 
-                isOpen={!!rankUpData}
-                oldRank={rankUpData.old}
-                newRank={rankUpData.new}
-                onClose={() => setRankUpData(null)}
-              />
-            )}
         </div>
     );
 }

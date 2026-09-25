@@ -1,10 +1,12 @@
-import { Menu, HardHat } from 'lucide-react';
+import { Menu, HardHat, Search, Bell, UserCircle } from 'lucide-react';
 import Link from 'next/link';
 import SidebarLinks from '@/components/SidebarLinks';
 import AnomalyContainer from '@/components/AnomalyContainer';
 
 import { getServerSession } from '@/lib/auth-server';
 import { prisma } from '@/lib/prisma';
+
+import GlobalSearchBar from '@/components/GlobalSearchBar';
 
 export default async function AppLayout({
   children,
@@ -18,46 +20,69 @@ export default async function AppLayout({
   });
 
   return (
-    <div className="flex flex-col md:flex-row w-full h-screen overflow-hidden bg-slate-50">
-      {/* Mobile Header */}
-      <div className="md:hidden bg-white p-4 flex justify-between items-center shadow-sm sticky top-0 z-50 print:hidden w-full border-b border-slate-100">
-        <span className="font-black text-xl tracking-tighter text-slate-900">EDIL MANAGER <span className="text-blue-600">.</span></span>
-        <button className="p-2 rounded-xl hover:bg-gray-100">
-          <Menu size={24} />
-        </button>
-      </div>
-
+    <div className="flex w-full h-screen overflow-hidden bg-slate-50">
+      
       {/* Sidebar (Desktop) */}
-      <aside className="hidden md:flex flex-col w-[320px] bg-white border-r border-slate-100 h-screen sticky top-0 print:hidden shrink-0 z-50">
-        <div className="p-8">
-          <Link href="/" className="flex items-center gap-4 group">
-            <div className="w-14 h-14 bg-slate-900 rounded-[2rem] flex items-center justify-center text-white font-black shadow-2xl shadow-slate-900/20 group-hover:rotate-6 group-hover:scale-105 transition-all duration-500">
-              <HardHat size={28} className="text-blue-500" />
-            </div>
-            <div className="flex flex-col">
-               <span className="font-black text-2xl tracking-tighter text-slate-900 uppercase leading-none">Edil<span className="text-blue-600">Manager</span></span>
-               <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mt-1.5">Enterprise 2.0</span>
-            </div>
+      <aside className="hidden md:flex flex-col w-64 bg-[#003F61] h-screen sticky top-0 shrink-0 z-50">
+        <div className="h-16 px-4 flex flex-col justify-center border-b border-white/10 shrink-0">
+          <Link href="/dashboard" className="flex flex-col">
+             <span className="font-extrabold text-xl leading-tight uppercase tracking-tight">
+               <span className="text-white">EDIL</span><span className="text-[#FEDE59]">MANAGER</span><span className="text-white">24</span>
+             </span>
+             <span className="text-[10px] text-white/70 tracking-wider font-medium">
+               by RifacciamoCasa
+             </span>
           </Link>
         </div>
 
-        <div className="flex-1 overflow-y-auto pb-10 no-scrollbar">
+        <div className="flex-1 overflow-y-auto no-scrollbar">
           <SidebarLinks user={user as any} />
         </div>
       </aside>
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-        <main className="flex-1 p-6 md:p-12 print:p-0 print:overflow-visible print:w-full print:m-0 w-full relative">
-          <div className="max-w-[1600px] mx-auto relative z-10">
-            {/* Global Anomaly Check */}
-            <AnomalyContainer />
-            <div className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50">
-              {children}
+      {/* Main Content Wrapper */}
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        
+        {/* Topbar */}
+        <header className="h-16 bg-white border-b border-slate-200 px-4 md:px-6 lg:px-8 shrink-0 z-40">
+          <div className="max-w-[1400px] mx-auto h-full flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4 flex-1">
+              <button className="md:hidden p-2 text-slate-500 hover:bg-slate-100">
+                <Menu size={20} />
+              </button>
+              
+              {/* Functional Advanced Search Bar */}
+              <GlobalSearchBar />
             </div>
+
+            <div className="flex items-center gap-3 md:gap-4 shrink-0">
+              <button className="relative p-2 text-slate-400 hover:text-[#003F61] transition-colors">
+                <Bell size={20} />
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#FEDE59] border border-white"></span>
+              </button>
+              <div className="h-6 w-px bg-slate-200 hidden sm:block"></div>
+              <Link href="/settings" className="flex items-center gap-2 hover:bg-slate-50 p-1.5 transition-colors">
+                <UserCircle size={24} className="text-[#003F61]" />
+                <div className="hidden sm:block text-left">
+                  <p className="text-sm font-semibold text-[#003F61] leading-none">{user?.name || 'Utente'}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{session.role}</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        {/* Main Scrolling Area */}
+        <main className="flex-1 overflow-y-auto pt-3 md:pt-4 px-4 md:px-6 lg:px-8 pb-8 relative">
+          <div className="max-w-[1400px] mx-auto">
+            {/* Global Anomaly Check (renders margin only when alert exists) */}
+            <AnomalyContainer />
+            
+            {children}
           </div>
         </main>
       </div>
+      
     </div>
   );
 }

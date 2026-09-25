@@ -70,15 +70,15 @@ export default function RankUpModal({ isOpen, onClose, oldRank, newRank }: Props
             </div>
           </div>
 
-          <p className="text-[10px] font-black uppercase tracking-[0.5em] text-blue-600 mb-2">Nuovo Grado Sbloccato!</p>
-          <h2 className="text-5xl font-black text-gray-900 tracking-tighter uppercase mb-6 italic leading-none">
+          <p className="text-[10px] font-bold uppercase tracking-wide text-blue-600 mb-2">Nuovo Grado Sbloccato!</p>
+          <h2 className="text-5xl font-bold text-gray-900 tracking-tighter uppercase mb-6 italic leading-none">
             {newRank}
           </h2>
           
           <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="text-xs font-bold text-gray-400 line-through uppercase tracking-widest">{oldRank}</span>
+            <span className="text-xs font-bold text-gray-400 line-through uppercase tracking-wide">{oldRank}</span>
             <div className="w-8 h-px bg-gray-200"></div>
-            <span className="bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
+            <span className="bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide flex items-center gap-1">
               <Sparkles size={12} /> Promozione
             </span>
           </div>
@@ -91,7 +91,7 @@ export default function RankUpModal({ isOpen, onClose, oldRank, newRank }: Props
 
           <button 
             onClick={onClose}
-            className="w-full bg-gray-900 hover:bg-black text-white py-6 rounded-[2rem] font-black text-sm uppercase tracking-[0.3em] shadow-xl hover:shadow-blue-200 transition-all hover:scale-[1.02] active:scale-95"
+            className="w-full bg-gray-900 hover:bg-black text-white py-6 rounded-[2rem] font-bold text-sm uppercase tracking-wide shadow-xl hover:shadow-blue-200 transition-all hover:scale-[1.02] active:scale-95"
           >
             Ricevi Onorificenza
           </button>

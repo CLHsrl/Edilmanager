@@ -43,18 +43,18 @@ export default function GlobalRankWidget({ user }: Props) {
             <Trophy size={20} className={safeUser.totalXp >= 10000 ? "animate-bounce" : ""} />
           </div>
           <div>
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Global Rank</p>
-            <h3 className="text-sm font-black text-gray-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{currentRank.title}</h3>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Global Rank</p>
+            <h3 className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{currentRank.title}</h3>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Bonus</p>
-          <span className="text-lg font-black text-green-600">+{currentRank.bonus}</span>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Bonus</p>
+          <span className="text-lg font-bold text-green-600">+{currentRank.bonus}</span>
         </div>
       </div>
 
       <div className="space-y-2">
-        <div className="flex justify-between items-end text-[10px] font-black uppercase tracking-tighter">
+        <div className="flex justify-between items-end text-[10px] font-bold uppercase tracking-tighter">
           <span className="text-gray-400">Progresso Livello</span>
           <span className="text-blue-600">{safeUser.totalXp} / {nextRank ? nextRank.minXp : 'MAX'} XP</span>
         </div>
@@ -72,7 +72,7 @@ export default function GlobalRankWidget({ user }: Props) {
           <p className="text-[9px] font-bold text-blue-700 uppercase tracking-wider">Top Seller</p>
         </div>
         {nextRank && (
-          <div className="flex items-center gap-1.5 text-[9px] font-black text-gray-400 uppercase italic">
+          <div className="flex items-center gap-1.5 text-[9px] font-bold text-gray-400 uppercase italic">
             <TrendingUp size={12} /> Prossimo: {nextRank.title}
           </div>
         )}

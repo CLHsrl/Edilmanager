@@ -154,6 +154,39 @@ export async function getDashboardToDoList() {
     }
   });
 
+  // Active Workers
+  const totalActiveWorkers = await prisma.lavoratore.count();
+
+  // Weekly trend (last 7 days)
+  const sevenDaysAgoTrend = new Date();
+  sevenDaysAgoTrend.setDate(sevenDaysAgoTrend.getDate() - 6);
+  sevenDaysAgoTrend.setHours(0, 0, 0, 0);
+
+  const recentMovimenti = await prisma.movimento.findMany({
+    where: { data: { gte: sevenDaysAgoTrend } },
+    select: { importo: true, tipo: true, data: true }
+  });
+
+  const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
+  const weeklyTrendData = Array(7).fill(0).map((_, i) => {
+      const d = new Date();
+      d.setDate(now.getDate() - (6 - i));
+      return {
+          name: daysOfWeek[d.getDay()],
+          balance: 0,
+          dateStr: d.toISOString().split('T')[0]
+      };
+  });
+
+  recentMovimenti.forEach(m => {
+      const mDateStr = new Date(m.data).toISOString().split('T')[0];
+      const dayData = weeklyTrendData.find(d => d.dateStr === mDateStr);
+      if (dayData) {
+          if (m.tipo === 'ENTRATA') dayData.balance += m.importo;
+          if (m.tipo === 'USCITA') dayData.balance -= m.importo;
+      }
+  });
+
   return {
     fattureScadute,
     movimentiNonAssociati,
@@ -165,8 +198,10 @@ export async function getDashboardToDoList() {
     health: {
       anomalies,
       totalActiveProjects: allOngoingProjects.length,
+      totalActiveWorkers,
       globalMargin,
-      monthlyCashflowTrend: visualTrend
+      monthlyCashflowTrend: visualTrend,
+      weeklyTrend: weeklyTrendData.map(d => ({ name: d.name, balance: d.balance }))
     }
   };
 }

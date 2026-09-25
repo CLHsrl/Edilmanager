@@ -66,21 +66,21 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
       {/* Header */}
       <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
         <div>
-          <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tighter leading-none">Logistics & Supply Control</h2>
-          <p className="text-xs font-black text-slate-400 uppercase tracking-widest mt-2">
+          <h2 className="text-2xl font-bold text-slate-900 uppercase tracking-tighter leading-none">Logistics & Supply Control</h2>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mt-2">
             {ddts.length} Documenti Registrati · Totale Materiali: € {totale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
           </p>
         </div>
         <div className="flex flex-wrap gap-4 w-full md:w-auto">
            <button 
              onClick={handleAiImport}
-             className="flex-1 md:flex-none bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-widest shadow-xl transition-all active:scale-95"
+             className="flex-1 md:flex-none bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-wide shadow-xl transition-all active:scale-95"
            >
              <Plus size={18} className="text-blue-400" /> Scansione AI
            </button>
            <button 
              onClick={() => { setMockData(null); setIsSlideOpen(true); }} 
-             className="flex-1 md:flex-none bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-widest shadow-xl shadow-blue-900/10 transition-all active:scale-95"
+             className="flex-1 md:flex-none bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-wide shadow-xl shadow-blue-900/10 transition-all active:scale-95"
            >
              <Plus size={18} /> Nuovo DDT
            </button>
@@ -91,7 +91,7 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
       {ddts.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border-2 border-dashed border-slate-100 p-24 text-center">
           <Truck size={64} className="mx-auto text-slate-100 mb-8" />
-          <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Nessun Carico Rilevato</h3>
+          <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tighter">Nessun Carico Rilevato</h3>
           <p className="text-sm text-slate-400 font-medium mt-2">Registra i documenti di trasporto per tracciare l'arrivo dei materiali in cantiere.</p>
         </div>
       ) : (
@@ -99,10 +99,10 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
           <table className="w-full">
             <thead>
               <tr className="bg-slate-50/50 border-b border-slate-100">
-                <th className="text-left px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Dettaglio Documento</th>
-                <th className="text-left px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Fornitore Autorizzato</th>
-                <th className="text-left px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Data Consegna</th>
-                <th className="text-right px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Valore Stimato</th>
+                <th className="text-left px-8 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Dettaglio Documento</th>
+                <th className="text-left px-8 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Fornitore Autorizzato</th>
+                <th className="text-left px-8 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Data Consegna</th>
+                <th className="text-right px-8 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Valore Stimato</th>
                 <th className="px-8 py-6"></th>
               </tr>
             </thead>
@@ -115,13 +115,13 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
                         <FileText size={20} />
                       </div>
                       <div>
-                        <p className="font-black text-slate-900 uppercase tracking-tight text-sm leading-none mb-1.5">{d.numeroDdt}</p>
+                        <p className="font-bold text-slate-900 uppercase tracking-tight text-sm leading-none mb-1.5">{d.numeroDdt}</p>
                         {d.note && <p className="text-[10px] font-medium text-slate-400 italic truncate max-w-[250px]">"{d.note}"</p>}
                       </div>
                     </div>
                   </td>
                   <td className="px-8 py-6">
-                    <p className="text-xs font-black text-slate-700 uppercase tracking-tighter">
+                    <p className="text-xs font-bold text-slate-700 uppercase tracking-tighter">
                       {d.fornitore?.name || d.fornitoreName || 'Fornitore Esterno'}
                     </p>
                   </td>
@@ -133,7 +133,7 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
                   </td>
                   <td className="px-8 py-6 text-right">
                     {d.importo != null ? (
-                      <span className="text-lg font-black text-slate-900 tracking-tighter">€ {d.importo.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</span>
+                      <span className="text-lg font-bold text-slate-900 tracking-tighter">€ {d.importo.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</span>
                     ) : <span className="text-slate-200">N.D.</span>}
                   </td>
                   <td className="px-8 py-6 text-right">
@@ -147,9 +147,9 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
             </tbody>
             <tfoot>
               <tr className="bg-slate-900 text-white">
-                <td colSpan={3} className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Inventory Valuation Summary</td>
+                <td colSpan={3} className="px-8 py-6 text-[10px] font-bold uppercase tracking-wide text-slate-400">Inventory Valuation Summary</td>
                 <td className="px-8 py-6 text-right">
-                  <p className="text-2xl font-black tracking-tighter">€ {totale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</p>
+                  <p className="text-2xl font-bold tracking-tighter">€ {totale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</p>
                 </td>
                 <td></td>
               </tr>
@@ -162,19 +162,19 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
       <SlideOver 
         isOpen={isSlideOpen} 
         onClose={() => { setIsSlideOpen(false); setMockData(null); }} 
-        title={<div className="flex items-center gap-3 text-slate-900 font-black uppercase tracking-tighter text-2xl">📦 <span className="italic text-blue-600">Registro DDT</span></div>}
+        title={<div className="flex items-center gap-3 text-slate-900 font-bold uppercase tracking-tighter text-2xl">📦 <span className="italic text-blue-600">Registro DDT</span></div>}
       >
         <form onSubmit={handleSubmit} className="space-y-10 pb-20">
           <div className="bg-slate-50 p-6 rounded-[2rem] border border-slate-100 flex items-start gap-4">
             <AlertCircle size={24} className="text-blue-600 shrink-0 mt-1" />
             <p className="text-[11px] font-medium text-slate-600 leading-relaxed">
-               La registrazione del <strong className="text-slate-900 uppercase font-black">Documento di Trasporto</strong> è essenziale per la quadratura del magazzino e la verifica dei costi diretti di cantiere.
+               La registrazione del <strong className="text-slate-900 uppercase font-bold">Documento di Trasporto</strong> è essenziale per la quadratura del magazzino e la verifica dei costi diretti di cantiere.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Codice Documento *</label>
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Codice Documento *</label>
               <input 
                 type="text" 
                 name="numeroDdt" 
@@ -185,7 +185,7 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Data di Entrata *</label>
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Data di Entrata *</label>
               <input 
                 type="date" 
                 name="data" 
@@ -197,7 +197,7 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Fornitore Accreditato</label>
+            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Fornitore Accreditato</label>
             <select name="fornitoreId" className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all shadow-sm appearance-none">
               <option value="">-- Seleziona Fornitore --</option>
               {allFornitori.map(f => (
@@ -205,7 +205,7 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
               ))}
             </select>
             <div className="pt-2">
-              <p className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-2 ml-1">Oppure Ragione Sociale Esterna:</p>
+              <p className="text-[9px] font-bold text-slate-300 uppercase tracking-wide mb-2 ml-1">Oppure Ragione Sociale Esterna:</p>
               <input 
                 type="text" 
                 name="fornitoreName" 
@@ -217,7 +217,7 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Valore Imponibile Stimato (€)</label>
+            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Valore Imponibile Stimato (€)</label>
             <div className="relative group">
               <div className="absolute left-6 top-1/2 -translate-y-1/2 text-blue-600 group-focus-within:scale-125 transition-transform">
                 <Euro size={20} />
@@ -228,13 +228,13 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
                 step="0.01" 
                 placeholder="0.00" 
                 defaultValue={mockData?.importo}
-                className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-16 pr-6 py-5 text-xl font-black text-slate-900 outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all shadow-sm" 
+                className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-16 pr-6 py-5 text-xl font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all shadow-sm" 
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Annotazioni Materiale / Packing List</label>
+            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Annotazioni Materiale / Packing List</label>
             <textarea 
               name="note" 
               rows={4} 
@@ -248,7 +248,7 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
             <button 
               type="submit" 
               disabled={isPending}
-              className="w-full bg-slate-900 hover:bg-blue-600 disabled:opacity-60 text-white py-6 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.3em] shadow-2xl transition-all flex items-center justify-center gap-4 transform active:scale-95"
+              className="w-full bg-slate-900 hover:bg-blue-600 disabled:opacity-60 text-white py-6 rounded-[2.5rem] text-sm font-bold uppercase tracking-wide shadow-2xl transition-all flex items-center justify-center gap-4 transform active:scale-95"
             >
               {isPending ? 'Sincronizzazione...' : 'Sincronizza Documento'}
             </button>
@@ -279,8 +279,8 @@ export default function DdtTab({ projectId, ddts, allFornitori }: { projectId: s
                </div>
              </div>
           </div>
-          <h2 className="text-3xl font-black tracking-tighter uppercase mb-2">AI Document Analysis</h2>
-          <p className="text-blue-400 font-bold uppercase tracking-[0.4em] text-[10px] animate-pulse">Extracting Supply Chain Intelligence</p>
+          <h2 className="text-3xl font-bold tracking-tighter uppercase mb-2">AI Document Analysis</h2>
+          <p className="text-blue-400 font-bold uppercase tracking-wide text-[10px] animate-pulse">Extracting Supply Chain Intelligence</p>
           
           <style jsx>{`
             @keyframes scan {

@@ -20,7 +20,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   
   const [localRole, setLocalRole] = useState<Role | null>(null);
   
-  const role = localRole || (session?.user as any)?.role as Role || 'OPERAIO';
+  const role = localRole || (session?.user as any)?.role as Role || 'ADMIN';
 
   const canAccess = (requiredRoles: Role[]) => {
     return requiredRoles.includes(role);

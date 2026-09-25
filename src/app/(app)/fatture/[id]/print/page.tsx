@@ -18,11 +18,11 @@ export default async function FatturaPrintPage({ params }: { params: Promise<{ i
             {/* Header: Company Info & Client Info */}
             <div className="flex justify-between items-start border-b border-gray-200 pb-8 mb-8">
                 <div>
-                    <h1 className="text-4xl font-black text-blue-600 tracking-tighter">Edil<span className="text-gray-900">Manager</span></h1>
+                    <h1 className="text-4xl font-bold text-blue-600 tracking-tighter">Edil<span className="text-gray-900">Manager</span></h1>
                     <p className="mt-2 text-gray-500 font-medium text-xs">Viale del Lavoro 22, 00100 Roma (RM)<br/>P.IVA 01234567890 • info@edilmanager.test</p>
                 </div>
                 <div className="text-right">
-                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-2">Spett.le {fattura.tipo === 'ATTIVA' ? 'Cliente' : 'Fornitore'}</p>
+                    <p className="text-gray-400 font-bold uppercase tracking-wide text-xs mb-2">Spett.le {fattura.tipo === 'ATTIVA' ? 'Cliente' : 'Fornitore'}</p>
                     <p className="text-xl font-bold text-gray-900">{fattura.soggetto}</p>
                 </div>
             </div>
@@ -30,16 +30,16 @@ export default async function FatturaPrintPage({ params }: { params: Promise<{ i
             {/* Document Details */}
             <div className="flex items-center justify-between mb-8">
                 <div>
-                    <h2 className="text-3xl font-black text-gray-900">FATTURA DI VENDITA</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">FATTURA DI VENDITA</h2>
                     <p className="text-gray-500 font-medium">Doc. N° {fattura.numero}</p>
                 </div>
                 <div className="text-right flex gap-8">
                     <div>
-                        <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-1">Data Scadenza</p>
+                        <p className="text-gray-400 font-bold uppercase tracking-wide text-xs mb-1">Data Scadenza</p>
                         <p className="text-lg font-bold text-red-600">{fattura.dataScadenza ? new Date(fattura.dataScadenza).toLocaleDateString('it-IT') : 'A Vista'}</p>
                     </div>
                     <div>
-                        <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-1">Data Documento</p>
+                        <p className="text-gray-400 font-bold uppercase tracking-wide text-xs mb-1">Data Documento</p>
                         <p className="text-lg font-bold text-gray-900">{new Date(fattura.dataEmissione).toLocaleDateString('it-IT')}</p>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ export default async function FatturaPrintPage({ params }: { params: Promise<{ i
 
             {/* Description / Cantieri */}
             <div className="mb-8 min-h-[300px]">
-                <h3 className="font-bold text-gray-800 text-xs uppercase tracking-widest border-b border-gray-200 pb-2 mb-4">Descrizione Lavori / Servizi</h3>
+                <h3 className="font-bold text-gray-800 text-xs uppercase tracking-wide border-b border-gray-200 pb-2 mb-4">Descrizione Lavori / Servizi</h3>
                 {fattura.projects.length > 0 && (
                     <div className="mb-4 text-gray-700">
                         <span className="font-bold text-gray-900">Rif. Cantiere: </span>
@@ -72,16 +72,16 @@ export default async function FatturaPrintPage({ params }: { params: Promise<{ i
                     </div>
                     <div className="flex justify-between items-center border-t border-blue-200 pt-3">
                         <span className="font-bold text-blue-900 uppercase text-xs tracking-wider">Totale Documento</span>
-                        <span className="font-black text-3xl text-blue-700">€ {fattura.totale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</span>
+                        <span className="font-bold text-3xl text-blue-700">€ {fattura.totale.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</span>
                     </div>
                 </div>
             </div>
 
             {/* Payment Details */}
             <div className="mt-8 bg-gray-50 p-6 rounded-2xl page-break-inside-avoid">
-                <h3 className="font-bold text-gray-800 text-xs uppercase tracking-widest mb-3">Coordinate Bancarie e Pagamento</h3>
+                <h3 className="font-bold text-gray-800 text-xs uppercase tracking-wide mb-3">Coordinate Bancarie e Pagamento</h3>
                 <p className="text-sm border-l-4 border-blue-500 pl-4 text-gray-600 font-medium leading-loose">
-                    IBAN: <strong className="text-gray-900 font-mono tracking-widest ml-2">IT12 A123 4567 8900 0000 1234 567</strong><br/>
+                    IBAN: <strong className="text-gray-900 tracking-wide ml-2">IT12 A123 4567 8900 0000 1234 567</strong><br/>
                     Banca: <strong className="text-gray-900 ml-2">Intesa Sanpaolo</strong><br/>
                     Causale: <strong className="text-gray-900 ml-2">Pagamento Fattura N° {fattura.numero}</strong>
                 </p>

@@ -16,12 +16,10 @@ export default async function LavoratoriPage() {
   };
 
   return (
-    <div className="page-content">
-      <LavoratoriClient 
-        lavoratori={lavoratori as any} 
-        projects={projects as any} 
-        stats={stats} 
-      />
-    </div>
+    <LavoratoriClient 
+      lavoratori={lavoratori as any} 
+      projects={projects as any} 
+      stats={stats} 
+    />
   );
 }

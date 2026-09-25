@@ -103,7 +103,7 @@ export default function NuovaFatturaClient({ defaultTipo, projects, fornitori }:
             type="button" 
             onClick={() => fileInputRef.current?.click()} 
             disabled={isAiScanning}
-            className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest shadow-lg hover:shadow-purple-200 transition-all hover:scale-105 active:scale-95 disabled:opacity-50"
+            className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wide shadow-lg hover:shadow-purple-200 transition-all hover:scale-105 active:scale-95 disabled:opacity-50"
           >
             {isAiScanning ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />} 
             {isAiScanning ? `Analisi AI in corso (${ocrProgress.toFixed(0)}%)...` : 'Importa con AI (OCR)'}
@@ -119,7 +119,7 @@ export default function NuovaFatturaClient({ defaultTipo, projects, fornitori }:
 
         {/* Dati Base */}
         <div className="space-y-4">
-          <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest border-b border-gray-100 pb-2">Dati Documento</h3>
+          <h3 className="font-bold text-gray-800 text-sm uppercase tracking-wide border-b border-gray-100 pb-2">Dati Documento</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="text-xs font-semibold text-gray-500 uppercase block mb-1">
@@ -137,7 +137,7 @@ export default function NuovaFatturaClient({ defaultTipo, projects, fornitori }:
 
               {/* LIVE DURC CHECK VISUAL WARNING */}
               {tipo === 'PASSIVA' && soggetto && fornitori.find(f => f.ragioneSociale === soggetto)?.dataScadenzaDurc && new Date(fornitori.find(f => f.ragioneSociale === soggetto)!.dataScadenzaDurc!) < new Date() && (
-                <div className="mt-2 text-[10px] uppercase font-black tracking-wider text-red-600 bg-red-50 p-2 rounded border border-red-200 flex items-center gap-1.5 animate-pulse">
+                <div className="mt-2 text-[10px] uppercase font-bold tracking-wider text-red-600 bg-red-50 p-2 rounded border border-red-200 flex items-center gap-1.5 animate-pulse">
                   <span>🚨 ATTENZIONE: FORNITORE CON DURC SCADUTO. IL SALVATAGGIO VERRÀ BLOCCATO.</span>
                 </div>
               )}
@@ -146,7 +146,7 @@ export default function NuovaFatturaClient({ defaultTipo, projects, fornitori }:
               <label className="text-xs font-semibold text-gray-500 uppercase block mb-1">Numero Fattura *</label>
               <input type="text" name="numero" required placeholder="Es. FPA-12/26"
                 value={numero} onChange={e => setNumero(e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 font-mono focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
             </div>
           </div>
 
@@ -166,7 +166,7 @@ export default function NuovaFatturaClient({ defaultTipo, projects, fornitori }:
 
         {/* Associazione Progetti */}
         <div className="space-y-4">
-          <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest border-b border-gray-100 pb-2">Destinazione (Cantieri)</h3>
+          <h3 className="font-bold text-gray-800 text-sm uppercase tracking-wide border-b border-gray-100 pb-2">Destinazione (Cantieri)</h3>
           <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
             <p className="text-xs text-gray-500 mb-3 font-semibold">Seleziona i cantieri a cui la fattura o lo split fa riferimento:</p>
             <div className="flex flex-wrap gap-2">
@@ -188,7 +188,7 @@ export default function NuovaFatturaClient({ defaultTipo, projects, fornitori }:
 
         {/* Riepilogo Costi */}
         <div className="space-y-4">
-          <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest border-b border-gray-100 pb-2">Importi</h3>
+          <h3 className="font-bold text-gray-800 text-sm uppercase tracking-wide border-b border-gray-100 pb-2">Importi</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="text-xs font-semibold text-gray-500 uppercase block mb-1">Imponibile (€) *</label>

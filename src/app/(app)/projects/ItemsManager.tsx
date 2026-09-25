@@ -49,14 +49,14 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
         <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden flex flex-col">
             <div className="bg-slate-50/30 px-10 py-8 border-b border-slate-100 flex justify-between items-center">
                 <div>
-                    <h2 className="text-xl font-black text-slate-900 uppercase tracking-tighter flex items-center gap-3">
+                    <h2 className="text-xl font-bold text-slate-900 uppercase tracking-tighter flex items-center gap-3">
                         <Calculator size={24} className="text-blue-600" /> Work Ledger & Asset List
                     </h2>
-                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-2">Quantitative analysis & Execution tracking</p>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wide mt-2">Quantitative analysis & Execution tracking</p>
                 </div>
                 <button
                     onClick={() => setIsAdding(!isAdding)}
-                    className="bg-slate-900 hover:bg-blue-600 text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2 transition-all shadow-xl shadow-slate-900/10 active:scale-95"
+                    className="bg-slate-900 hover:bg-blue-600 text-white px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-wide flex items-center gap-2 transition-all shadow-xl shadow-slate-900/10 active:scale-95"
                 >
                     <Plus size={16} /> {isAdding ? 'Decline' : 'Register Entry'}
                 </button>
@@ -66,12 +66,12 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
                 <table className="w-full text-left">
                     <thead>
                         <tr className="bg-slate-50/20 border-b border-slate-100">
-                            <th className="px-10 py-6 w-20 text-center text-[10px] font-black text-slate-400 uppercase tracking-widest">State</th>
-                            <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Entry Description</th>
-                            <th className="px-10 py-6 w-24 text-center text-[10px] font-black text-slate-400 uppercase tracking-widest">U.M.</th>
-                            <th className="px-10 py-6 w-32 text-right text-[10px] font-black text-slate-400 uppercase tracking-widest">Quantity</th>
-                            <th className="px-10 py-6 w-40 text-right text-[10px] font-black text-slate-400 uppercase tracking-widest">Unit Quote</th>
-                            <th className="px-10 py-6 w-40 text-right text-[10px] font-black text-slate-900 uppercase tracking-widest">Total Asset</th>
+                            <th className="px-10 py-6 w-20 text-center text-[10px] font-bold text-slate-400 uppercase tracking-wide">State</th>
+                            <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Entry Description</th>
+                            <th className="px-10 py-6 w-24 text-center text-[10px] font-bold text-slate-400 uppercase tracking-wide">U.M.</th>
+                            <th className="px-10 py-6 w-32 text-right text-[10px] font-bold text-slate-400 uppercase tracking-wide">Quantity</th>
+                            <th className="px-10 py-6 w-40 text-right text-[10px] font-bold text-slate-400 uppercase tracking-wide">Unit Quote</th>
+                            <th className="px-10 py-6 w-40 text-right text-[10px] font-bold text-slate-900 uppercase tracking-wide">Total Asset</th>
                             <th className="px-10 py-6 w-24 text-right"></th>
                         </tr>
                     </thead>
@@ -86,7 +86,7 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
                                 <td className="px-10 py-8" colSpan={6}>
                                     <form action={handleAdd} className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-end">
                                         <div className="lg:col-span-2 space-y-2">
-                                            <label className="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] ml-1">Asset Description</label>
+                                            <label className="text-[9px] font-bold text-blue-600 uppercase tracking-wide ml-1">Asset Description</label>
                                             <input
                                                 name="description"
                                                 required
@@ -95,7 +95,7 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] ml-1">Metric Unit</label>
+                                            <label className="text-[9px] font-bold text-blue-600 uppercase tracking-wide ml-1">Metric Unit</label>
                                             <input
                                                 name="unit"
                                                 required
@@ -104,7 +104,7 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] ml-1">Quantity</label>
+                                            <label className="text-[9px] font-bold text-blue-600 uppercase tracking-wide ml-1">Quantity</label>
                                             <input
                                                 name="quantity"
                                                 type="number"
@@ -114,7 +114,7 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] ml-1">Price</label>
+                                            <label className="text-[9px] font-bold text-blue-600 uppercase tracking-wide ml-1">Price</label>
                                             <input
                                                 name="unitPrice"
                                                 type="number"
@@ -142,7 +142,7 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
                                     <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-200 mx-auto mb-6">
                                         <Calculator size={32} />
                                     </div>
-                                    <p className="text-slate-400 font-black uppercase tracking-[0.3em] text-xs">No assets registered in ledger</p>
+                                    <p className="text-slate-400 font-bold uppercase tracking-wide text-xs">No assets registered in ledger</p>
                                 </td>
                             </tr>
                         ) : (
@@ -157,13 +157,13 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
                                         </button>
                                     </td>
                                     <td className="px-10 py-8">
-                                        <p className={`text-sm font-black uppercase tracking-tight transition-all ${item.completed ? 'text-slate-400 line-through' : 'text-slate-900'}`}>
+                                        <p className={`text-sm font-bold uppercase tracking-tight transition-all ${item.completed ? 'text-slate-400 line-through' : 'text-slate-900'}`}>
                                             {item.description}
                                         </p>
-                                        <p className="text-[9px] text-slate-400 font-black uppercase tracking-widest mt-1">Ref ID: {item.id.slice(0, 8)}</p>
+                                        <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wide mt-1">Ref ID: {item.id.slice(0, 8)}</p>
                                     </td>
                                     <td className="px-10 py-8 text-center">
-                                        <span className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest border border-slate-100 ${item.completed ? 'bg-slate-50 text-slate-300' : 'bg-white text-slate-500 shadow-sm'}`}>
+                                        <span className={`px-3 py-1 rounded-lg text-[9px] font-bold uppercase tracking-wide border border-slate-100 ${item.completed ? 'bg-slate-50 text-slate-300' : 'bg-white text-slate-500 shadow-sm'}`}>
                                             {item.unit}
                                         </span>
                                     </td>
@@ -173,7 +173,7 @@ export default function ItemsManager({ projectId, items }: ItemsManagerProps) {
                                     <td className={`px-10 py-8 text-sm font-bold text-right ${item.completed ? 'text-slate-400' : 'text-slate-700'}`}>
                                         € {item.unitPrice.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
                                     </td>
-                                    <td className={`px-10 py-8 text-base font-black text-right ${item.completed ? 'text-slate-400' : 'text-slate-900 tracking-tighter'}`}>
+                                    <td className={`px-10 py-8 text-base font-bold text-right ${item.completed ? 'text-slate-400' : 'text-slate-900 tracking-tighter'}`}>
                                         € {item.totalPrice.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
                                     </td>
                                     <td className="px-10 py-8 text-right">

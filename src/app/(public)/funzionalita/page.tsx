@@ -187,7 +187,7 @@ const FEATURES = [
 
 export default function FunzionalitaPage() {
     return (
-        <div className="bg-white min-h-screen pb-32 font-manrope relative">
+        <div className="bg-white min-h-screen pb-32 relative">
             
             {/* HERO SECTION (Corporate Style) */}
             <section className="relative pt-28 lg:pt-40 pb-12 lg:pb-20 overflow-hidden bg-corporate">

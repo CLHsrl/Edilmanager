@@ -27,8 +27,8 @@ export default function RoleSwitcher() {
             <Icon size={20} className={currentRole.color} />
         </div>
         <div className="flex-1 text-left min-w-0">
-          <p className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] leading-none mb-1.5">Simulation Context</p>
-          <p className="text-[11px] font-black text-slate-900 truncate uppercase tracking-tighter">{currentRole.label}</p>
+          <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wide leading-none mb-1.5">Simulation Context</p>
+          <p className="text-[11px] font-bold text-slate-900 truncate uppercase tracking-tighter">{currentRole.label}</p>
         </div>
         <ChevronUp size={14} className={`text-slate-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -36,7 +36,7 @@ export default function RoleSwitcher() {
       {isOpen && (
         <div className="absolute bottom-full left-0 w-full mb-4 bg-white border border-slate-100 rounded-[2rem] shadow-premium p-3 z-[100] animate-in fade-in slide-in-from-bottom-4 duration-300">
           <div className="p-3 mb-2 border-b border-slate-50">
-             <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Select Authority Level</p>
+             <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wide">Select Authority Level</p>
           </div>
           <div className="space-y-1">
             {roles.map(r => (
@@ -53,7 +53,7 @@ export default function RoleSwitcher() {
                 }`}
               >
                 <r.icon size={18} className={role === r.id ? 'text-blue-400' : 'text-slate-400 group-hover/item:text-slate-900'} />
-                <span className="text-[11px] font-black uppercase tracking-widest">{r.label}</span>
+                <span className="text-[11px] font-bold uppercase tracking-wide">{r.label}</span>
                 {role === r.id && (
                   <div className="absolute right-0 top-0 bottom-0 w-1 bg-blue-600 h-full"></div>
                 )}

@@ -116,20 +116,20 @@ export default function AISafetyWizard({ projectId, projectName, onClose }: Safe
                         <CheckCircle size={20} />
                     </div>
                     <div>
-                        <h4 className="font-black text-gray-900 uppercase tracking-tighter">Bozza POS Generata</h4>
-                        <p className="text-[9px] font-black text-green-600 uppercase tracking-widest">Analisi AI Completata Correttamente</p>
+                        <h4 className="font-bold text-gray-900 uppercase tracking-tighter">Bozza POS Generata</h4>
+                        <p className="text-[9px] font-bold text-green-600 uppercase tracking-wide">Analisi AI Completata Correttamente</p>
                     </div>
                 </div>
                 
                 <div className="space-y-3 mb-6">
                     <div className="flex flex-wrap gap-1.5">
                        {posDraft.risks.map((r: string) => (
-                         <span key={r} className="bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-red-200">{r}</span>
+                         <span key={r} className="bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide border border-red-200">{r}</span>
                        ))}
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                        {posDraft.equipment.map((e: string) => (
-                         <span key={e} className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-blue-200">{e}</span>
+                         <span key={e} className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide border border-blue-200">{e}</span>
                        ))}
                     </div>
                 </div>
@@ -137,7 +137,7 @@ export default function AISafetyWizard({ projectId, projectName, onClose }: Safe
                 <button 
                     onClick={finalizePlan}
                     disabled={isPending}
-                    className="w-full bg-gray-900 hover:bg-black text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    className="w-full bg-gray-900 hover:bg-black text-white py-4 rounded-2xl font-bold text-sm uppercase tracking-wide flex items-center justify-center gap-2 shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                     {isPending ? <Loader2 size={18} className="animate-spin" /> : <><FileText size={18} /> SALVA E GENERA DOCUMENTO</>}
                 </button>

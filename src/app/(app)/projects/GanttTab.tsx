@@ -101,7 +101,7 @@ export default function GanttTab({ project, items }: { project: Project, items: 
     <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden min-h-[700px] flex flex-col relative group">
       {isPending && (
         <div className="absolute inset-0 bg-white/60 z-50 flex items-center justify-center backdrop-blur-[2px] animate-in fade-in duration-300">
-          <div className="bg-slate-900 text-white px-8 py-4 rounded-[2rem] text-[10px] font-black uppercase tracking-[0.3em] animate-pulse shadow-2xl flex items-center gap-3">
+          <div className="bg-slate-900 text-white px-8 py-4 rounded-[2rem] text-[10px] font-bold uppercase tracking-wide animate-pulse shadow-2xl flex items-center gap-3">
             <span className="w-2 h-2 bg-blue-500 rounded-full animate-ping"></span>
             Syncing Schedule...
           </div>
@@ -110,10 +110,10 @@ export default function GanttTab({ project, items }: { project: Project, items: 
 
       <div className="p-8 border-b border-slate-50 flex flex-col md:flex-row justify-between items-center bg-slate-50/30 gap-6">
         <div>
-          <h2 className="text-xl font-black text-slate-900 uppercase tracking-tighter flex items-center gap-4 leading-none">
+          <h2 className="text-xl font-bold text-slate-900 uppercase tracking-tighter flex items-center gap-4 leading-none">
             <Maximize2 size={24} className="text-blue-600" /> Executive Timeline
           </h2>
-          <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-3">Drag & Scale activities to re-synchronize site operations</p>
+          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wide mt-3">Drag & Scale activities to re-synchronize site operations</p>
         </div>
         
         <div className="flex gap-2 bg-white border border-slate-100 rounded-2xl p-1.5 shadow-sm">
@@ -125,7 +125,7 @@ export default function GanttTab({ project, items }: { project: Project, items: 
             <button 
               key={btn.mode}
               onClick={() => setViewMode(btn.mode)}
-              className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === btn.mode ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/10 scale-105' : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'}`}
+              className={`px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-wide transition-all ${viewMode === btn.mode ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/10 scale-105' : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'}`}
             >
               {btn.label}
             </button>
@@ -156,7 +156,7 @@ export default function GanttTab({ project, items }: { project: Project, items: 
              <div className="w-20 h-20 bg-slate-50 rounded-[2rem] flex items-center justify-center text-slate-200 mb-8 shadow-inner">
                <AlertCircle size={40} />
              </div>
-             <h4 className="text-lg font-black text-slate-900 uppercase tracking-tighter">Timeline Empty</h4>
+             <h4 className="text-lg font-bold text-slate-900 uppercase tracking-tighter">Timeline Empty</h4>
              <p className="text-sm text-slate-400 font-medium mt-2 max-w-xs">Initialize project items to generate the interactive Gantt visualization.</p>
           </div>
         )}

@@ -1,7 +1,7 @@
 'use client';
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, AreaChart, Area } from 'recharts';
-import { TrendingUp, TrendingDown, DollarSign, Target, PieChart, ShieldAlert } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from 'recharts';
+import { TrendingUp, TrendingDown, DollarSign, Target, PieChart, ShieldAlert, BarChart3, AlertCircle } from 'lucide-react';
 
 export default function BIAnalytics({ data }: { data: any }) {
   const { forecast, projectMargins } = data;
@@ -18,150 +18,193 @@ export default function BIAnalytics({ data }: { data: any }) {
   // Top Margins
   const topMargins = [...projectMargins]
     .sort((a, b) => b.margin - a.margin)
-    .slice(0, 10);
+    .slice(0, 8);
+
+  const avgMargin = (projectMargins?.reduce((acc: number, cur: any) => acc + (cur.margin || 0), 0) / (projectMargins?.length || 1)) || 0;
 
   if (!projectMargins || projectMargins.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-20 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
-         <PieChart size={64} className="text-gray-200 mb-6" />
-         <h3 className="text-xl font-bold text-gray-900">Nessun dato analitico disponibile</h3>
-         <p className="text-gray-400 max-w-xs text-center mt-2">Popola i progetti e i costi per visualizzare le dashboard previsionali Enterprise.</p>
+      <div className="bg-white border border-slate-200 p-12 text-center">
+         <PieChart size={36} className="mx-auto text-slate-300 mb-3" />
+         <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider">Nessun dato analitico disponibile</h3>
+         <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">Inserisci commesse e voci di spesa per generare il forecast finanziario e i report di marginalità.</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-5 duration-1000">
-      {/* 1. Finacial Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
-           <div className="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
-           <div className="flex justify-between items-start mb-4">
-              <div className="bg-emerald-50 text-emerald-600 p-2 rounded-xl"><TrendingUp size={20} /></div>
+    <div className="space-y-6">
+      {/* 4 Financial Overview Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+           <div className="flex items-center justify-between text-slate-500 mb-3">
+              <span className="text-[11px] font-bold uppercase tracking-wider">Incassi Stimati (6 Mesi)</span>
+              <div className="p-2 bg-slate-50 text-emerald-600 border border-slate-100">
+                <TrendingUp size={16} />
+              </div>
            </div>
-           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Incassi Previsti (6m)</p>
-           <p className="text-2xl font-black text-slate-900 mt-1">€ {totalIn.toLocaleString('it-IT')}</p>
+           <div>
+             <div className="text-2xl font-bold text-emerald-600 tracking-tight">€ {totalIn.toLocaleString('it-IT')}</div>
+             <div className="text-xs text-slate-500 mt-1">Previsione entrate contrattuali</div>
+           </div>
         </div>
-        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
-           <div className="absolute top-0 left-0 w-1.5 h-full bg-red-500"></div>
-           <div className="flex justify-between items-start mb-4">
-              <div className="bg-red-50 text-red-600 p-2 rounded-xl"><TrendingDown size={20} /></div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+           <div className="flex items-center justify-between text-slate-500 mb-3">
+              <span className="text-[11px] font-bold uppercase tracking-wider">Uscite Stimate (6 Mesi)</span>
+              <div className="p-2 bg-slate-50 text-rose-600 border border-slate-100">
+                <TrendingDown size={16} />
+              </div>
            </div>
-           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Pagamenti Previsti (6m)</p>
-           <p className="text-2xl font-black text-slate-900 mt-1">€ {totalOut.toLocaleString('it-IT')}</p>
+           <div>
+             <div className="text-2xl font-bold text-rose-600 tracking-tight">€ {totalOut.toLocaleString('it-IT')}</div>
+             <div className="text-xs text-slate-500 mt-1">Impegni fornitori e subappalti</div>
+           </div>
         </div>
-        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
-           <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-600"></div>
-           <div className="flex justify-between items-start mb-4">
-              <div className="bg-blue-50 text-blue-600 p-2 rounded-xl"><DollarSign size={20} /></div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+           <div className="flex items-center justify-between text-slate-500 mb-3">
+              <span className="text-[11px] font-bold uppercase tracking-wider">Saldo Netto Previsionale</span>
+              <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+                <DollarSign size={16} />
+              </div>
            </div>
-           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Saldo Finale Stimato</p>
-           <p className="text-2xl font-black text-blue-600 mt-1">€ {(totalIn - totalOut).toLocaleString('it-IT')}</p>
+           <div>
+             <div className="text-2xl font-bold text-[#003F61] tracking-tight">€ {(totalIn - totalOut).toLocaleString('it-IT')}</div>
+             <div className="text-xs text-slate-500 mt-1">Flusso netto generato nel periodo</div>
+           </div>
         </div>
-        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
-           <div className="absolute top-0 left-0 w-1.5 h-full bg-purple-600"></div>
-           <div className="flex justify-between items-start mb-4">
-              <div className="bg-purple-50 text-purple-600 p-2 rounded-xl"><Target size={20} /></div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+           <div className="flex items-center justify-between text-slate-500 mb-3">
+              <span className="text-[11px] font-bold uppercase tracking-wider">Margine Medio Globale</span>
+              <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+                <Target size={16} />
+              </div>
            </div>
-           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Margine Medio</p>
-           <p className="text-2xl font-black text-slate-900 mt-1">
-             {(projectMargins.reduce((acc: number, cur: any) => acc + (cur.margin || 0), 0) / (projectMargins.length || 1)).toFixed(1)}%
-           </p>
+           <div>
+             <div className="text-2xl font-bold text-[#003F61] tracking-tight">{avgMargin.toFixed(1)}%</div>
+             <div className="text-xs text-slate-500 mt-1">Margine medio su commesse</div>
+           </div>
         </div>
       </div>
 
-      {/* 2. Overrun Alerts */}
-      {overruns.length > 0 && (
-        <div className="bg-white border border-red-100 p-8 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 shadow-xl shadow-red-900/5 transition-all hover:scale-[1.01]">
-           <div className="bg-red-600 text-white p-6 rounded-[2rem] shadow-xl shadow-red-200">
-             <ShieldAlert size={40} />
+      {/* Overrun Alert */}
+      {overruns && overruns.length > 0 && (
+        <div className="bg-red-50 border border-red-200 p-4 flex items-center justify-between gap-4">
+           <div className="flex items-center gap-3">
+             <AlertCircle size={20} className="text-red-600 shrink-0" />
+             <div>
+               <h4 className="text-xs font-bold text-red-900 uppercase tracking-wider">Commesse Fuori Budget</h4>
+               <p className="text-xs text-red-700 mt-0.5">Rilevati {overruns.length} cantieri con costi consuntivati superiori ai ricavi concordati.</p>
+             </div>
            </div>
-           <div className="flex-1">
-             <h3 className="text-slate-900 font-black uppercase text-xs tracking-widest mb-1">Alert Operativo: Progetti Fuori Budget</h3>
-             <p className="text-slate-500 text-base font-medium">Sono stati rilevati {overruns.length} progetti con costi superiori al ricavo stimato.</p>
-           </div>
-           <div className="flex -space-x-4 overflow-hidden">
-              {overruns.map((m: any, i: number) => (
-                <div key={i} title={m.name} className="w-12 h-12 rounded-full bg-slate-900 border-4 border-white text-xs font-black text-white flex items-center justify-center shadow-xl">
-                   {m.name.charAt(0)}
-                </div>
-              ))}
+           <div className="flex gap-2">
+             {overruns.map((m: any, i: number) => (
+               <span key={i} className="px-2 py-0.5 bg-white border border-red-200 text-xs font-bold text-red-800">
+                 {m.name}
+               </span>
+             ))}
            </div>
         </div>
       )}
 
-      {/* 3. Cashflow Area Chart */}
-      <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
-        <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 flex items-center gap-2">
-           <TrendingUp size={18} className="text-blue-600" /> Previsione Flussi di Cassa (Cashflow)
-        </h3>
-        <div className="h-[350px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={forecast}>
-              <defs>
-                <linearGradient id="colorInc" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.1}/>
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                </linearGradient>
-                <linearGradient id="colorPag" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.1}/>
-                  <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-              <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 10, fontWeight: 'bold'}} dy={10} />
-              <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 10, fontWeight: 'bold'}} />
-              <Tooltip 
-                contentStyle={{ borderRadius: '1rem', border: '1px solid #f1f5f9', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', textTransform: 'uppercase', fontSize: '10px', fontWeight: 'black' }} 
-                cursor={{ stroke: '#3b82f6', strokeWidth: 2 }}
-              />
-              <Legend verticalAlign="top" align="right" iconType="circle" wrapperStyle={{ fontSize: '10px', fontWeight: 'bold', textTransform: 'uppercase', paddingBottom: '20px' }} />
-              <Area type="monotone" dataKey="incassi" stroke="#10b981" strokeWidth={4} fillOpacity={1} fill="url(#colorInc)" />
-              <Area type="monotone" dataKey="pagamenti" stroke="#ef4444" strokeWidth={4} fillOpacity={1} fill="url(#colorPag)" />
-            </AreaChart>
-          </ResponsiveContainer>
+      {/* Cashflow Area Chart */}
+      <div className="bg-white border border-slate-200">
+        <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-white">
+          <div className="flex items-center gap-2 font-bold text-sm text-slate-800">
+            <TrendingUp size={16} className="text-[#003F61]" />
+            <span>Previsione Flussi di Cassa a 6 Mesi</span>
+          </div>
+          <span className="text-xs font-semibold text-slate-500">Forecast Entrate vs Uscite</span>
+        </div>
+
+        <div className="p-4">
+          <div className="h-64 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={forecast}>
+                <defs>
+                  <linearGradient id="colorInc" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.15}/>
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                  </linearGradient>
+                  <linearGradient id="colorPag" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.15}/>
+                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 11, fontWeight: 600}} dy={5} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 11, fontWeight: 600}} />
+                <Tooltip 
+                  contentStyle={{ border: '1px solid #e2e8f0', borderRadius: '0px', fontSize: '11px', fontWeight: 600 }} 
+                />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{ fontSize: '11px', fontWeight: 600, paddingBottom: '10px' }} />
+                <Area type="monotone" dataKey="incassi" stroke="#10b981" strokeWidth={2} fillOpacity={1} fill="url(#colorInc)" name="Incassi Previsti" />
+                <Area type="monotone" dataKey="pagamenti" stroke="#ef4444" strokeWidth={2} fillOpacity={1} fill="url(#colorPag)" name="Pagamenti Previsti" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* 4. Margin Bar Chart */}
-        <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
-           <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 flex items-center gap-2">
-             <PieChart size={18} className="text-purple-600" /> Top 10 Margini Progetto (%)
-           </h3>
-           <div className="h-[400px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={topMargins} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
-                  <XAxis type="number" hide />
-                  <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{fill: '#4b5563', fontSize: 10, fontWeight: 'bold'}} width={120} />
-                  <Tooltip contentStyle={{ borderRadius: '1rem', border: '1px solid #f1f5f9', fontSize: '10px', fontWeight: 'black' }} />
-                  <Bar dataKey="margin" fill="#8b5cf6" radius={[0, 10, 10, 0]} barSize={24} />
-                </BarChart>
-              </ResponsiveContainer>
+      {/* Grid: Margini Progetto & Stato Avanzamento Budget */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Margin Chart */}
+        <div className="bg-white border border-slate-200">
+           <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-white">
+             <div className="flex items-center gap-2 font-bold text-sm text-slate-800">
+               <PieChart size={16} className="text-[#003F61]" />
+               <span>Top Margini per Commessa (%)</span>
+             </div>
+           </div>
+
+           <div className="p-4">
+             <div className="h-64 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={topMargins} layout="vertical">
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
+                    <XAxis type="number" hide />
+                    <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{fill: '#475569', fontSize: 11, fontWeight: 600}} width={120} />
+                    <Tooltip contentStyle={{ border: '1px solid #e2e8f0', borderRadius: '0px', fontSize: '11px', fontWeight: 600 }} />
+                    <Bar dataKey="margin" fill="#003F61" radius={0} barSize={18} name="Margine %" />
+                  </BarChart>
+                </ResponsiveContainer>
+             </div>
            </div>
         </div>
 
-        {/* 5. Budget vs Cost */}
-        <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
-           <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 flex items-center gap-2">
-             <DollarSign size={18} className="text-amber-500" /> Stato Avanzamento Budget (Top 8)
-           </h3>
-           <div className="space-y-6">
-              {projectMargins.slice(0, 8).map((m: any, i: number) => (
-                <div key={i} className="group">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{m.name}</span>
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">€ {m.cost.toLocaleString()} / € {m.revenue.toLocaleString()}</span>
+        {/* Budget vs Cost List */}
+        <div className="bg-white border border-slate-200">
+           <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-white">
+             <div className="flex items-center gap-2 font-bold text-sm text-slate-800">
+               <BarChart3 size={16} className="text-[#003F61]" />
+               <span>Avanzamento Costi su Budget Commessa</span>
+             </div>
+           </div>
+
+           <div className="p-4 space-y-4">
+              {projectMargins.slice(0, 6).map((m: any, i: number) => {
+                const ratio = Math.min((m.cost / (m.revenue || 1)) * 100, 100);
+                const isOver = m.cost > m.revenue;
+
+                return (
+                  <div key={i} className="space-y-1">
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="font-bold text-slate-900 truncate max-w-[200px]">{m.name}</span>
+                      <span className="text-slate-500 font-medium">
+                        € {m.cost.toLocaleString('it-IT')} / € {m.revenue.toLocaleString('it-IT')}
+                      </span>
+                    </div>
+                    <div className="w-full bg-slate-100 h-2 overflow-hidden border border-slate-200">
+                      <div 
+                        className={`h-full transition-all ${isOver ? 'bg-red-600' : ratio > 80 ? 'bg-amber-500' : 'bg-[#003F61]'}`} 
+                        style={{ width: `${ratio}%` }}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="w-full bg-slate-50 h-3 rounded-full overflow-hidden border border-slate-100">
-                    <div 
-                      className={`h-full transition-all duration-1000 ${m.cost > m.revenue ? 'bg-red-500 w-full' : 'bg-blue-600'}`} 
-                      style={{ width: `${Math.min((m.cost / (m.revenue || 1)) * 100, 100)}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
            </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {
   ArrowLeft, Mail, Phone, MapPin, User, Edit,
   Wallet, Calendar, Clock, HardHat, CheckCircle,
-  Home, AlertCircle, Globe, ArrowRight, TrendingUp,
+  AlertCircle, Globe, ArrowRight, TrendingUp,
   Activity, Shield
 } from 'lucide-react';
 import ItemsManager from '../ItemsManager';
@@ -82,123 +82,169 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
   const totaleAccertato = project.sal.reduce((s, sal) => s + sal.importo, 0);
 
   const statusLabels: Record<string, { label: string; color: string }> = {
-    PROGRAMMATO: { label: 'Programmato', color: 'bg-orange-50 text-orange-600 border-orange-100' },
-    ONGOING: { label: 'In Corso', color: 'bg-blue-50 text-blue-600 border-blue-100' },
-    COMPLETED: { label: 'Concluso', color: 'bg-emerald-50 text-emerald-600 border-emerald-100' },
+    PROGRAMMATO: { label: 'Programmato', color: 'bg-amber-50 text-amber-700 border-amber-200' },
+    ONGOING: { label: 'In Corso', color: 'bg-blue-50 text-[#003F61] border-blue-200' },
+    COMPLETED: { label: 'Concluso', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
   };
   const statusInfo = statusLabels[project.status] ?? { label: project.status, color: 'bg-slate-50 text-slate-600 border-slate-200' };
 
   return (
-    <div className="flex flex-col gap-10 reveal">
-      {/* Header */}
-      <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-8 no-print">
-        <div className="flex gap-8 items-start">
-          <Link href="/projects" className="p-5 bg-white hover:bg-slate-50 border border-slate-100 rounded-[1.5rem] shadow-sm transition-all text-slate-400 hover:text-slate-900 group">
-            <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+    <div className="flex flex-col gap-6 pb-12">
+      {/* 1. Header Card */}
+      <div className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 no-print">
+        <div className="flex items-start gap-4">
+          <Link 
+            href="/projects" 
+            className="h-10 w-10 border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors shrink-0"
+            title="Torna ai Cantieri"
+          >
+            <ArrowLeft size={18} />
           </Link>
           <div>
-            <div className="flex items-center gap-4 mb-3">
-              <div className="page-label m-0">
-                <HardHat className="text-blue-600" size={14} />
-                Asset Intel & Execution
-              </div>
-              <span className={`text-[10px] font-black px-3 py-1 rounded-full border uppercase tracking-widest ${statusInfo.color}`}>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="h-2 w-2 bg-[#003F61]" />
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                Commessa Attiva
+              </span>
+              <span className={`px-2 py-0.5 text-[10px] font-bold border uppercase tracking-wider ${statusInfo.color}`}>
                 {statusInfo.label}
               </span>
             </div>
-            <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none max-w-3xl">
+            <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">
               {project.name}
             </h1>
-            <div className="flex flex-wrap items-center gap-6 mt-6">
-               <div className="flex items-center gap-3 text-xs font-black text-slate-400 uppercase tracking-widest">
-                  <div className="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center">
-                    <User size={16} className="text-slate-400" />
-                  </div>
-                  <Link href={`/clients/${project.client.id}`} className="hover:text-blue-600 transition-colors text-slate-600">
-                    {project.client.name}
-                  </Link>
-               </div>
-               <div className="flex items-center gap-3 text-xs font-black text-slate-400 uppercase tracking-widest">
-                  <div className="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center">
-                    <MapPin size={16} className="text-slate-400" />
-                  </div>
-                  <span className="text-slate-600">{[project.indirizzo, project.citta].filter(Boolean).join(', ')}</span>
-               </div>
+            <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-slate-500">
+              <span className="flex items-center gap-1.5">
+                <User size={14} className="text-slate-400" />
+                <Link href={`/clients/${project.client.id}`} className="hover:text-[#003F61] font-semibold text-slate-700 underline">
+                  {project.client.name}
+                </Link>
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1.5">
+                <MapPin size={14} className="text-slate-400" />
+                <span>{[project.indirizzo, project.citta].filter(Boolean).join(', ') || 'Nessun indirizzo'}</span>
+              </span>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 no-print w-full xl:w-auto">
-          <PrintButton label="Report Tecnico" className="flex-1 xl:flex-none py-4 px-8 rounded-2xl text-[10px] font-black uppercase tracking-widest" />
+        <div className="flex items-center gap-3">
+          <PrintButton label="Stampa Scheda" className="h-10 px-4 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-bold uppercase tracking-wider" />
           <Link
             href={`/projects/${project.id}/edit`}
-            className="flex-1 xl:flex-none bg-slate-900 hover:bg-blue-600 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 font-black uppercase tracking-widest transition-all text-[10px] shadow-2xl transform active:scale-95"
+            className="h-10 px-4 bg-[#003F61] text-white hover:bg-[#002f49] text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors"
           >
-            <Edit size={16} /> Edit Asset
+            <Edit size={15} /> Modifica Dati
           </Link>
         </div>
       </div>
 
-      {/* KPI Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 no-print">
-         {[
-           { label: 'Budget Totale', val: project.budget ? `€ ${project.budget.toLocaleString('it-IT')}` : '—', sub: 'Valore Contrattuale', icon: Wallet, color: 'blue' },
-           { label: 'Avanzamento', val: `${completion}%`, sub: 'Work Progress', icon: Activity, color: 'emerald', progress: completion },
-           { label: 'Capitale Umano', val: `${totalOre.toFixed(0)}h`, sub: 'Ore Consuntivate', icon: Clock, color: 'purple' },
-           { label: 'Produzione Certificata', val: `€ ${totaleAccertato.toLocaleString('it-IT')}`, sub: 'Accertato SAL', icon: TrendingUp, color: 'orange' }
-         ].map((kpi, idx) => (
-           <div key={idx} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-2xl transition-all border-b-4" style={{ borderBottomColor: `var(--tw-color-${kpi.color}-500)` }}>
-              <div className="flex justify-between items-start mb-6">
-                  <div className={`w-12 h-12 rounded-2xl bg-${kpi.color}-50 flex items-center justify-center text-${kpi.color}-600 group-hover:scale-110 transition-transform`}>
-                      <kpi.icon size={24} />
-                  </div>
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{kpi.label}</p>
-              </div>
-              <div className="space-y-4">
-                <p className="text-4xl font-black text-slate-900 tracking-tighter leading-none">{kpi.val}</p>
-                {kpi.progress !== undefined ? (
-                  <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                    <div className={`h-full bg-${kpi.color}-500 rounded-full transition-all duration-1000`} style={{ width: `${kpi.progress}%` }} />
-                  </div>
-                ) : (
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{kpi.sub}</p>
-                )}
-              </div>
-           </div>
-         ))}
+      {/* 2. KPI Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 no-print">
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Budget Totale</span>
+            <div className="p-2 bg-slate-50 border border-slate-100 text-[#003F61]">
+              <Wallet size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-[#003F61]">
+              {project.budget ? `€ ${project.budget.toLocaleString('it-IT')}` : '—'}
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1">Valore contrattuale approvato</div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Avanzamento Lavori</span>
+            <div className="p-2 bg-blue-50 border border-blue-100 text-[#003F61]">
+              <Activity size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-[#003F61]">{completion}%</div>
+            <div className="w-full bg-slate-100 h-1.5 mt-2">
+              <div className="bg-[#003F61] h-1.5" style={{ width: `${completion}%` }} />
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1">{completedItems} su {totalItems} lavorazioni completate</div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Ore Lavorate</span>
+            <div className="p-2 bg-slate-50 border border-slate-100 text-slate-600">
+              <Clock size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-slate-900">{totalOre.toFixed(0)} h</div>
+            <div className="text-[11px] text-slate-500 mt-1">Manodopera consuntivata da rapportini</div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Produzione Certificata</span>
+            <div className="p-2 bg-emerald-50 border border-emerald-100 text-emerald-700">
+              <TrendingUp size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-emerald-700">
+              € {totaleAccertato.toLocaleString('it-IT')}
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1">Totale SAL accertati ed emessi</div>
+          </div>
+        </div>
       </div>
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        {/* Left Side — Tabs */}
-        <div className="lg:col-span-8 xl:col-span-9 space-y-8">
+      {/* 3. Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Left Side: Tabs */}
+        <div className="lg:col-span-8 xl:col-span-9 space-y-6">
           <ProjectTabs>
             {/* 0: Panoramica */}
-            <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-xl p-10">
-              <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-8 flex items-center gap-4">
-                <div className="w-2 h-8 bg-blue-600 rounded-full"></div>
-                Specifiche Commessa
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {[
-                  { label: 'Committente', val: project.committente || project.client.name },
-                  { label: 'Cantiere', val: project.indirizzo ? `${project.indirizzo}, ${project.citta || ''}` : 'Non definito' },
-                  { label: 'Apertura', val: new Date(project.startDate).toLocaleDateString('it-IT') },
-                  { label: 'Consegna Stimata', val: project.endDate ? new Date(project.endDate).toLocaleDateString('it-IT') : 'Pending' },
-                  { label: 'Stato Task', val: `${completedItems} completati su ${totalItems}` },
-                  { label: 'Volume Rapportini', val: `${project.rapportini.length} registrati` }
-                ].map((item, i) => (
-                  <div key={i} className="group">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">{item.label}</p>
-                    <p className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{item.val}</p>
-                  </div>
-                ))}
+            <div className="bg-white border border-slate-200 p-6 space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h2 className="text-sm font-bold text-[#003F61] uppercase tracking-wider">
+                  Specifiche Tecniche Commessa
+                </h2>
               </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Committente</span>
+                  <span className="text-sm font-semibold text-slate-900">{project.committente || project.client.name}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Ubicazione Cantiere</span>
+                  <span className="text-sm font-semibold text-slate-900">{project.indirizzo ? `${project.indirizzo}, ${project.citta || ''}` : 'Non definito'}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Data Consegna Cantiere</span>
+                  <span className="text-sm font-semibold text-slate-900">{new Date(project.startDate).toLocaleDateString('it-IT')}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Data Fine Lavori Stimata</span>
+                  <span className="text-sm font-semibold text-slate-900">{project.endDate ? new Date(project.endDate).toLocaleDateString('it-IT') : 'In programmazione'}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Lavorazioni Esecutive</span>
+                  <span className="text-sm font-semibold text-slate-900">{completedItems} completate / {totalItems} totali</span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Rapportini Giornalieri</span>
+                  <span className="text-sm font-semibold text-slate-900">{project.rapportini.length} inseriti</span>
+                </div>
+              </div>
+
               {project.description && (
-                <div className="mt-10 pt-10 border-t border-slate-50">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Visione & Note Strategiche</p>
-                  <p className="text-base text-slate-600 font-medium leading-relaxed italic">"{project.description}"</p>
+                <div className="pt-4 border-t border-slate-100">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Note & Prescrizioni Esecutive</span>
+                  <p className="text-sm text-slate-600 leading-relaxed">{project.description}</p>
                 </div>
               )}
             </div>
@@ -246,103 +292,105 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
           </ProjectTabs>
         </div>
 
-        {/* Right Side — Sidebar */}
-        <div className="lg:col-span-4 xl:col-span-3 space-y-8">
-          {/* Client Card */}
-          <div className="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden group">
-            <div className="bg-slate-900 px-8 py-6 flex justify-between items-center">
-              <h2 className="font-black text-white text-[10px] uppercase tracking-[0.2em] flex items-center gap-3">
-                <User size={16} className="text-blue-400" /> Stakeholder
-              </h2>
+        {/* Right Side: Sidebar */}
+        <div className="lg:col-span-4 xl:col-span-3 space-y-6">
+          {/* Stakeholder Card */}
+          <div className="bg-white border border-slate-200">
+            <div className="p-4 border-b border-slate-200 flex items-center justify-between">
+              <h3 className="text-xs font-bold text-[#003F61] uppercase tracking-wider flex items-center gap-2">
+                <User size={15} /> Scheda Committente
+              </h3>
               {project.client.number && (
-                <span className="px-3 py-1 bg-white/10 text-white text-[10px] font-black rounded-lg">
-                  #{project.client.number}
-                </span>
+                <span className="text-[10px] font-bold text-slate-500">#{project.client.number}</span>
               )}
             </div>
-            <div className="p-8">
-              <div className="flex items-center gap-5 mb-8">
-                <div className="w-16 h-16 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-900 font-black text-2xl border border-slate-100 shadow-inner group-hover:scale-110 transition-transform uppercase">
-                  {project.client.name.charAt(0)}
-                </div>
-                <div>
-                  <Link href={`/clients/${project.client.id}`} className="font-black text-xl text-slate-900 hover:text-blue-600 transition-colors block leading-none uppercase tracking-tighter">
-                    {project.client.name}
-                  </Link>
-                  <span className="inline-block mt-2 text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">
-                    {project.client.type === 'COMPANY' ? 'Professional' : 'Private'}
-                  </span>
-                </div>
+            <div className="p-5 space-y-4">
+              <div>
+                <Link href={`/clients/${project.client.id}`} className="text-base font-bold text-slate-900 hover:text-[#003F61] block">
+                  {project.client.name}
+                </Link>
+                <span className="inline-block mt-1 text-[10px] font-bold text-[#003F61] bg-slate-100 px-2 py-0.5 uppercase tracking-wider">
+                  {project.client.type === 'COMPANY' ? 'Azienda' : 'Privato'}
+                </span>
               </div>
-              <div className="space-y-4 pt-6 border-t border-slate-50">
-                {[
-                  { icon: Mail, val: project.client.email },
-                  { icon: Phone, val: project.client.phone },
-                  { icon: MapPin, val: project.client.city }
-                ].filter(i => i.val).map((info, idx) => (
-                  <div key={idx} className="flex items-center gap-4 text-xs font-bold text-slate-500">
-                    <info.icon size={16} className="text-slate-300" />
-                    <span className="truncate">{info.val}</span>
+
+              <div className="space-y-2 text-xs text-slate-600 pt-2 border-t border-slate-100">
+                {project.client.email && (
+                  <div className="flex items-center gap-2">
+                    <Mail size={14} className="text-slate-400" />
+                    <span className="truncate">{project.client.email}</span>
                   </div>
-                ))}
+                )}
+                {project.client.phone && (
+                  <div className="flex items-center gap-2">
+                    <Phone size={14} className="text-slate-400" />
+                    <span>{project.client.phone}</span>
+                  </div>
+                )}
+                {project.client.city && (
+                  <div className="flex items-center gap-2">
+                    <MapPin size={14} className="text-slate-400" />
+                    <span>{project.client.city}</span>
+                  </div>
+                )}
               </div>
+
               <Link
                 href={`/clients/${project.client.id}`}
-                className="w-full mt-8 py-4 bg-slate-50 hover:bg-slate-900 text-slate-900 hover:text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 border border-slate-100"
+                className="w-full h-9 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
               >
-                Vai al Profilo <ArrowRight size={14} />
+                Apri Scheda Cliente <ArrowRight size={13} />
               </Link>
             </div>
           </div>
 
-          {/* Portal Card */}
-          <div className="bg-slate-900 rounded-[2.5rem] shadow-2xl p-8 text-white relative overflow-hidden group">
-             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
-             <div className="flex items-center gap-3 mb-6 relative z-10">
-                <Globe size={24} className="text-blue-400" />
-                <h3 className="font-black text-[11px] uppercase tracking-[0.2em]">External Portal</h3>
-             </div>
-             
-             {project.portalKey ? (
-               <div className="relative z-10">
-                 <p className="text-xs font-medium text-slate-400 mb-6 leading-relaxed">Accesso privilegiato attivato. Condividi il link sicuro con il committente per il monitoraggio in tempo reale.</p>
-                 <div className="bg-white/5 rounded-2xl p-4 mb-6 truncate text-[10px] font-mono border border-white/10 select-all tracking-tight">
-                    /portal/{project.portalKey}
-                 </div>
-                 <Link 
-                    href={`/portal/${project.portalKey}`}
-                    target="_blank"
-                    className="w-full bg-white text-slate-900 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl hover:bg-blue-600 hover:text-white transition-all transform active:scale-95"
-                 >
-                    Launch Portal <ArrowRight size={16} />
-                 </Link>
-               </div>
-             ) : (
-               <div className="relative z-10 text-center py-4">
-                 <p className="text-xs font-medium text-slate-400 mb-6">Nessun accesso esterno configurato per questa commessa.</p>
-                 <ClientPortalActivator projectId={project.id} />
-               </div>
-             )}
+          {/* External Portal */}
+          <div className="bg-[#003F61] text-white p-5 border border-[#003F61]">
+            <div className="flex items-center gap-2 mb-3">
+              <Globe size={18} className="text-[#FEDE59]" />
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white">Portale Trasparenza</h3>
+            </div>
+            
+            {project.portalKey ? (
+              <div className="space-y-3">
+                <p className="text-xs text-white/80 leading-relaxed">
+                  Accesso sicuro attivo per il committente.
+                </p>
+                <div className="bg-white/10 p-2.5 text-[11px] font-mono border border-white/20 select-all truncate text-white/90">
+                  /portal/{project.portalKey}
+                </div>
+                <Link
+                  href={`/portal/${project.portalKey}`}
+                  target="_blank"
+                  className="w-full h-10 bg-[#FEDE59] text-[#003F61] hover:bg-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
+                >
+                  Visualizza Portale <ArrowRight size={14} />
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <p className="text-xs text-white/70">
+                  Nessun link esterno configurato per questa commessa.
+                </p>
+                <ClientPortalActivator projectId={project.id} />
+              </div>
+            )}
           </div>
 
-          {/* Security Summary */}
-          <div className="bg-emerald-900 rounded-[2.5rem] shadow-xl p-8 text-white group">
-            <div className="flex items-center gap-3 mb-6">
-              <Shield size={24} className="text-emerald-400" />
-              <h3 className="font-black text-[11px] uppercase tracking-[0.2em]">Safety Status</h3>
+          {/* Safety Status */}
+          <div className="bg-white border border-slate-200 p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <Shield size={16} className="text-emerald-600" />
+              <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Conformità Sicurezza</h3>
             </div>
-            <div className="bg-black/20 rounded-2xl p-6 border border-white/10">
-              <p className="text-[10px] font-black text-emerald-300 uppercase tracking-widest mb-1">POS Compliance</p>
-              <p className="text-xl font-black">Certificato 100%</p>
-              <div className="h-1 bg-white/10 rounded-full mt-4">
-                <div className="h-full bg-emerald-400 rounded-full w-full"></div>
-              </div>
+            <div className="bg-slate-50 border border-slate-100 p-3">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">POS & Normativa 81/08</span>
+              <span className="text-sm font-bold text-emerald-700">Attivo & Conforme</span>
             </div>
-            <p className="text-[9px] font-bold text-emerald-200 uppercase mt-6 tracking-widest text-center">Nessun incidente rilevato</p>
+            <p className="text-[11px] text-slate-500 mt-2">Nessun incidente o prescrizione aperta.</p>
           </div>
         </div>
       </div>
     </div>
   );
 }
-

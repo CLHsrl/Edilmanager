@@ -1,0 +1,3836 @@
+[
+  {
+    "name": "src",
+    "type": "directory",
+    "mode": 16749,
+    "children": [
+      {
+        "name": ".npmrc",
+        "type": "file",
+        "mode": 33206,
+        "uid": "01b8bc6e6aa772c39fdbc0552ceb2065726496ee"
+      },
+      {
+        "name": "CONTRATTO APPALTO.docx",
+        "type": "file",
+        "mode": 33206,
+        "uid": "9fbc9b5d91ce68bebf2d7093eec1eb5ac6da0649"
+      },
+      {
+        "name": "README.md",
+        "type": "file",
+        "mode": 33206,
+        "uid": "d3710e49f8f669b9c66f8c1dfc6bd79a7371f968"
+      },
+      {
+        "name": "check-db.js",
+        "type": "file",
+        "mode": 33206,
+        "uid": "7e98b5c28e828fbd8eb5f87ef402b70973c3b83c"
+      },
+      {
+        "name": "check-users.js",
+        "type": "file",
+        "mode": 33206,
+        "uid": "595bed315f308570b876e3a110b87bfe48160cca"
+      },
+      {
+        "name": "contract_template.html",
+        "type": "file",
+        "mode": 33206,
+        "uid": "664a5c46ddd01d0df537c805d44fe9c57514bd02"
+      },
+      {
+        "name": "darken-text.js",
+        "type": "file",
+        "mode": 33206,
+        "uid": "de0a474ae8f1521fa93a8dfcabcba0af7e79f278"
+      },
+      {
+        "name": "dev.db",
+        "type": "file",
+        "mode": 33206,
+        "uid": "641d797f095efc55a40efa1da724a7890c97b1f5"
+      },
+      {
+        "name": "eslint.config.mjs",
+        "type": "file",
+        "mode": 33206,
+        "uid": "7b3b62d43ebb71550e9aad41f196d9c16bcbf52c"
+      },
+      {
+        "name": "fix-imports.js",
+        "type": "file",
+        "mode": 33206,
+        "uid": "4e33010b4110777bf887833f905059a96f4a0a4a"
+      },
+      {
+        "name": "fix-types.js",
+        "type": "file",
+        "mode": 33206,
+        "uid": "d3e3d97484668d0ec1e9c95f1a25a2a279d0b2f2"
+      },
+      {
+        "name": "next-env.d.ts",
+        "type": "file",
+        "mode": 33206,
+        "uid": "9b605831d83ff0c291a1bdde0576cd834ca61255"
+      },
+      {
+        "name": "next.config.ts",
+        "type": "file",
+        "mode": 33206,
+        "uid": "3630cae688499689539005332f85247a4d52c9a8"
+      },
+      {
+        "name": "package-lock.json",
+        "type": "file",
+        "mode": 33206,
+        "uid": "f165876a3739891b8535b92319d713b1753ab36e"
+      },
+      {
+        "name": "package.json",
+        "type": "file",
+        "mode": 33206,
+        "uid": "c30459aab7cc2d744dd0785ae2d71fa858899bd3"
+      },
+      {
+        "name": "postcss.config.js",
+        "type": "file",
+        "mode": 33206,
+        "uid": "d72976761d1bb5d1d3c542358b5d5b8f9c10f053"
+      },
+      {
+        "name": "prisma",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "dev.db",
+            "type": "file",
+            "mode": 33206,
+            "uid": "0232e88ef3dd5cfb317737de6f2c7d589e3c3f51"
+          },
+          {
+            "name": "migrations",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "20260507170257_init_production_db",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "migration.sql",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "6e5861197c1fa2016da81971c02d3f591aa19b45"
+                  }
+                ]
+              },
+              {
+                "name": "migration_lock.toml",
+                "type": "file",
+                "mode": 33206,
+                "uid": "7eb078b726d4ace36c958c3bf165fe9334348850"
+              }
+            ]
+          },
+          {
+            "name": "schema.prisma",
+            "type": "file",
+            "mode": 33206,
+            "uid": "8730e4e012a037c127231fddae6c36e0dd86f188"
+          },
+          {
+            "name": "seed.ts",
+            "type": "file",
+            "mode": 33206,
+            "uid": "ff5d7f84aa63d59cc6c65569a28acac37e534cd0"
+          }
+        ]
+      },
+      {
+        "name": "public",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "blog-cashflow.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "4bb3d90a5edcdbdf410464067c2468a06db5bd64"
+          },
+          {
+            "name": "blog-digital.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "5a73215fe196cf72a3d8bbab1da09fd7d4da696c"
+          },
+          {
+            "name": "blog-errors.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "e104233a0fd003e2482108f5d3c931b4be2adddf"
+          },
+          {
+            "name": "blog-sal.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "90927c42e91ab572a32be3118076b3bfc88b1779"
+          },
+          {
+            "name": "blog-sdi.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "406f13356b8e4a6f90697df93970139608780283"
+          },
+          {
+            "name": "dashboard-preview.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "407e712e2cef7502ee9bac551ca351a607e9c5b6"
+          },
+          {
+            "name": "dashboard-render.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "1715507c4fd7197c1bb37af01b66260d8da71112"
+          },
+          {
+            "name": "dossier-completo.html",
+            "type": "file",
+            "mode": 33206,
+            "uid": "7a8e9ebb88d66b88be47890136cc2382343e1ace"
+          },
+          {
+            "name": "dossier-full.html",
+            "type": "file",
+            "mode": 33206,
+            "uid": "fdcd99995d1268a08c0173b506773872098619b9"
+          },
+          {
+            "name": "feature-logistics.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "b4cf200555d2d9d22212338553315e2af91c37e1"
+          },
+          {
+            "name": "feature-safety.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "fa6591eecccc134bfe6810afb0acf2fb71700357"
+          },
+          {
+            "name": "file.svg",
+            "type": "file",
+            "mode": 33206,
+            "uid": "fb380eeffe87d50b597383664c02982964d0d28c"
+          },
+          {
+            "name": "globe.svg",
+            "type": "file",
+            "mode": 33206,
+            "uid": "2eba23b01a46733bb8423e6d38ebf5f7e95abec5"
+          },
+          {
+            "name": "grid.svg",
+            "type": "file",
+            "mode": 33206,
+            "uid": "a01d22d6181b561f145c2c6811ef61bab2261c29"
+          },
+          {
+            "name": "hero-render.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "f3ec3a4da986252741d12866edb0fdb5cb4bb869"
+          },
+          {
+            "name": "icons",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "logo-192.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "6586e6147cdef6e3ce55bc3b932c3cfb4b1e9ea8"
+              },
+              {
+                "name": "logo-512.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "6586e6147cdef6e3ce55bc3b932c3cfb4b1e9ea8"
+              }
+            ]
+          },
+          {
+            "name": "images",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "founder.jpg",
+                "type": "file",
+                "mode": 33206,
+                "uid": "3bff875a2697fbe2ef613dc84e6f3fae052a934f"
+              },
+              {
+                "name": "logo24-1.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "6687278b037a2c73be7737f246ac3aeb45978e50"
+              },
+              {
+                "name": "logo24-2.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "8036b41c555ed2caf268de181a4d5e0fabd3836c"
+              }
+            ]
+          },
+          {
+            "name": "ipad-preview.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "eea6bb3274ab264ac3d9053ea3c0b43286d63458"
+          },
+          {
+            "name": "iphone-preview.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "5d8105f934945f661b81dfef09726f1fcce63938"
+          },
+          {
+            "name": "logo-rifacciamocasa-white.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "c26b8686d574ccd1b0525141c25a1f17039a1952"
+          },
+          {
+            "name": "next.svg",
+            "type": "file",
+            "mode": 33206,
+            "uid": "3f3e95622612b989c5bd6a03299a308c6f3c7e6b"
+          },
+          {
+            "name": "presentation",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "ai_advisor_section.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "4aac83cb4d63d7a5e72dd24d536298038171bced"
+              },
+              {
+                "name": "cassa.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "2a128a5189071fd5cef0ce4df61e12bc324b100d"
+              },
+              {
+                "name": "clients.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "0a532fb64384161cc311077988475a4b03c285fa"
+              },
+              {
+                "name": "dashboard.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "fd9f98e52462ee74ddb0f553b6f54fafab6e73fc"
+              },
+              {
+                "name": "dashboard_final.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "37a83bbd948b1214ffc2329ec318851c4743c80e"
+              },
+              {
+                "name": "fatture.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "4a065b5727fe3508563515024dcca50946dac010"
+              },
+              {
+                "name": "fatture_full.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "99b0925f01270b6d89a6fd3ac960bf353a58dddd"
+              },
+              {
+                "name": "global_rank.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "844bca286e83cdef1a39029fcf0dd5a8e5043cd7"
+              },
+              {
+                "name": "growth_advisor.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "a15d3137b5fa7256c76ab9ef68e7b983bc7d162a"
+              },
+              {
+                "name": "lavoratori.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "131d05ad74f296d38d61d9994de12800ac08acaf"
+              },
+              {
+                "name": "lavoratori_full.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "447dcbfa2748b3c3cd65e003de8c14f163c49e3d"
+              },
+              {
+                "name": "leads.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "91dec3254dfd28b10dacf6c4668901af2e54edff"
+              },
+              {
+                "name": "magazzino.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "c8928e512e33cefda25c04e4632968b0d63ca0bb"
+              },
+              {
+                "name": "magazzino_full.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "51364f0b2d17a2800d9b7a2d01d026600acb6f5f"
+              },
+              {
+                "name": "mission_board.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "1f8facf53f8a42eaadadeebd3ec6626faed8a106"
+              },
+              {
+                "name": "procurement.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "2bc1e12895459767d03a3568e4c0768cc23c5a00"
+              },
+              {
+                "name": "project_sal_details.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "4d34c84b718dc7ff11b0b6828ec35603230d9a4f"
+              },
+              {
+                "name": "projects.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "08e2574de4095f589d8e51b6c55e391250a62ad0"
+              },
+              {
+                "name": "projects_full.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "6e421678dca9d904058b1fe458fc92cf83080840"
+              },
+              {
+                "name": "quotes.png",
+                "type": "file",
+                "mode": 33206,
+                "uid": "e17faa8e7dfcd8a28c09843c544d4bede5e31618"
+              }
+            ]
+          },
+          {
+            "name": "project-preview.png",
+            "type": "file",
+            "mode": 33206,
+            "uid": "1d7ee5cff1e9c0e5b7143d2f79897329323e4eb3"
+          },
+          {
+            "name": "stampa-business-plan.html",
+            "type": "file",
+            "mode": 33206,
+            "uid": "1234e28ce7ef5880f5b27ad114bb1f12ca36593d"
+          },
+          {
+            "name": "stampa-presentazione.html",
+            "type": "file",
+            "mode": 33206,
+            "uid": "b9e3f1e6aa48ac2bc4367773cd79982c838382fc"
+          },
+          {
+            "name": "sw.js",
+            "type": "file",
+            "mode": 33206,
+            "uid": "ff759794791a63a19610e4091437a4ff7cef8049"
+          },
+          {
+            "name": "vercel.svg",
+            "type": "file",
+            "mode": 33206,
+            "uid": "cebb8852d58c8886be3e9051a26957f42bb82f1a"
+          },
+          {
+            "name": "window.svg",
+            "type": "file",
+            "mode": 33206,
+            "uid": "54c48e0daa6caa317fe1b4c419007fd93e948db9"
+          }
+        ]
+      },
+      {
+        "name": "scripts",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "convert_contract.js",
+            "type": "file",
+            "mode": 33206,
+            "uid": "1ce15c9edafcd6dfd17903f1e3e28c6338396301"
+          },
+          {
+            "name": "seed.js",
+            "type": "file",
+            "mode": 33206,
+            "uid": "19bfee6b95849b6390f8e8fff85ea7ff72e3663e"
+          },
+          {
+            "name": "seed_workflows.js",
+            "type": "file",
+            "mode": 33206,
+            "uid": "c16c783a2d35df6b5802f6ee7fb0b2a6c6f1476b"
+          }
+        ]
+      },
+      {
+        "name": "src",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "app",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "(app)",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "35485911f5f225a29201d3da49889eb52c29da4a"
+                  },
+                  {
+                    "name": "ai-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "4f3f92990ba3aa8b5d604a275bd8b268f08dd4e3"
+                  },
+                  {
+                    "name": "analytics-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "5bdbe9d301fc81450e9969ea392519c45de27b21"
+                  },
+                  {
+                    "name": "audit",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "d9ca6a3d6cd14e0335677022f6c0764f490002a6"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "bi",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "a265c6f1b28cbdf5e3090438c9a936ba3e39c32f"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "business-plan",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "adc54d20cc3e3f74e6e364e38b646bc45a605fd3"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "cantiere-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "c1d02080da1d7229240f87f3722a87fc7eebb230"
+                  },
+                  {
+                    "name": "cassa-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "050964bbef8a7a390c37dbf13798ac1db9b46ba3"
+                  },
+                  {
+                    "name": "cassa",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "cashflow",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "CashflowClient.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "1e3761cbe6f31dc08c932af7fca5a8f033dae62e"
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "4e135f3c25caf77c8e06429b4f0b493afbe07b51"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "conti",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "ContiClient.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "c16d97daa5d9dbccb83d3b571e481b2c48608024"
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "0901238d5291a74753c82248bb9ba03908624508"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "layout.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "91bbee0cec684c46f4352699877ade0f1a24d1c2"
+                      },
+                      {
+                        "name": "movimenti",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "MovimentiClient.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "a8c3206a0f546e09daad1c3c483130a98c5b4b08"
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "11bdceb4e198811f42de6ec4f265e375dc99cfa6"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "47a31b7ebeed3599828b59b89d701002cde2c75a"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "client-portal",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "[clientId]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "8b5e4590dbd57985c5787052821613002c864034"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "actions.ts",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "49cd1dcc9938be0965e064a22335ab09a0f18af1"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "3ed0c2ac4a564e9069d009f9ad6df10eb9b207f6"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "clients",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "ClientsClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "920138a0c0abbbf34ab4d1425e9b17800b0dcf9d"
+                      },
+                      {
+                        "name": "[id]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "edit",
+                            "type": "directory",
+                            "mode": 16749,
+                            "children": [
+                              {
+                                "name": "page.tsx",
+                                "type": "file",
+                                "mode": 33206,
+                                "uid": "bbf8ecd01a1b922444c629bde7607829bde9d9ed"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "7bede6dfe556b23d5ba8ec5422df106aff61f1d7"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "form.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "10920b51868a847559c7628550f9f615f8e08328"
+                      },
+                      {
+                        "name": "new",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "db9e4a4f8f4123c7b1429482527a74162e958c8e"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "1a7d8d1e6cb35295436f64359de07b7816ad543b"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "cmdk-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "25e34d158976cabe00f9ac4b77157b3881d30e85"
+                  },
+                  {
+                    "name": "dashboard",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "DashboardClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "3a2f0d83689074f2cd81ef851c0c5a33a4956db8"
+                      },
+                      {
+                        "name": "dashboard-actions.ts",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "df68fb7aa2745a6797b831ca9897ca7826058b82"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "cd04032fef7eb65f999cbd966564aee4f018b0a5"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "fatture-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "31ffd5091d44159c39ee93fa5721cc306c9fc6a2"
+                  },
+                  {
+                    "name": "fatture",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "FattureClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "9cdf23019dd3b5d238544772fe191eeb4568e0d8"
+                      },
+                      {
+                        "name": "[id]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "DettaglioFatturaClient.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "e2d44ff6cb9b37a25b60d340af63a2385bc5dd3d"
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "12440426ad03e73b4a36a812336e389d78cce393"
+                          },
+                          {
+                            "name": "print",
+                            "type": "directory",
+                            "mode": 16749,
+                            "children": [
+                              {
+                                "name": "page.tsx",
+                                "type": "file",
+                                "mode": 33206,
+                                "uid": "645d59c9db95894d39b104821f63896ec056e00a"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "riconciliazione-actions.ts",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "fb1672499469583b48a34e4f857da48e391e18a2"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "components",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "AIFatturaUploader.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "9f4b2b1f650a3b2586fb1599cfac539c5ef4dfb0"
+                          },
+                          {
+                            "name": "NuovaFatturaForm.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "a909fa598e0a10d10af3dcbce587a10dfb626d20"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "layout.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "dc215f5645a056587f51623bffa3f088d41e76d0"
+                      },
+                      {
+                        "name": "new",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "NuovaFatturaClient.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "b62354cbf81a81e411de398866f5644135fd404a"
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "f80e878b52d401eb572899389a5ad30dacfb36f3"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "a689f6af25deb93e6ef1976ba5209649e8f4f5d9"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "fornitori-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "c41e9ffe5a716d7789e95e41dc5717f9c794efd4"
+                  },
+                  {
+                    "name": "fornitori",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "FornitoriClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "6ddef7db04c47cf352ffd14ae3f364a27b306afc"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "7a48d5f23c151e729f15e07df69a56d3c0979bce"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "hr-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "9b56764d8a01064a26c54b2cbf414dd60ca8325f"
+                  },
+                  {
+                    "name": "lavoratori-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "d120418963a9267f5191a882817b3842179270a5"
+                  },
+                  {
+                    "name": "lavoratori",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "LavoratoriClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "686138871cc91c64f2b37d555b34fd1d8428fb7d"
+                      },
+                      {
+                        "name": "components",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "ClockInCard.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "7057664b3e5c2e2790d2fe783080074bf6e89d40"
+                          },
+                          {
+                            "name": "HRDashboard.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "a927f033e0c84bd8224873d7015037994554fc96"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "042aedeb77928e2aa2bcfce6cf3c5d3f0ffc362c"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "layout.tsx",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "880ec800f4b54f69b70ef4c5eedbbd1dcbf8f8fa"
+                  },
+                  {
+                    "name": "lead-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "bfc260f19ae1a589de894c94c2ecc5c8d9efd6fd"
+                  },
+                  {
+                    "name": "leads",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "CRMMissionBoard.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "e87b73e88e7d9c3d7f8202645eb467f29e9e7b14"
+                      },
+                      {
+                        "name": "ContractBossFight.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "06086c90f8edfda52525d02271ade81f75e05f03"
+                      },
+                      {
+                        "name": "LeadsClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "25617409265b10f7c593384344e03567217a21cb"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "3a8028880205017ee8ea2eabe4c15478572eeecf"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "magazzino-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "d3d0aab79a0ec0031cf7c9397f38c00281e536de"
+                  },
+                  {
+                    "name": "magazzino",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "MagazzinoClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "e650bbfb9195af14af5b318e71c17bd8550489b2"
+                      },
+                      {
+                        "name": "components",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "NuovaAttrezzaturaForm.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "5d7f70b3148d3fcda7492c6f2df2339e60d16460"
+                          },
+                          {
+                            "name": "NuovoArticoloForm.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "50ec4bedc517feae44af0c641a93c091aab76870"
+                          },
+                          {
+                            "name": "SchedaAttrezzo.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "88e4feeb5e986ba911a4302830c4ea40c508333d"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "86e44a40a899feb9ee856962427595ae9a6d2b5e"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "portal",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "[portalKey]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "2758bd8dfec7f82a036bfeb987676386b34fa26e"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "presentation",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "1cb8d68a3abeaa15f44f4f75ad2c21ee000f27d0"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "procurement-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "5890438bab098a21d5a74cc14721d052c6efa1bf"
+                  },
+                  {
+                    "name": "procurement",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "ProcurementClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "33b0a46cced2a60d92eb67cf2d1ad6520ab19b2f"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "fe1e6df6e528f57d33a91c22625d3b36d965347f"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "project-feed-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "29b37e7f8ccc0e7dacb7cab23d4fabec8780817f"
+                  },
+                  {
+                    "name": "projects",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "BudgetAnalysisTab.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "fa0d596d561c3f0a90c118699f64643a7bb01809"
+                      },
+                      {
+                        "name": "DdtTab.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "21a8326733c17051caabba995a5e566bb10dc00c"
+                      },
+                      {
+                        "name": "DocumentsTab.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "725bcd1d4381a62426626a85ad66b1129b0646ba"
+                      },
+                      {
+                        "name": "GanttTab.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "b926ca4a35181849d14d1828900eb5fb63a5a53b"
+                      },
+                      {
+                        "name": "ItemsManager.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "fb435e284d2f244430a27597e50ba35a14158dfb"
+                      },
+                      {
+                        "name": "PrevisionaleTab.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "10b28bf3371abfea766402fb66f9bee27727c3db"
+                      },
+                      {
+                        "name": "ProjectTabs.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "8e245d95233842a433da693a535919d0e76cf371"
+                      },
+                      {
+                        "name": "ProjectsClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "8f22cea7b8dd583f0fd4454de18c36c649e62fc4"
+                      },
+                      {
+                        "name": "RapportiniTab.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "5ce5f73a69567d382d1f5bf500e9d506c7fc9b3e"
+                      },
+                      {
+                        "name": "RfiTab.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "bf0eb47fe681548bb0dbf737d14b7b14e69b0e47"
+                      },
+                      {
+                        "name": "SalTab.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "23598186968269f0a3a1785fca1d0102b6fb2d09"
+                      },
+                      {
+                        "name": "[id]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "edit",
+                            "type": "directory",
+                            "mode": 16749,
+                            "children": [
+                              {
+                                "name": "page.tsx",
+                                "type": "file",
+                                "mode": 33206,
+                                "uid": "b722cffd214c3d326ee59c110ac57f55949c5747"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "d30ec8ff639fb22de41863a3fcf166adf218f1a5"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "form.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "0d18ea8df404ed7732aa55e2267ac7f090e168e8"
+                      },
+                      {
+                        "name": "new",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "293a8d4a2fe8c968006bb764a5508a1449c375d3"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "37e466e9ce79befddc06d6eb96690079b868ccd1"
+                      },
+                      {
+                        "name": "test",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "a4bcfbf08666e5d61bf067224bea986b3c1420b5"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "quote-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "54e05deb04c128c12ec7c43eb99a20ad9f6a6c7b"
+                  },
+                  {
+                    "name": "quotes",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "QuotesClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "bdf733efac555921911a82aaae79cdcd65f15f0e"
+                      },
+                      {
+                        "name": "[id]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "builder.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "3277ff5db438388e768df173da61f418c3cd8d2f"
+                          },
+                          {
+                            "name": "contract",
+                            "type": "directory",
+                            "mode": 16749,
+                            "children": [
+                              {
+                                "name": "page.tsx",
+                                "type": "file",
+                                "mode": 33206,
+                                "uid": "11a7d08a2239958157e5d56c7712819704bfb426"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "c7e33157c873c22db86a42ca969aba411f4d991f"
+                          },
+                          {
+                            "name": "print",
+                            "type": "directory",
+                            "mode": 16749,
+                            "children": [
+                              {
+                                "name": "page.tsx",
+                                "type": "file",
+                                "mode": 33206,
+                                "uid": "f14ce8469b57e9f6aba375a8a60afc7dbb456e31"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "components",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "QuoteShareButton.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "fe143042a38940d1c6bf7b67b9e8b5f274a731ed"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "new",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "ae2cef33b7d71222d32b7881831f8648a5018db5"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "78cac7520d71592bd643bd760eb3f90b07997c45"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "safety-actions.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "430352f032e7ca1bb0f1e3b84475af04e281debf"
+                  },
+                  {
+                    "name": "settings",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "ea1d15131ec6beee157d4fee5a12220984463ec1"
+                      },
+                      {
+                        "name": "safety",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "7c295aee01979c20b2eab387fb0c32150dcb56e2"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "strategy",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "StrategicAdvisorClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "aa8fb3fe7db432ee4dcd262324d4485401680760"
+                      },
+                      {
+                        "name": "advisor-actions.ts",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "4ae3dc854108fe092267ca62c064b2643897df2e"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "937d41cff2882e945ba0097d906a0bcb0ab81d3a"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "workflows",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "WorkflowsClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "9b637890f530baef7b889842dd14133d387abd3a"
+                      },
+                      {
+                        "name": "[id]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "de0e33cb04ddbc6a90505c8d3e59a71f874fe38e"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "components",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "WorkerCalendar.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "98b150c25b92a7da688792fc3a22a8473c7d1355"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "new",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "19719dbfe8be59e0ee444d9e204fd6bdb0160223"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "01e1d88bdd2237032b251027cde6d8fb23f0cbf3"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "(public)",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "about",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "layout.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "241585402fd2868ccdc98c45e75bf08099686574"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "ce0dc416e8c29d7699f63a8ccc306ca477a930a2"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "blog",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "[slug]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "e988af19629dc3e03bc894b1d8a7bb46e1897014"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "layout.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "8471dcffc1635fa8a80c6accd5d09792844259f2"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "92883210a964a908fe683d0fab963f341a963e40"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "caso-studio",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "rifacciamocasa",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "layout.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "79c125cb466f617af9599bf6d125573432efd79d"
+                          },
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "f3efc119efe3b9cbcea06f5b79f456758460c965"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "contatti",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "0ec8afca77b3298bdf41ac031a29cdb5e1fe0ae4"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "cookie-policy",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "54b59ff493db7b569b9831fb1b3998624b9a22fe"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "funzionalita",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "FunzionalitaClient.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "8cb2261e461967d0953f1b05860a2f4c5aecea63"
+                      },
+                      {
+                        "name": "[slug]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "page.tsx",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "61f132d4f0168cd5a084f886affa09f90b22b405"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "layout.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "4fd19975b80e15174b3a95c0a6edd953645a9b09"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "427d2a1ded4b87d68e344e2f5023cdbe4cf789fc"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "layout.tsx",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "248d411ed6114370019b15ea894081d79eb012e2"
+                  },
+                  {
+                    "name": "login",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "2e5ca23bba60929aead601cc3b7c6249214cc695"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "page.tsx",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "df2921e0ad912869f7c103aea4c750f96036da09"
+                  },
+                  {
+                    "name": "piattaforma",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "layout.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "bf25898a90ae3830eca803bcc409aee6c7432928"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "0234b0617018e929e770844f580c74373721726f"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "pricing",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "layout.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "850c070a191de1e1f26b74e48bb71053a708925b"
+                      },
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "fe6a80fc157e51d00bcc77483af705fccf429b8c"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "privacy",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "7f791b1f69569aba39df6712752a3e705705d3de"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "terms",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "page.tsx",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "3b496c432d7c911728d1a0fb4767f2ffd8bebeb1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "api",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "auth",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "[...nextauth]",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "route.ts",
+                            "type": "file",
+                            "mode": 33206,
+                            "uid": "e4aa36bccdf947f4f7e22f9649304e61786a178d"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "contact",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "route.ts",
+                        "type": "file",
+                        "mode": 33206,
+                        "uid": "ed806c6ff08bd09dcfd9eb6d697a55b1a12c84f0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "globals.css",
+                "type": "file",
+                "mode": 33206,
+                "uid": "3a74ee0ef3e844a4ce1176553ac4fdc80d6816fb"
+              },
+              {
+                "name": "icon.svg",
+                "type": "file",
+                "mode": 33206,
+                "uid": "5cfe2ccc1fb384dbe01807a9931b852a8502fbbb"
+              },
+              {
+                "name": "layout.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "7fd61c57c4a20b928d6a1dc6413b8e7b896b07af"
+              },
+              {
+                "name": "manifest.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "97b92ed24f116ae722044ecff92b5e2ae2247401"
+              },
+              {
+                "name": "page.module.css",
+                "type": "file",
+                "mode": 33206,
+                "uid": "c55921752b1af0559fba04df2eb4df7cd72ed89e"
+              }
+            ]
+          },
+          {
+            "name": "auth.ts",
+            "type": "file",
+            "mode": 33206,
+            "uid": "fb6b8d0168250ed5be71eb95c6542c8b5a58eb46"
+          },
+          {
+            "name": "components",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "AISafetyWizard.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "1074f9e471b474c657ed7ebdd01f2fa4130431cb"
+              },
+              {
+                "name": "AnomalyContainer.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "4713c2b087168409a2e6934d786fee08a6a5d54a"
+              },
+              {
+                "name": "BIAnalytics.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "97e0f5fa0ee291c00cc12df72bd77ae409fbe0fa"
+              },
+              {
+                "name": "ClientCharts.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "8eb684a436e389c23a4e446c19784e9ef8561104"
+              },
+              {
+                "name": "ClientPortalActivator.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "13f24fcfcac56e597c3c0ac849f9fc342a55eaf8"
+              },
+              {
+                "name": "ClientWizard.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "e9ee49e77573c5235f84083e27dffbc538cabf7c"
+              },
+              {
+                "name": "DeleteWithConfirmation.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "d4b2418e2363bc84841825924966386b2aa84070"
+              },
+              {
+                "name": "GlobalCommandPalette.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "0170cd856ea79a0f299d89777eb3775f3b1acb27"
+              },
+              {
+                "name": "GlobalProactiveBanner.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "6b3dcd295302dca3ae84052173a1499bf33145c6"
+              },
+              {
+                "name": "GlobalRankWidget.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "1f48fac288f6550394c220c35bc0656ec20d12b3"
+              },
+              {
+                "name": "IndustryVerticals.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "ede1458257935a0f6b2f6061525d732a9a1373a1"
+              },
+              {
+                "name": "IntegrationsMap.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "656263a91d03478ef1a9875f5cbe089d9c92bfd5"
+              },
+              {
+                "name": "Logo.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "12d4668da54d96c4fde804725f9ddd471958d773"
+              },
+              {
+                "name": "MaturityQuiz.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "ed57524c54fb7844a66d40835ab3f3c48b54e83f"
+              },
+              {
+                "name": "PWARegistry.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "f36f23ac0b7979a8d67beef017f9b78f5108cf23"
+              },
+              {
+                "name": "PricingTable.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "b60b4bf3facf4f73e0a4876b902fe6979adffe08"
+              },
+              {
+                "name": "PrintButton.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "e4d2f23a40b4a96edbf3df0e469e413ec689b875"
+              },
+              {
+                "name": "ProjectWizard.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "5c7524ac0423182e162dddb205853aec1774c7fa"
+              },
+              {
+                "name": "Providers.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "9a134e69e27d507b94c8113cd68a531dcc864abb"
+              },
+              {
+                "name": "PublicFooter.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "85efc3c5ccaf0f4a8a11d4071a196737827da856"
+              },
+              {
+                "name": "PublicNavbar.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "f38e08284257eef643e26953967dc8ed51aff25c"
+              },
+              {
+                "name": "QuoteWizard.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "f717c1d2bce686ac74b1d8cd7d68bee89a813684"
+              },
+              {
+                "name": "ROICalculator.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "8138b67458f61acb2401ac6ef57b232546924b27"
+              },
+              {
+                "name": "RankUpModal.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "e77e8a130694b84b4c1f82995194575150d20b2e"
+              },
+              {
+                "name": "RoleSwitcher.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "337a19594299b0ed2455d31a6539b7dd8c9150b6"
+              },
+              {
+                "name": "SafetyTab.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "96c56b51e607938a22d8e511d26387da8a4dba53"
+              },
+              {
+                "name": "ScrollReveal.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "46a4dd10eb55f749730240907aad76abdc42ca98"
+              },
+              {
+                "name": "Search.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "6ebcb50b4e5ae46d0edb0607c2d697226b3828d7"
+              },
+              {
+                "name": "SidebarLinks.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "e5bd2bf74595b863b934a25f3d973cd67e73c302"
+              },
+              {
+                "name": "SignaturePad.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "f3c543089806cf1f9ca82b1a879cdd6ed0c95fec"
+              },
+              {
+                "name": "SiteDiary.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "a842292f5429de3573ec92610c1b83d3e34c0c2f"
+              },
+              {
+                "name": "SlideOver.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "9af8ac597494cf6b59008b16ec9a00e2502cfce9"
+              },
+              {
+                "name": "StrategicFAQ.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "270b8593b69710cf529cbf8e2d16c833a6a1d9c8"
+              },
+              {
+                "name": "TaskAssignmentSelect.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "9d0688b26435a7222e191fb841c03040e86e2835"
+              },
+              {
+                "name": "VisionAudit.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "1357b708448cfb5f8dc0a44f7e1039f3e0484a3d"
+              },
+              {
+                "name": "dashboard",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "DashboardHero.tsx",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "9ffdb28d2e9f3a046bc35a975c159d52b78aea00"
+                  },
+                  {
+                    "name": "FinancialPulse.tsx",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "abb766e5ae00fd4218a9a1e60baf5a16648c4548"
+                  },
+                  {
+                    "name": "InventoryScanner.tsx",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "ecc3c577f211e3f9e44b4d7ffa2cad0bd95d4d31"
+                  },
+                  {
+                    "name": "UnifiedAgenda.tsx",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "a61b152d40045bf69212723356206343050dd192"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "lib",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "ai",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "budget-guardian.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "616f2d8b4c69fe6d1dda161cb7a64803f70087e4"
+                  },
+                  {
+                    "name": "rfi-suggest.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "66b0cde5c715d3ca5afc9a85eb03a5228263059a"
+                  },
+                  {
+                    "name": "site-summary.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "ca5e6d2ccce59ea379f4a12b6a729240e60561fc"
+                  },
+                  {
+                    "name": "vision-mock.ts",
+                    "type": "file",
+                    "mode": 33206,
+                    "uid": "9cdd6575749bc7f80e027cbe9964eda20eb83005"
+                  }
+                ]
+              },
+              {
+                "name": "auditLog.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "4dc960e3f44c5277cbb1cfef379772e787b7dd37"
+              },
+              {
+                "name": "auth-mock.tsx",
+                "type": "file",
+                "mode": 33206,
+                "uid": "43563e3029a54c45087a14c902b32768791749e7"
+              },
+              {
+                "name": "auth-server.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "4df722959f6d7046cc87aca47113302b06129b58"
+              },
+              {
+                "name": "blog-data.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "7a6f713184f62d996234a30e92e275d3bdbed7ad"
+              },
+              {
+                "name": "contracts.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "3d3a49bcfead0c693aa35fb879780c7e186694e6"
+              },
+              {
+                "name": "features-data.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "44887d6a243f8302d0887540f83d69d35950259a"
+              },
+              {
+                "name": "ocrUtils.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "99e0a389f164112b6757a2d9b50141c52ee19da3"
+              },
+              {
+                "name": "prisma.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "925015da230dfdc83f4c037f44447527ceeac3a6"
+              },
+              {
+                "name": "sync-store.ts",
+                "type": "file",
+                "mode": 33206,
+                "uid": "51541de6f9679435505e706f60f93811abd9061f"
+              }
+            ]
+          },
+          {
+            "name": "middleware.ts",
+            "type": "file",
+            "mode": 33206,
+            "uid": "22d845aebd67b1102afc8a8b2e3f7e7cdac4f4c7"
+          }
+        ]
+      },
+      {
+        "name": "tailwind.config.ts",
+        "type": "file",
+        "mode": 33206,
+        "uid": "4862c4964ee006f61799c6d3dbcb0cb0fcd2931e"
+      },
+      {
+        "name": "temp_pricing.txt",
+        "type": "file",
+        "mode": 33206,
+        "uid": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      },
+      {
+        "name": "test-auth-logic.js",
+        "type": "file",
+        "mode": 33206,
+        "uid": "8348166feb88cddf500e928e299563fe3d0e1d00"
+      },
+      {
+        "name": "tsconfig.json",
+        "type": "file",
+        "mode": 33206,
+        "uid": "57031df00a6c319a0972372618e82da50b9afbf0"
+      },
+      {
+        "name": "tsconfig.tsbuildinfo",
+        "type": "file",
+        "mode": 33206,
+        "uid": "d958ac2ba4c0210129fff474fcb14844dff6126c"
+      },
+      {
+        "name": "typescript-errors.txt",
+        "type": "file",
+        "mode": 33206,
+        "uid": "f2e1fd7ab0478c6e5fba277ba2f271e91bbb0e47"
+      },
+      {
+        "name": "update_colors.js",
+        "type": "file",
+        "mode": 33206,
+        "uid": "8b184ec72cab338305b1d052f789b9c89d75c7ee"
+      },
+      {
+        "name": "vercel.json",
+        "type": "file",
+        "mode": 33206,
+        "uid": "30358411fc7ae5df64b0cf59189e62fec07e51ac"
+      }
+    ]
+  },
+  {
+    "name": "out",
+    "type": "directory",
+    "mode": 16749,
+    "children": [
+      {
+        "name": "_middleware",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-6791e6e7c93acb750e0df61d91f63b4e8a"
+      },
+      {
+        "name": "index",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "_global-error",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "_global-error.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "_global-error.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "__PAGE__.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "about",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "about.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "about.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "about.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "about",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "blog",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "blog.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "blog.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "blog.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "blog",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "caso-studio",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "rifacciamocasa",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "rifacciamocasa.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "rifacciamocasa.segments",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "!KHB1YmxpYyk.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "!KHB1YmxpYyk",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "caso-studio.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  },
+                  {
+                    "name": "caso-studio",
+                    "type": "directory",
+                    "mode": 16749,
+                    "children": [
+                      {
+                        "name": "rifacciamocasa.segment.rsc",
+                        "type": "lambda",
+                        "mode": 49590,
+                        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                      },
+                      {
+                        "name": "rifacciamocasa",
+                        "type": "directory",
+                        "mode": 16749,
+                        "children": [
+                          {
+                            "name": "__PAGE__.segment.rsc",
+                            "type": "lambda",
+                            "mode": 49590,
+                            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "_full.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "_head.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "_index.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "_tree.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "contatti",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "contatti.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "contatti.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "contatti.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "contatti",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "cookie-policy",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "cookie-policy.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "cookie-policy.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "cookie-policy.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "cookie-policy",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "funzionalita",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "funzionalita.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "funzionalita.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "funzionalita.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "funzionalita",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "index.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "index.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "__PAGE__.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              }
+            ]
+          },
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "login",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "login.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "login.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "login.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "login",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "piattaforma",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "piattaforma.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "piattaforma.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "piattaforma.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "piattaforma",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "pricing",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "pricing.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "pricing.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "pricing.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "pricing",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "privacy",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "privacy.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "privacy.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "privacy.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "privacy",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "terms",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "terms.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "terms.segments",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "!KHB1YmxpYyk.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "!KHB1YmxpYyk",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "terms.segment.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "terms",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "__PAGE__.segment.rsc",
+                    "type": "lambda",
+                    "mode": 49590,
+                    "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "_full.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_head.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_index.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "_tree.segment.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "_not-found",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "_not-found.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "audit",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "audit.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "bi",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "bi.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "blog",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[slug]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[slug].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "business-plan",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "business-plan.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "cassa",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "cassa.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "cassa",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "cashflow",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "cashflow.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "conti",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "conti.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "movimenti",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "movimenti.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "client-portal",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "client-portal.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "client-portal",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[clientId]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[clientId].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "clients",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "clients.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "clients",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[id]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id]",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "edit",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "edit.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              }
+            ]
+          },
+          {
+            "name": "new",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "new.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "dashboard",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "dashboard.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "fatture",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "fatture.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "fatture",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[id]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id]",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "print",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "print.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              }
+            ]
+          },
+          {
+            "name": "new",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "new.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "fornitori",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "fornitori.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "funzionalita",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[slug]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[slug].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "lavoratori",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "lavoratori.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "leads",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "leads.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "magazzino",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "magazzino.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "portal",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[portalKey]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[portalKey].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "presentation",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "presentation.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "procurement",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "procurement.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "projects",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "projects.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "projects",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[id]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id]",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "edit",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "edit.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              }
+            ]
+          },
+          {
+            "name": "new",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "new.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "test",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "test.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "quotes",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "quotes.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "quotes",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[id]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id]",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "contract",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "contract.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "print",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              },
+              {
+                "name": "print.rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+              }
+            ]
+          },
+          {
+            "name": "new",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "new.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "settings",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "settings.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "settings",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "safety",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "safety.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "strategy",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "strategy.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "workflows",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "workflows.rsc",
+        "type": "lambda",
+        "mode": 49590,
+        "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+      },
+      {
+        "name": "workflows",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "[id]",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "[id].rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "new",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          },
+          {
+            "name": "new.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-c8d298613eeba7cf8b5fb6f542456322c7"
+          }
+        ]
+      },
+      {
+        "name": "api",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "auth",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "[...nextauth]",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-4b2cc6405d6e04139dd976ba373a1c27a7"
+              },
+              {
+                "name": "[...nextauth].rsc",
+                "type": "lambda",
+                "mode": 49590,
+                "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-4b2cc6405d6e04139dd976ba373a1c27a7"
+              }
+            ]
+          },
+          {
+            "name": "contact",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-4b2cc6405d6e04139dd976ba373a1c27a7"
+          },
+          {
+            "name": "contact.rsc",
+            "type": "lambda",
+            "mode": 49590,
+            "uid": "team_bY7MAsSlVLlHz7KSvLAAE8Ko-4b2cc6405d6e04139dd976ba373a1c27a7"
+          }
+        ]
+      }
+    ]
+  }
+]

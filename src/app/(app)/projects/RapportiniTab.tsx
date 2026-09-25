@@ -253,7 +253,7 @@ export default function RapportiniTab({
     <div className="space-y-4">
       {/* Offline Alert */}
       {isOffline && (
-        <div className="bg-red-500 text-white p-3 rounded-xl text-center text-xs font-black uppercase tracking-widest animate-pulse">
+        <div className="bg-red-500 text-white p-3 rounded-xl text-center text-xs font-bold uppercase tracking-wide animate-pulse">
            Modalità Offline Attiva — I dati verranno salvati localmente
         </div>
       )}
@@ -261,14 +261,14 @@ export default function RapportiniTab({
       {/* Header */}
       <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
         <div>
-          <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">Operational Site Diary</h2>
-          <p className="text-xs font-black text-slate-400 uppercase tracking-widest mt-1">
+          <h2 className="text-2xl font-bold text-slate-900 uppercase tracking-tighter">Operational Site Diary</h2>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mt-1">
              {rapportini.length} registri archiviati · {totalOreAll.toFixed(0)} ore totali di manodopera
           </p>
         </div>
         <button 
           onClick={() => { setLocation(null); setSignatureData(null); setPhotos([]); setAiResult(null); setIsSlideOpen(true); }} 
-          className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest shadow-xl shadow-blue-900/10 transition-all transform active:scale-95"
+          className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-wide shadow-xl shadow-blue-900/10 transition-all transform active:scale-95"
         >
           <Plus size={18} /> Nuovo Rapportino
         </button>
@@ -278,7 +278,7 @@ export default function RapportiniTab({
       {rapportini.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border-2 border-dashed border-slate-100 p-24 text-center">
           <FileText size={64} className="mx-auto text-slate-100 mb-8" />
-          <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Nessuna Registrazione</h3>
+          <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tighter">Nessuna Registrazione</h3>
           <p className="text-sm text-slate-400 font-medium mt-2">Inizia a tracciare le attività quotidiane e le presenze in cantiere.</p>
         </div>
       ) : (
@@ -290,26 +290,26 @@ export default function RapportiniTab({
               <div key={r.id} className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden group hover:shadow-md transition-all">
                 <div className="flex flex-col md:flex-row items-center gap-6 p-8 cursor-pointer hover:bg-slate-50/50 transition-colors" onClick={() => setExpanded(isExpanded ? null : r.id)}>
                   <div className="w-16 h-16 bg-slate-50 rounded-2xl flex flex-col items-center justify-center text-slate-900 shrink-0 border border-slate-100 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                    <span className="text-xs font-black leading-none uppercase">{new Date(r.data).toLocaleDateString('it-IT', { day: 'numeric' })}</span>
-                    <span className="text-[9px] font-black uppercase tracking-widest mt-1 opacity-50">{new Date(r.data).toLocaleDateString('it-IT', { month: 'short' })}</span>
+                    <span className="text-xs font-bold leading-none uppercase">{new Date(r.data).toLocaleDateString('it-IT', { day: 'numeric' })}</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wide mt-1 opacity-50">{new Date(r.data).toLocaleDateString('it-IT', { month: 'short' })}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-1">
-                      <p className="font-black text-slate-900 text-lg uppercase tracking-tighter leading-none">{r.attivita}</p>
+                      <p className="font-bold text-slate-900 text-lg uppercase tracking-tighter leading-none">{r.attivita}</p>
                       {r.signature && (
                         <span className="bg-blue-50 text-blue-600 p-1 rounded-full" title="Validato con Firma">
                           <Check size={10} className="stroke-[4]" />
                         </span>
                       )}
                     </div>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide flex items-center gap-2">
                       <Calendar size={12} className="text-blue-500" /> {new Date(r.data).toLocaleDateString('it-IT', { weekday: 'long' })} · {r.lavoratori.length} operatori
                     </p>
                   </div>
                   <div className="flex items-center gap-6">
                     <div className="text-right">
-                      <p className="text-2xl font-black text-slate-900 tracking-tighter leading-none">{oreRap}<span className="text-xs text-slate-300 ml-1">H</span></p>
-                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">Labor Volume</p>
+                      <p className="text-2xl font-bold text-slate-900 tracking-tighter leading-none">{oreRap}<span className="text-xs text-slate-300 ml-1">H</span></p>
+                      <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wide mt-1">Labor Volume</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <button onClick={e => { e.stopPropagation(); handleDelete(r.id); }} className="p-3 text-slate-200 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all" disabled={isPending}>
@@ -330,23 +330,23 @@ export default function RapportiniTab({
                       <div className="xl:col-span-8 space-y-8">
                         {r.lavoratori.length > 0 && (
                           <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                            <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-3">
+                            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-6 flex items-center gap-3">
                               <Users size={14} className="text-blue-600" /> Field Force Deployment
                             </h4>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                               {r.lavoratori.map(l => (
                                 <div key={l.id} className="bg-slate-50 border border-slate-100 p-4 rounded-2xl flex items-center justify-between group/worker">
                                   <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 bg-white text-slate-900 rounded-xl flex items-center justify-center text-xs font-black border border-slate-100 shadow-sm group-hover/worker:bg-slate-900 group-hover/worker:text-white transition-all">
+                                    <div className="w-10 h-10 bg-white text-slate-900 rounded-xl flex items-center justify-center text-xs font-bold border border-slate-100 shadow-sm group-hover/worker:bg-slate-900 group-hover/worker:text-white transition-all">
                                       {l.lavoratore.nome[0]}{l.lavoratore.cognome ? l.lavoratore.cognome[0] : ''}
                                     </div>
                                     <div>
-                                      <p className="text-sm font-black text-slate-900 uppercase tracking-tight">{l.lavoratore.nome} {l.lavoratore.cognome}</p>
-                                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Operator</p>
+                                      <p className="text-sm font-bold text-slate-900 uppercase tracking-tight">{l.lavoratore.nome} {l.lavoratore.cognome}</p>
+                                      <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wide">Operator</p>
                                     </div>
                                   </div>
                                   <div className="text-right">
-                                    <p className="text-lg font-black text-blue-600 tracking-tighter leading-none">{l.ore}<span className="text-[10px] ml-0.5">h</span></p>
+                                    <p className="text-lg font-bold text-blue-600 tracking-tighter leading-none">{l.ore}<span className="text-[10px] ml-0.5">h</span></p>
                                   </div>
                                 </div>
                               ))}
@@ -357,14 +357,14 @@ export default function RapportiniTab({
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                           {(r.attrezzature.length > 0 || r.mezzi) && (
                             <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-3">
+                              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-4 flex items-center gap-3">
                                 <Wrench size={14} className="text-purple-600" /> Asset & Equipment
                               </h4>
                               <div className="space-y-3">
                                 {r.attrezzature.map(a => (
                                    <div key={a.id} className="flex justify-between items-center bg-slate-50 px-4 py-2 rounded-xl">
                                       <span className="text-xs font-bold text-slate-700">{a.attrezzatura.nome} {a.attrezzatura.targa ? `[${a.attrezzatura.targa}]` : ''}</span>
-                                      <span className="text-xs font-black text-slate-900">{a.oreUtilizzo}h</span>
+                                      <span className="text-xs font-bold text-slate-900">{a.oreUtilizzo}h</span>
                                    </div>
                                 ))}
                                 {r.mezzi && <p className="text-xs text-slate-500 font-medium italic mt-4 border-t border-slate-50 pt-3">"{r.mezzi}"</p>}
@@ -373,14 +373,14 @@ export default function RapportiniTab({
                           )}
                           {(r.articoliMagazzino.length > 0 || r.materiali) && (
                             <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-3">
+                              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-4 flex items-center gap-3">
                                 <Package size={14} className="text-orange-600" /> Material Consumption
                               </h4>
                               <div className="space-y-3">
                                 {r.articoliMagazzino.map(a => (
                                    <div key={a.id} className="flex justify-between items-center bg-slate-50 px-4 py-2 rounded-xl">
                                       <span className="text-xs font-bold text-slate-700">{a.articoloMagazzino.nome}</span>
-                                      <span className="text-xs font-black text-slate-900">{a.quantita} {a.articoloMagazzino.unitaMisura}</span>
+                                      <span className="text-xs font-bold text-slate-900">{a.quantita} {a.articoloMagazzino.unitaMisura}</span>
                                    </div>
                                 ))}
                                 {r.materiali && <p className="text-xs text-slate-500 font-medium italic mt-4 border-t border-slate-50 pt-3">"{r.materiali}"</p>}
@@ -394,7 +394,7 @@ export default function RapportiniTab({
                       <div className="xl:col-span-4 space-y-8">
                          {r.latitude && r.longitude && (
                            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-3">
+                              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-4 flex items-center gap-3">
                                 <MapPin size={14} className="text-emerald-600" /> GPS Verification
                               </h4>
                               <a 
@@ -403,7 +403,7 @@ export default function RapportiniTab({
                                 rel="noopener noreferrer"
                                 className="group/map relative block rounded-2xl overflow-hidden aspect-video bg-slate-100 border border-slate-200"
                               >
-                                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/40 text-white font-black text-[10px] uppercase tracking-widest opacity-0 group-hover/map:opacity-100 transition-opacity z-10">Visualizza Mappa</div>
+                                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/40 text-white font-bold text-[10px] uppercase tracking-wide opacity-0 group-hover/map:opacity-100 transition-opacity z-10">Visualizza Mappa</div>
                                 <div className="absolute inset-0 flex items-center justify-center text-slate-300">
                                   <MapPin size={48} className="animate-bounce" />
                                 </div>
@@ -413,18 +413,18 @@ export default function RapportiniTab({
 
                          {r.signature && (
                            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm text-center">
-                              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Digital Signature</h4>
+                              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-6">Digital Signature</h4>
                               <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 mb-4 flex items-center justify-center">
                                 <img src={r.signature.signatureData} alt="Firma" className="max-h-20 opacity-80" />
                               </div>
-                              <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest">{r.signature.signerName || 'Authorized Personnel'}</p>
+                              <p className="text-[10px] font-bold text-slate-900 uppercase tracking-wide">{r.signature.signerName || 'Authorized Personnel'}</p>
                            </div>
                          )}
 
                          {r.note && (
                           <div className="bg-blue-600 p-8 rounded-[2rem] text-white shadow-xl shadow-blue-900/10 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
-                            <h4 className="text-[10px] font-black text-blue-200 uppercase tracking-widest mb-4 relative z-10">Field Intelligence</h4>
+                            <h4 className="text-[10px] font-bold text-blue-200 uppercase tracking-wide mb-4 relative z-10">Field Intelligence</h4>
                             <p className="text-sm font-medium leading-relaxed relative z-10 italic">"{r.note}"</p>
                           </div>
                         )}
@@ -442,17 +442,17 @@ export default function RapportiniTab({
       <SlideOver 
         isOpen={isSlideOpen} 
         onClose={() => setIsSlideOpen(false)} 
-        title={<div className="flex items-center gap-3 text-slate-900 font-black uppercase tracking-tighter text-2xl">📋 <span className="italic text-blue-600">Site Report</span></div>}
+        title={<div className="flex items-center gap-3 text-slate-900 font-bold uppercase tracking-tighter text-2xl">📋 <span className="italic text-blue-600">Site Report</span></div>}
       >
         <form onSubmit={handleSubmit} className="space-y-10 pb-20">
           {/* Magic Assistant (Pillar AI style) */}
           <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000"></div>
              <div className="flex justify-between items-center mb-6 relative z-10">
-                <label className="text-[10px] font-black text-white uppercase tracking-widest flex items-center gap-3">
+                <label className="text-[10px] font-bold text-white uppercase tracking-wide flex items-center gap-3">
                    <Wand2 size={18} className="text-blue-400 animate-pulse" /> AI Operational Assistant
                 </label>
-                <span className="text-[9px] font-black text-slate-500 uppercase">Natural Language</span>
+                <span className="text-[9px] font-bold text-slate-500 uppercase">Natural Language</span>
              </div>
              <div className="relative z-10">
                 <textarea 
@@ -466,19 +466,19 @@ export default function RapportiniTab({
                    type="button" 
                    onClick={handleMagicProcess}
                    disabled={!magicText || isMagicProcessing}
-                   className="absolute bottom-4 right-4 bg-white text-slate-900 px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-xl hover:bg-blue-600 hover:text-white active:scale-95 transition-all disabled:opacity-50"
+                   className="absolute bottom-4 right-4 bg-white text-slate-900 px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wide shadow-xl hover:bg-blue-600 hover:text-white active:scale-95 transition-all disabled:opacity-50"
                 >
                    {isMagicProcessing ? <Loader2 size={16} className="animate-spin" /> : 'PROCESSA'}
                 </button>
              </div>
-             <p className="text-[9px] font-bold text-slate-500 mt-4 text-center uppercase tracking-widest opacity-60">
+             <p className="text-[9px] font-bold text-slate-500 mt-4 text-center uppercase tracking-wide opacity-60">
                 Compilazione automatica di ore e materiali tramite linguaggio naturale
              </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
-               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Data del Rapportino *</label>
+               <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Data del Rapportino *</label>
                <input 
                   type="date" 
                   name="data" 
@@ -489,8 +489,8 @@ export default function RapportiniTab({
             </div>
             <div className={`p-6 rounded-[1.5rem] flex items-center justify-between border-2 transition-all ${location ? 'bg-emerald-50 border-emerald-100' : 'bg-slate-50 border-slate-100'}`}>
                <div>
-                 <p className={`text-[9px] font-black uppercase tracking-widest ${location ? 'text-emerald-600' : 'text-slate-400'}`}>Geo-Tagging</p>
-                 <p className="text-xs font-black text-slate-900 mt-1 uppercase tracking-tight">{location ? "COORDINATE ACQUISITE" : "TAG GPS RICHIESTO"}</p>
+                 <p className={`text-[9px] font-bold uppercase tracking-wide ${location ? 'text-emerald-600' : 'text-slate-400'}`}>Geo-Tagging</p>
+                 <p className="text-xs font-bold text-slate-900 mt-1 uppercase tracking-tight">{location ? "COORDINATE ACQUISITE" : "TAG GPS RICHIESTO"}</p>
                </div>
                <button 
                   type="button" 
@@ -505,7 +505,7 @@ export default function RapportiniTab({
             {geofencingWarning && (
               <div className="md:col-span-2 bg-red-50 border border-red-100 p-5 rounded-2xl flex items-center gap-4 text-red-600 animate-in slide-in-from-left-4">
                  <ShieldAlert size={24} className="shrink-0" />
-                 <p className="text-[10px] font-black uppercase tracking-widest leading-relaxed">
+                 <p className="text-[10px] font-bold uppercase tracking-wide leading-relaxed">
                    {geofencingWarning}
                  </p>
               </div>
@@ -513,7 +513,7 @@ export default function RapportiniTab({
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Sintesi Attività Operative *</label>
+            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Sintesi Attività Operative *</label>
             <textarea 
               name="attivita" 
               required 
@@ -527,7 +527,7 @@ export default function RapportiniTab({
           <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 w-24 h-24 bg-blue-600/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700"></div>
              <div className="flex justify-between items-center mb-8 relative z-10">
-                <label className="text-[10px] font-black text-slate-900 uppercase tracking-[0.2em] flex items-center gap-3">
+                <label className="text-[10px] font-bold text-slate-900 uppercase tracking-wide flex items-center gap-3">
                   <Users size={18} className="text-blue-600"/> Deployment Log
                 </label>
                 <button 
@@ -545,7 +545,7 @@ export default function RapportiniTab({
                         value={row.lavoratoreId} 
                         onChange={e => updateRow(i, 'lavoratoreId', e.target.value)} 
                         required 
-                        className="flex-1 bg-transparent border-none text-xs font-black text-slate-900 focus:ring-0 uppercase tracking-tight"
+                        className="flex-1 bg-transparent border-none text-xs font-bold text-slate-900 focus:ring-0 uppercase tracking-tight"
                       >
                          <option value="">Seleziona Operatore...</option>
                          {allLavoratori.map(l => <option key={l.id} value={l.id}>{l.nome} {l.cognome}</option>)}
@@ -556,9 +556,9 @@ export default function RapportiniTab({
                            step={0.5} 
                            value={row.ore} 
                            onChange={e => updateRow(i, 'ore', parseFloat(e.target.value))} 
-                           className="w-10 text-center bg-transparent border-none text-sm font-black text-blue-600 focus:ring-0 p-0" 
+                           className="w-10 text-center bg-transparent border-none text-sm font-bold text-blue-600 focus:ring-0 p-0" 
                         />
-                        <span className="text-[9px] font-black text-slate-400 uppercase">ore</span>
+                        <span className="text-[9px] font-bold text-slate-400 uppercase">ore</span>
                       </div>
                       {rows.length > 1 && (
                         <button type="button" onClick={() => removeRow(i)} className="p-2 text-slate-300 hover:text-red-500 transition-colors">
@@ -573,7 +573,7 @@ export default function RapportiniTab({
           {/* Media & Safety Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center group">
-               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Site Media & AI Scan</label>
+               <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-6">Site Media & AI Scan</label>
                <div className="flex flex-wrap justify-center gap-4">
                   <button 
                     type="button" 
@@ -582,7 +582,7 @@ export default function RapportiniTab({
                     className="w-24 h-24 bg-slate-50 border-2 border-dashed border-slate-100 rounded-3xl flex flex-col items-center justify-center text-slate-300 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all active:scale-95 shadow-sm"
                   >
                     {isAnalyzing ? <Loader2 size={24} className="animate-spin" /> : <Camera size={28} />}
-                    <p className="text-[9px] font-black mt-3 uppercase tracking-widest">CATTURA</p>
+                    <p className="text-[9px] font-bold mt-3 uppercase tracking-wide">CATTURA</p>
                   </button>
 
                   {photos.map((p, i) => (
@@ -597,7 +597,7 @@ export default function RapportiniTab({
                       aiResult.helmetDetected ? 'bg-emerald-50 border-emerald-100 text-emerald-600' : 'bg-red-50 border-red-100 text-red-600'
                     }`}>
                        {aiResult.helmetDetected ? <ShieldCheck size={32} /> : <ShieldAlert size={32} />}
-                       <p className="text-[8px] font-black uppercase mt-2 leading-none tracking-tighter">
+                       <p className="text-[8px] font-bold uppercase mt-2 leading-none tracking-tighter">
                          {aiResult.helmetDetected ? "Safety OK" : "DPI WARNING"}
                        </p>
                     </div>
@@ -606,11 +606,11 @@ export default function RapportiniTab({
             </div>
 
             <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col group">
-               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 text-center">Protocol validation</label>
+               <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-6 text-center">Protocol validation</label>
                {signatureData ? (
                  <div className="relative bg-slate-50 p-6 rounded-3xl border-2 border-blue-100 text-center flex-1 flex flex-col justify-center animate-in zoom-in-95">
                    <img src={signatureData} alt="Firma" className="max-h-20 mx-auto mb-4 opacity-80" />
-                   <p className="text-[9px] font-black text-blue-600 uppercase tracking-widest">Firma Acquisita</p>
+                   <p className="text-[9px] font-bold text-blue-600 uppercase tracking-wide">Firma Acquisita</p>
                    <button type="button" onClick={() => setSignatureData(null)} className="absolute top-4 right-4 text-slate-300 hover:text-red-500 transition-colors">
                      <RotateCcw size={18} />
                    </button>
@@ -618,7 +618,7 @@ export default function RapportiniTab({
                      type="text" 
                      name="signerName" 
                      placeholder="Digitare nome firmatario..." 
-                     className="mt-6 w-full bg-white border border-slate-100 rounded-xl px-4 py-3 text-xs font-black text-slate-900 outline-none focus:border-blue-600 transition-all text-center uppercase tracking-tighter" 
+                     className="mt-6 w-full bg-white border border-slate-100 rounded-xl px-4 py-3 text-xs font-bold text-slate-900 outline-none focus:border-blue-600 transition-all text-center uppercase tracking-tighter" 
                    />
                  </div>
                ) : (
@@ -633,12 +633,12 @@ export default function RapportiniTab({
             <button 
               type="submit" 
               disabled={isPending || (!signatureData && rows.length > 0)}
-              className="w-full bg-slate-900 hover:bg-blue-600 disabled:opacity-50 text-white py-7 rounded-[2.5rem] text-lg font-black uppercase tracking-[0.3em] shadow-2xl transition-all transform active:scale-95 flex items-center justify-center gap-4"
+              className="w-full bg-slate-900 hover:bg-blue-600 disabled:opacity-50 text-white py-7 rounded-[2.5rem] text-lg font-bold uppercase tracking-wide shadow-2xl transition-all transform active:scale-95 flex items-center justify-center gap-4"
             >
               {isPending ? <Loader2 className="animate-spin" /> : 'Sincronizza Rapportino'}
             </button>
             {!signatureData && rows.length > 0 && (
-              <p className="text-center text-[9px] font-black text-red-500 uppercase tracking-[0.2em] mt-6 animate-pulse">
+              <p className="text-center text-[9px] font-bold text-red-500 uppercase tracking-wide mt-6 animate-pulse">
                 Attenzione: Firma obbligatoria per validare il deployment
               </p>
             )}

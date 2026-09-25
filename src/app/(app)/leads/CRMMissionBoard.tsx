@@ -83,8 +83,8 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
                 <LayoutGrid size={24} />
              </div>
              <div>
-                <h2 className="text-xl font-black text-gray-900 tracking-tight uppercase italic underline decoration-amber-400 decoration-4">Cantiere Aperto</h2>
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Scegli un lotto di costruzione per rimboccarti le maniche</p>
+                <h2 className="text-xl font-bold text-gray-900 tracking-tight uppercase italic underline decoration-amber-400 decoration-4">Cantiere Aperto</h2>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Scegli un lotto di costruzione per rimboccarti le maniche</p>
              </div>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
               }`}
             >
               {getMissingMaterials(lead).length > 0 && (
-                <div className="absolute top-4 right-4 text-amber-600 bg-amber-100 p-1.5 rounded-lg flex items-center gap-1 text-[8px] font-black uppercase">
+                <div className="absolute top-4 right-4 text-amber-600 bg-amber-100 p-1.5 rounded-lg flex items-center gap-1 text-[8px] font-bold uppercase">
                    <AlertTriangle size={12} /> Materiali Mancanti
                 </div>
               )}
@@ -113,15 +113,15 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
                   <Trophy size={20} className={lead.level === 5 ? "animate-bounce" : ""} />
                 </div>
                 <div className="text-right">
-                  <p className="text-[14px] font-black text-gray-900 uppercase leading-none tracking-tighter">{lead.name}</p>
+                  <p className="text-[14px] font-bold text-gray-900 uppercase leading-none tracking-tighter">{lead.name}</p>
                   <p className="text-[9px] font-bold text-gray-400 mt-1 uppercase truncate max-w-[150px]">{lead.clientName}</p>
                 </div>
               </div>
 
               <div className="space-y-3">
-                 <div className="flex justify-between text-[8px] font-black uppercase text-gray-400 tracking-widest">
+                 <div className="flex justify-between text-[8px] font-bold uppercase text-gray-400 tracking-wide">
                     <span>Stato dell'Opera</span>
-                    <span className="text-orange-600 font-black">{lead.xp} XP</span>
+                    <span className="text-orange-600 font-bold">{lead.xp} XP</span>
                  </div>
                  <div className="h-3 w-full bg-gray-200 rounded-lg overflow-hidden border border-gray-100">
                     <div 
@@ -132,7 +132,7 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
                     </div>
                  </div>
                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-[9px] font-black px-3 py-1.5 rounded-lg bg-gray-900 text-white uppercase tracking-tighter">
+                    <span className="text-[9px] font-bold px-3 py-1.5 rounded-lg bg-gray-900 text-white uppercase tracking-tighter">
                        Lvl {lead.level}: {COACH_TIPS[lead.level].title}
                     </span>
                     <ChevronRight size={16} className={`text-amber-500 transition-transform ${selectedLeadId === lead.id ? 'translate-x-1' : ''}`} />
@@ -158,8 +158,8 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
                    <Zap size={28} className="text-white fill-white" />
                 </div>
                 <div>
-                   <h3 className="text-lg font-black tracking-tighter leading-none uppercase italic">{selectedLead.name}</h3>
-                   <p className="text-[10px] font-bold text-amber-600 uppercase tracking-widest mt-1">Ufficio di Cantiere</p>
+                   <h3 className="text-lg font-bold tracking-tighter leading-none uppercase italic">{selectedLead.name}</h3>
+                   <p className="text-[10px] font-bold text-amber-600 uppercase tracking-wide mt-1">Ufficio di Cantiere</p>
                 </div>
              </div>
 
@@ -168,7 +168,7 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
                 <div className="absolute -top-3 -left-3 bg-gray-900 text-white p-2 rounded-xl shadow-lg rotate-[-10deg]">
                    <Lightbulb size={20} />
                 </div>
-                <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Direttore Lavori (Coaching)</p>
+                <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wide mb-3">Direttore Lavori (Coaching)</p>
                 <p className="text-sm font-bold leading-relaxed text-gray-800 italic">
                   "{COACH_TIPS[selectedLead.level].tip}"
                 </p>
@@ -176,7 +176,7 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
 
              {/* DAILY MISSION / REQUIREMENTS */}
              <div className="space-y-4">
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 flex items-center gap-2">
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1 flex items-center gap-2">
                     <ShieldCheck size={14} className="text-green-500" /> Ordine del Giorno
                 </p>
                 
@@ -184,14 +184,14 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
                    <div className="p-2 bg-amber-400 rounded-xl text-white">
                       <Target size={18} />
                    </div>
-                   <p className="text-sm font-black uppercase tracking-tight leading-tight text-amber-800">
+                   <p className="text-sm font-bold uppercase tracking-tight leading-tight text-amber-800">
                      {COACH_TIPS[selectedLead.level].mission}
                    </p>
                 </div>
 
                 {getMissingMaterials(selectedLead).length > 0 && (
                   <div className="p-4 bg-red-50 border-2 border-red-100 rounded-2xl">
-                     <p className="text-[10px] font-black text-red-600 uppercase mb-2">⚠ Materiali Mancanti per Avanzare:</p>
+                     <p className="text-[10px] font-bold text-red-600 uppercase mb-2">⚠ Materiali Mancanti per Avanzare:</p>
                      <ul className="flex flex-wrap gap-2">
                         {getMissingMaterials(selectedLead).map(m => (
                             <li key={m} className="px-2 py-1 bg-white border border-red-200 rounded-lg text-[10px] font-bold text-red-500 uppercase tracking-tighter">
@@ -206,11 +206,11 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
                    <button 
                      onClick={() => onStatusUpdate(selectedLead.id, levelLabels[selectedLead.level + 1])}
                      disabled={selectedLead.level >= 5 || getMissingMaterials(selectedLead).length > 0}
-                     className="w-full bg-gray-900 text-white py-5 rounded-[2rem] font-black text-sm uppercase tracking-[0.2em] shadow-xl hover:bg-amber-500 transition-all flex items-center justify-center gap-3 disabled:opacity-20 disabled:grayscale group"
+                     className="w-full bg-gray-900 text-white py-5 rounded-[2rem] font-bold text-sm uppercase tracking-wide shadow-xl hover:bg-amber-500 transition-all flex items-center justify-center gap-3 disabled:opacity-20 disabled:grayscale group"
                    >
                      Prosegui i Lavori <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
                    </button>
-                   <p className="text-[9px] font-bold text-gray-400 text-center mt-4 uppercase tracking-widest">
+                   <p className="text-[9px] font-bold text-gray-400 text-center mt-4 uppercase tracking-wide">
                      Passerai a: {COACH_TIPS[selectedLead.level + 1]?.title || 'BOSS FIGHT'}
                    </p>
                 </div>
@@ -221,7 +221,7 @@ export default function CRMMissionBoard({ leads, onStatusUpdate }: Props) {
              <div className="p-6 bg-white rounded-full shadow-lg mb-4 text-amber-400 border-4 border-gray-100">
                 <LayoutGrid size={48} />
              </div>
-             <p className="text-gray-400 font-bold uppercase text-sm tracking-widest">Seleziona un Progetto<br/>per allestire il cantiere</p>
+             <p className="text-gray-400 font-bold uppercase text-sm tracking-wide">Seleziona un Progetto<br/>per allestire il cantiere</p>
           </div>
         )}
       </div>

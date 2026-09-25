@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus, Search as SearchIcon, LayoutGrid, List, TrendingUp, User, Building2, MapPin, Mail, Phone, ChevronRight, Edit, Trash2, Eye, ArrowRight, UserCheck } from 'lucide-react';
+import { Plus, Search as SearchIcon, LayoutGrid, List, User, Building2, MapPin, Mail, Phone, ChevronRight, Edit, Users, UserCheck } from 'lucide-react';
 import Link from 'next/link';
-import { deleteClient } from '../actions';
 
 type Client = {
     id: string;
@@ -40,7 +39,7 @@ export default function ClientsClient({ clients, stats }: Props) {
     const [sortKey, setSortKey] = useState<SortKey>('name');
     const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
     
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
+    const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
 
     // Derived Data for Filters
     const uniqueCities = Array.from(new Set(clients.map(c => c.city).filter(Boolean))).sort() as string[];
@@ -64,111 +63,121 @@ export default function ClientsClient({ clients, stats }: Props) {
     });
 
     return (
-        <div className="flex flex-col gap-10 pb-20 reveal">
-            {/* Unified Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 no-print">
+        <div className="flex flex-col gap-6 pb-12">
+            {/* Header Card */}
+            <div className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <div className="page-label">
-                    <UserCheck className="text-blue-600" size={14} />
-                    Corporate Client Relations
-                  </div>
-                  <h1 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">Anagrafica Contatti</h1>
-                  <p className="text-sm font-medium text-slate-500 mt-2">Gestione stakeholder, committenti privati e partner aziendali</p>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-1">
+                        <Users size={14} className="text-[#003F61]" />
+                        <span>Amministrazione / Anagrafica Committenti</span>
+                    </div>
+                    <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">Anagrafica Clienti</h1>
+                    <p className="text-sm text-slate-500 mt-1">Gestione anagrafica clienti privati, società committenti e recapiti di fatturazione.</p>
                 </div>
-                <Link 
-                    href="/clients/new"
-                    className="bg-slate-900 hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl transition-all flex items-center gap-2 transform active:scale-95"
-                >
-                    <Plus size={18} /> Nuovo Stakeholder
-                </Link>
+                <div className="flex items-center gap-3">
+                    <Link 
+                        href="/clients/new"
+                        className="h-10 px-4 bg-[#003F61] text-white hover:bg-[#002f49] text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
+                    >
+                        <Plus size={16} /> Nuovo Cliente
+                    </Link>
+                </div>
             </div>
 
-            {/* Strategic KPI Section */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 no-print">
-               <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-2xl transition-all border-b-4 border-b-blue-500">
-                  <div className="flex justify-between items-start mb-6">
-                      <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
-                          <User size={24} />
-                      </div>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Totale Contatti</p>
-                  </div>
-                  <p className="text-4xl font-black text-slate-900 tracking-tighter leading-none">{stats.total}</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase mt-4 italic tracking-wider">Database globale relazionale</p>
-               </div>
+            {/* 3 KPI Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-3">
+                        <span className="text-[11px] font-bold uppercase tracking-wider">Totale Clienti</span>
+                        <div className="p-2 bg-slate-50 text-[#003F61] border border-slate-100">
+                            <Users size={16} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-[#003F61] tracking-tight">{stats.total}</div>
+                        <div className="text-xs text-slate-500 mt-1">Committenti registrati</div>
+                    </div>
+                </div>
 
-               <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-2xl transition-all border-b-4 border-b-emerald-500">
-                  <div className="flex justify-between items-start mb-6">
-                      <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
-                          <UserCheck size={24} />
-                      </div>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Clienti Privati</p>
-                  </div>
-                  <p className="text-4xl font-black text-slate-900 tracking-tighter leading-none">{stats.privati}</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase mt-4 italic tracking-wider">Segmento B2C / Committenti diretti</p>
-               </div>
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-3">
+                        <span className="text-[11px] font-bold uppercase tracking-wider">Clienti Privati</span>
+                        <div className="p-2 bg-slate-50 text-blue-600 border border-slate-100">
+                            <UserCheck size={16} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-[#003F61] tracking-tight">{stats.privati}</div>
+                        <div className="text-xs text-slate-500 mt-1">Committenza privata (B2C)</div>
+                    </div>
+                </div>
 
-               <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-2xl transition-all border-b-4 border-b-purple-500">
-                  <div className="flex justify-between items-start mb-6">
-                      <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform">
-                          <Building2 size={24} />
-                      </div>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Partner Aziendali</p>
-                  </div>
-                  <p className="text-4xl font-black text-slate-900 tracking-tighter leading-none">{stats.aziende}</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase mt-4 italic tracking-wider">Segmento B2B / Fornitori strategici</p>
-               </div>
+                <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-slate-500 mb-3">
+                        <span className="text-[11px] font-bold uppercase tracking-wider">Società & Aziende</span>
+                        <div className="p-2 bg-slate-50 text-indigo-600 border border-slate-100">
+                            <Building2 size={16} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-[#003F61] tracking-tight">{stats.aziende}</div>
+                        <div className="text-xs text-slate-500 mt-1">Clientela business (B2B)</div>
+                    </div>
+                </div>
             </div>
 
             {/* Filter Bar */}
-            <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm space-y-6">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="bg-white border border-slate-200 p-4 space-y-4">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                     <div className="flex-1 w-full relative">
-                        <SearchIcon size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <SearchIcon size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                         <input 
                             type="text" 
-                            placeholder="Cerca per nome, email o P.IVA..." 
+                            placeholder="Cerca cliente per nome, email o Codice Fiscale / P.IVA..." 
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-14 pr-6 py-4 text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all placeholder:text-slate-400"
+                            className="w-full bg-slate-50 border border-slate-200 pl-10 pr-4 py-2 text-sm text-slate-800 outline-none focus:bg-white focus:border-[#003F61] transition-all placeholder:text-slate-400"
                         />
                     </div>
                     
-                    <div className="flex bg-slate-50 p-1.5 rounded-2xl border border-slate-100">
-                        <button 
-                            onClick={() => setViewMode('grid')}
-                            className={`p-3 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white text-slate-900 shadow-md border border-slate-100' : 'text-slate-400 hover:text-slate-600'}`}
-                        >
-                            <LayoutGrid size={20} />
-                        </button>
+                    <div className="flex border border-slate-200 shrink-0">
                         <button 
                             onClick={() => setViewMode('list')}
-                            className={`p-3 rounded-xl transition-all ${viewMode === 'list' ? 'bg-white text-slate-900 shadow-md border border-slate-100' : 'text-slate-400 hover:text-slate-600'}`}
+                            className={`p-2 transition-colors cursor-pointer ${viewMode === 'list' ? 'bg-[#003F61] text-white' : 'bg-white text-slate-600 hover:bg-slate-50'}`}
+                            title="Vista a Tabella"
                         >
-                            <List size={20} />
+                            <List size={18} />
+                        </button>
+                        <button 
+                            onClick={() => setViewMode('grid')}
+                            className={`p-2 transition-colors cursor-pointer ${viewMode === 'grid' ? 'bg-[#003F61] text-white' : 'bg-white text-slate-600 hover:bg-slate-50'}`}
+                            title="Vista a Griglia"
+                        >
+                            <LayoutGrid size={18} />
                         </button>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                    <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Classificazione</label>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2 border-t border-slate-100">
+                    <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Tipologia</label>
                         <select 
                             value={typeFilter}
                             onChange={(e) => setTypeFilter(e.target.value as any)}
-                            className="w-full bg-slate-50 border border-slate-100 text-slate-900 text-[11px] font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600/10 cursor-pointer appearance-none"
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-medium px-3 py-2 outline-none focus:border-[#003F61] cursor-pointer"
                         >
                             <option value="ALL">Tutti i tipi</option>
                             <option value="PRIVATE">Privato</option>
-                            <option value="COMPANY">Azienda / Fornitore</option>
+                            <option value="COMPANY">Azienda</option>
                         </select>
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Geolocalizzazione</label>
+                    <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Città</label>
                         <select 
                             value={cityFilter}
                             onChange={(e) => setCityFilter(e.target.value)}
-                            className="w-full bg-slate-50 border border-slate-100 text-slate-900 text-[11px] font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600/10 cursor-pointer appearance-none"
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-medium px-3 py-2 outline-none focus:border-[#003F61] cursor-pointer"
                         >
                             <option value="ALL">Tutte le città</option>
                             {uniqueCities.map(city => (
@@ -177,27 +186,16 @@ export default function ClientsClient({ clients, stats }: Props) {
                         </select>
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Ordina per</label>
+                    <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Ordina per</label>
                         <select 
                             value={sortKey}
                             onChange={(e) => setSortKey(e.target.value as SortKey)}
-                            className="w-full bg-slate-50 border border-slate-100 text-slate-900 text-[11px] font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600/10 cursor-pointer appearance-none"
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-medium px-3 py-2 outline-none focus:border-[#003F61] cursor-pointer"
                         >
-                            <option value="name">Ragione Sociale</option>
+                            <option value="name">Ragione Sociale / Nominativo</option>
                             <option value="createdAt">Data Inserimento</option>
                         </select>
-                    </div>
-
-                    <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Direzione</label>
-                        <button 
-                            onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                            className="w-full h-[46px] bg-slate-50 border border-slate-100 text-slate-900 text-[11px] font-black uppercase tracking-widest rounded-xl px-4 py-3 hover:bg-slate-100 transition-all flex items-center justify-between"
-                        >
-                            {sortOrder === 'asc' ? 'Crescente' : 'Decrescente'}
-                            <TrendingUp size={16} className={sortOrder === 'desc' ? 'rotate-180 transition-transform' : 'transition-transform'} />
-                        </button>
                     </div>
 
                     <div className="flex items-end">
@@ -206,7 +204,7 @@ export default function ClientsClient({ clients, stats }: Props) {
                                 setSearchTerm(''); setTypeFilter('ALL'); setCityFilter('ALL');
                                 setSortKey('name'); setSortOrder('asc');
                             }}
-                            className="w-full h-[46px] border border-slate-100 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"
+                            className="w-full h-[34px] border border-slate-200 text-xs font-bold text-slate-600 hover:text-red-600 hover:bg-red-50 uppercase tracking-wider transition-colors cursor-pointer"
                         >
                             Reset Filtri
                         </button>
@@ -214,144 +212,135 @@ export default function ClientsClient({ clients, stats }: Props) {
                 </div>
             </div>
 
-            {/* Grid View */}
-            {viewMode === 'grid' ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredClients.map((client) => (
-                        <div key={client.id} className="group relative bg-white rounded-[2.5rem] shadow-xl border border-slate-50 overflow-hidden flex flex-col transition-all hover:shadow-2xl hover:border-blue-600/20 transform hover:-translate-y-1">
-                            <div className="h-32 bg-slate-900 relative p-8 flex justify-between items-start">
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent"></div>
-                                <span className={`relative z-10 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/20 backdrop-blur-md ${
-                                    client.type === 'PRIVATE' ? 'bg-blue-500/80 text-white' : 'bg-purple-500/80 text-white'
-                                }`}>
-                                    {client.type === 'PRIVATE' ? 'Privato' : 'Azienda'}
-                                </span>
-                                <div className="relative z-10 w-12 h-12 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 flex items-center justify-center text-white">
-                                    {client.type === 'PRIVATE' ? <User size={20} /> : <Building2 size={20} />}
-                                </div>
-                            </div>
-
-                            <div className="p-8 flex-1 flex flex-col">
-                                <div className="mb-6">
-                                    <h3 className="text-2xl font-black text-slate-900 tracking-tighter leading-none group-hover:text-blue-600 transition-colors uppercase mb-2 truncate">
-                                        <Link href={`/clients/${client.id}`}>{client.name}</Link>
-                                    </h3>
-                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                                        <MapPin size={10} className="text-blue-500" /> {client.city || 'Location non specificata'}
-                                    </p>
-                                </div>
-
-                                <div className="space-y-4 pt-6 border-t border-slate-50 mb-8 flex-1">
-                                    {client.email && (
-                                        <div className="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                            <Mail size={14} className="text-slate-300" />
-                                            <span className="truncate">{client.email}</span>
-                                        </div>
-                                    )}
-                                    {client.phone && (
-                                        <div className="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                            <Phone size={14} className="text-slate-300" />
-                                            <span>{client.phone}</span>
-                                        </div>
-                                    )}
-                                    <div className="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                        <TrendingUp size={14} className="text-slate-300" />
-                                        <span className="font-black text-slate-900 uppercase">VAT: {client.taxId || '—'}</span>
-                                    </div>
-                                </div>
-
-                                <div className="mt-auto flex items-center justify-between">
-                                    <span className="text-[10px] font-black text-slate-300 uppercase tracking-tighter">ID: {String(client.number).padStart(3, '0')}</span>
-                                    <div className="flex items-center gap-2">
-                                        <Link href={`/clients/${client.id}/edit`} className="p-3 bg-slate-50 text-slate-400 hover:bg-blue-600 hover:text-white rounded-2xl transition-all border border-slate-100">
-                                            <Edit size={18} />
-                                        </Link>
-                                        <Link 
-                                            href={`/clients/${client.id}`} 
-                                            className="p-3 bg-slate-50 text-slate-400 hover:bg-slate-900 hover:text-white rounded-2xl transition-all border border-slate-100"
-                                        >
-                                            <ArrowRight size={18} />
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                /* List View */
-                <div className="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden">
-                    <table className="w-full text-left">
-                        <thead className="bg-slate-50 border-b border-slate-100">
-                            <tr className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                <th className="px-10 py-6">Soggetto / Stakeholder</th>
-                                <th className="px-6 py-6">Classificazione</th>
-                                <th className="px-6 py-6">Luogo</th>
-                                <th className="px-6 py-6">Digital Assets</th>
-                                <th className="px-6 py-6">Tax ID</th>
-                                <th className="px-10 py-6 text-right">Dettagli</th>
+            {/* Content View */}
+            {viewMode === 'list' ? (
+                <div className="bg-white border border-slate-200 overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                        <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider">
+                            <tr>
+                                <th className="px-4 py-3">Nominativo / Ragione Sociale</th>
+                                <th className="px-4 py-3">Tipologia</th>
+                                <th className="px-4 py-3">Località</th>
+                                <th className="px-4 py-3">Contatti</th>
+                                <th className="px-4 py-3">Codice Fiscale / P.IVA</th>
+                                <th className="px-4 py-3 text-center">Azioni</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-50">
+                        <tbody className="divide-y divide-slate-100 text-sm">
                             {filteredClients.map((client) => (
-                                <tr key={client.id} className="hover:bg-slate-50/50 transition-all group cursor-pointer">
-                                    <td className="px-10 py-6">
-                                        <div className="flex items-center gap-4">
-                                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs ${
-                                                client.type === 'PRIVATE' ? 'bg-blue-50 text-blue-600' : 'bg-purple-50 text-purple-600'
-                                            }`}>
-                                                {client.name.charAt(0)}
-                                            </div>
-                                            <div>
-                                                <p className="font-black text-slate-900 uppercase tracking-tighter text-base group-hover:text-blue-600 transition-colors">
-                                                    <Link href={`/clients/${client.id}`}>{client.name}</Link>
-                                                </p>
-                                                <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">CODE: CL-{String(client.number).padStart(3, '0')}</p>
-                                            </div>
-                                        </div>
+                                <tr key={client.id} className="hover:bg-slate-50/80 transition-colors">
+                                    <td className="px-4 py-3.5">
+                                        <Link href={`/clients/${client.id}`} className="font-bold text-slate-900 block hover:text-[#003F61]">
+                                            {client.name}
+                                        </Link>
+                                        <span className="text-[10px] text-slate-400 font-medium block">
+                                            COD: CL-{String(client.number || 0).padStart(3, '0')}
+                                        </span>
                                     </td>
-                                    <td className="px-6 py-6">
-                                        <span className={`text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest border ${
+                                    <td className="px-4 py-3.5">
+                                        <span className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
                                             client.type === 'PRIVATE' 
-                                            ? 'bg-blue-50 text-blue-600 border-blue-100' 
-                                            : 'bg-purple-50 text-purple-600 border-purple-100'
+                                            ? 'bg-blue-50 text-blue-700 border-blue-200' 
+                                            : 'bg-indigo-50 text-indigo-700 border-indigo-200'
                                         }`}>
                                             {client.type === 'PRIVATE' ? 'Privato' : 'Azienda'}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-6">
-                                        <div className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase tracking-tight">
-                                            <MapPin size={14} className="text-blue-500" /> {client.city || '—'}
+                                    <td className="px-4 py-3.5 text-xs text-slate-600">
+                                        <div className="flex items-center gap-1">
+                                            <MapPin size={12} className="text-[#003F61]" />
+                                            {client.city || '—'}
                                         </div>
                                     </td>
-                                    <td className="px-6 py-6">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-xs font-bold text-slate-900">{client.email || '—'}</span>
-                                            <span className="text-[10px] text-slate-400 font-bold">{client.phone || ''}</span>
+                                    <td className="px-4 py-3.5 text-xs text-slate-600">
+                                        <div>{client.email || '—'}</div>
+                                        <div className="text-slate-400">{client.phone || ''}</div>
+                                    </td>
+                                    <td className="px-4 py-3.5 font-mono text-xs text-slate-700">
+                                        {client.taxId || '—'}
+                                    </td>
+                                    <td className="px-4 py-3.5 text-center">
+                                        <div className="flex justify-center gap-2">
+                                            <Link 
+                                                href={`/clients/${client.id}`} 
+                                                className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-[#003F61] bg-slate-50 hover:bg-[#003F61] hover:text-white border border-slate-200 transition-colors"
+                                            >
+                                                Apri <ChevronRight size={12} />
+                                            </Link>
+                                            <Link 
+                                                href={`/clients/${client.id}/edit`} 
+                                                className="p-1 text-slate-400 hover:text-slate-700 transition-colors"
+                                                title="Modifica"
+                                            >
+                                                <Edit size={16} />
+                                            </Link>
                                         </div>
-                                    </td>
-                                    <td className="px-6 py-6">
-                                        <span className="text-xs font-black text-slate-900 font-mono tracking-tighter bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
-                                            {client.taxId || '—'}
-                                        </span>
-                                    </td>
-                                    <td className="px-10 py-6 text-right">
-                                        <Link href={`/clients/${client.id}`} className="inline-flex items-center justify-center w-10 h-10 bg-slate-50 text-slate-400 hover:text-slate-900 rounded-2xl transition-all border border-slate-100">
-                                            <ChevronRight size={18} />
-                                        </Link>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
+            ) : (
+                /* Grid View */
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {filteredClients.map((client) => (
+                        <div key={client.id} className="bg-white border border-slate-200 hover:border-slate-400 transition-all flex flex-col p-5">
+                            <div className="flex justify-between items-start mb-3">
+                                <div>
+                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                                        CL-{String(client.number || 0).padStart(3, '0')}
+                                    </span>
+                                    <h3 className="font-bold text-slate-900 text-base mt-0.5 hover:text-[#003F61] transition-colors truncate max-w-[200px]">
+                                        <Link href={`/clients/${client.id}`}>{client.name}</Link>
+                                    </h3>
+                                </div>
+                                <span className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+                                    client.type === 'PRIVATE' ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-indigo-50 text-indigo-700 border-indigo-200'
+                                }`}>
+                                    {client.type === 'PRIVATE' ? 'Privato' : 'Azienda'}
+                                </span>
+                            </div>
+
+                            <div className="space-y-2 py-3 border-y border-slate-100 text-xs text-slate-600 my-auto">
+                                <div className="flex items-center gap-2">
+                                    <MapPin size={12} className="text-[#003F61] shrink-0" />
+                                    <span>{client.city || 'Città non specificata'}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Mail size={12} className="text-[#003F61] shrink-0" />
+                                    <span className="truncate">{client.email || 'Nessuna email'}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Phone size={12} className="text-[#003F61] shrink-0" />
+                                    <span>{client.phone || 'Nessun telefono'}</span>
+                                </div>
+                            </div>
+
+                            <div className="mt-4 pt-2 flex items-center justify-between text-xs">
+                                <span className="font-mono text-slate-500 font-medium">{client.taxId || 'CF/P.IVA —'}</span>
+                                <div className="flex items-center gap-2">
+                                    <Link href={`/clients/${client.id}/edit`} className="p-1.5 text-slate-400 hover:text-slate-700 transition-colors">
+                                        <Edit size={14} />
+                                    </Link>
+                                    <Link 
+                                        href={`/clients/${client.id}`} 
+                                        className="px-3 py-1 bg-slate-50 hover:bg-[#003F61] text-slate-700 hover:text-white border border-slate-200 text-xs font-bold transition-colors flex items-center gap-1"
+                                    >
+                                        Scheda <ChevronRight size={12} />
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             )}
 
             {filteredClients.length === 0 && (
-                <div className="text-center py-24 bg-slate-50 rounded-[2.5rem] border-2 border-dashed border-slate-100">
-                    <UserCheck size={48} className="mx-auto text-slate-200 mb-6" />
-                    <p className="text-slate-400 font-black uppercase tracking-widest">Nessuno stakeholder rilevato</p>
-                    <p className="text-xs text-slate-400 mt-2">Modifica i criteri di ricerca per sbloccare i dati.</p>
+                <div className="bg-white border border-slate-200 p-12 text-center">
+                    <UserCheck size={36} className="mx-auto text-slate-300 mb-3" />
+                    <p className="text-sm font-bold text-slate-800 uppercase tracking-wider">Nessun committente trovato</p>
+                    <p className="text-xs text-slate-500 mt-1">Nessun cliente corrisponde ai criteri di ricerca specificati.</p>
                 </div>
             )}
         </div>

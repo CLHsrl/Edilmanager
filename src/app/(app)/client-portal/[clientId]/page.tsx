@@ -3,15 +3,13 @@ import { notFound } from 'next/navigation';
 import { 
   Briefcase, 
   Calendar, 
-  TrendingUp, 
   CheckCircle2, 
   FileText, 
   MapPin, 
   ShieldCheck, 
-  Clock,
-  ExternalLink,
-  ImageIcon,
-  Receipt
+  Receipt,
+  Building2,
+  TrendingUp
 } from 'lucide-react';
 import PrintButton from '@/components/PrintButton';
 
@@ -21,122 +19,176 @@ export default async function ClientDashboardPage({ params }: { params: Promise<
   
   if (!data) notFound();
 
+  const totalBudget = data.projects.reduce((acc, p) => acc + (p.budget || 0), 0);
+  const totalSAL = data.projects.reduce((acc, p) => acc + p.sal.reduce((s, sal) => s + sal.importo, 0), 0);
+
   return (
-    <div className="min-h-screen bg-[#0a0c10] text-[#f8fafc] p-4 md:p-12 font-sans selection:bg-blue-500/30">
-      <div className="max-w-6xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        
-        {/* Header Section */}
-        <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="bg-blue-600/20 text-blue-500 p-2 rounded-xl border border-blue-500/20 shadow-lg shadow-blue-500/10">
-                <ShieldCheck size={20} />
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">Accesso Protetto Certificato</p>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-2">Benvenuto, {data.name}</h1>
-            <p className="text-gray-500 font-medium">Panoramica executive dei tuoi cantieri in corso.</p>
+    <div className="flex flex-col gap-6 pb-12">
+      {/* 1. Header Card */}
+      <div className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="h-2 w-2 bg-[#003F61]" />
+            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+              Area Riservata Committente
+            </span>
+            <span className="text-xs text-slate-400 flex items-center gap-1">
+              <ShieldCheck size={14} className="text-emerald-600" /> Accesso Verificato
+            </span>
           </div>
-          <div className="bg-[#11141b] border border-[#1e232d] p-4 rounded-3xl flex items-center gap-4 shadow-2xl">
-            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-xl font-black">
+          <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">
+            Benvenuto, {data.name}
+          </h1>
+          <p className="text-sm text-slate-500 mt-1">
+            Panoramica esecutiva e avanzamento economico-lavorativo delle tue commesse.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <div className="bg-slate-50 border border-slate-200 p-3 flex items-center gap-3">
+            <div className="w-10 h-10 bg-[#003F61] text-[#FEDE59] flex items-center justify-center font-bold text-lg">
               {data.name[0]}
             </div>
             <div>
-              <p className="text-xs font-black uppercase tracking-widest text-[#64748b]">ID Committente</p>
-              <p className="text-sm font-bold text-[#94a3b8]">{data.taxId}</p>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Codice Fiscale / P.IVA</div>
+              <div className="text-xs font-mono font-bold text-slate-800">{data.taxId}</div>
             </div>
           </div>
-        </header>
+          <PrintButton label="Stampa Riepilogo" className="h-10 px-4 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-bold uppercase tracking-wider" />
+        </div>
+      </div>
 
-        {/* Dynamic Project Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {data.projects.map(project => {
-            const totalSAL = project.sal.reduce((sum, s) => sum + s.importo, 0);
-            const budget = project.budget || 0;
-            const progress = budget > 0 ? (totalSAL / budget) * 100 : 0;
-            
-            return (
-              <div key={project.id} className="relative group overflow-hidden bg-[#11141b] border border-[#1e232d] rounded-[2.5rem] p-8 hover:border-blue-500/30 transition-all duration-500 shadow-2xl">
-                <div className="absolute top-0 right-0 p-8 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 opacity-0 group-hover:opacity-20 transition-all">
-                  <Briefcase size={120} className="text-blue-500" />
+      {/* 2. KPI Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Cantieri in Gestione</span>
+            <div className="p-2 bg-slate-50 border border-slate-100 text-[#003F61]">
+              <Briefcase size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-[#003F61]">{data.projects.length}</div>
+            <div className="text-[11px] text-slate-500 mt-1">Commesse attive a tuo nome</div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Totale Certificato (SAL)</span>
+            <div className="p-2 bg-emerald-50 border border-emerald-100 text-emerald-700">
+              <TrendingUp size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-emerald-700">
+              € {totalSAL.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1">Lavorazioni eseguite e certificate</div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 p-5 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">Budget Totale Contratti</span>
+            <div className="p-2 bg-slate-50 border border-slate-100 text-[#003F61]">
+              <Building2 size={16} />
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-slate-900">
+              € {totalBudget.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1">Valore contrattuale complessivo</div>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Projects Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {data.projects.map(project => {
+          const projectSAL = project.sal.reduce((sum, s) => sum + s.importo, 0);
+          const budget = project.budget || 0;
+          const progress = budget > 0 ? Math.min(100, Math.round((projectSAL / budget) * 100)) : 0;
+          
+          return (
+            <div key={project.id} className="bg-white border border-slate-200 p-6 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-[#003F61]">{project.name}</h3>
+                    <p className="text-xs text-slate-500 flex items-center gap-1.5 mt-1">
+                      <MapPin size={13} className="text-slate-400" />
+                      {[project.indirizzo, project.citta].filter(Boolean).join(', ') || 'Indirizzo cantiere'}
+                    </p>
+                  </div>
+                  <span className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+                    project.status === 'ONGOING'
+                      ? 'bg-blue-50 text-[#003F61] border-blue-200'
+                      : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                  }`}>
+                    {project.status === 'ONGOING' ? 'In Opera' : 'Completato'}
+                  </span>
                 </div>
 
-                <div className="relative z-10 space-y-6">
-                  {/* Project Status */}
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="text-2xl font-black tracking-tight mb-1">{project.name}</h4>
-                      <p className="text-sm text-gray-500 flex items-center gap-1 font-medium italic mb-4">
-                        <MapPin size={14} className="text-blue-500" /> {project.indirizzo}, {project.citta}
-                      </p>
-                      <div className={`inline-flex px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${
-                        project.status === 'ONGOING' ? 'bg-blue-600/10 text-blue-500' : 'bg-green-600/10 text-green-500'
-                      }`}>
-                         ● Stato: {project.status === 'ONGOING' ? 'In Opera' : 'Completato'}
-                      </div>
-                    </div>
+                {/* Progress bar */}
+                <div className="bg-slate-50 border border-slate-100 p-4">
+                  <div className="flex justify-between items-center mb-1 text-xs">
+                    <span className="font-bold text-slate-600 uppercase tracking-wider text-[11px]">Avanzamento SAL</span>
+                    <span className="font-bold text-[#003F61]">{progress}%</span>
                   </div>
-
-                  {/* Progress Bar Horizon */}
-                  <div className="space-y-3 bg-[#0a0c10]/50 p-6 rounded-3xl border border-[#1e232d]">
-                    <div className="flex justify-between items-end mb-1">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Avanzamento Certificato (SAL)</p>
-                      <p className="text-xl font-black text-blue-500">{progress.toFixed(0)}%</p>
-                    </div>
-                    <div className="h-4 bg-[#1e232d] rounded-full overflow-hidden p-1 shadow-inner">
-                      <div 
-                        className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all duration-1000 shadow-lg shadow-blue-600/20" 
-                        style={{ width: `${progress}%` }}
-                      ></div>
-                    </div>
+                  <div className="w-full bg-slate-200 h-2">
+                    <div className="bg-[#003F61] h-2 transition-all duration-500" style={{ width: `${progress}%` }} />
                   </div>
+                </div>
 
-                  {/* Metrics Grid */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-[#0a0c10]/50 p-6 rounded-3xl border border-[#1e232d]">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Certificazioni Emesse</p>
-                      <p className="text-2xl font-black text-[#f1f5f9]">€ {totalSAL.toLocaleString('it-IT')}</p>
-                    </div>
-                    <div className="bg-[#0a0c10]/50 p-6 rounded-3xl border border-[#1e232d]">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Budget Stimato</p>
-                      <p className="text-2xl font-black text-[#64748b]">€ {budget.toLocaleString('it-IT')}</p>
-                    </div>
+                {/* Economic breakdown */}
+                <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div className="bg-slate-50 border border-slate-200 p-3">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Certificato Emesso</span>
+                    <span className="text-base font-bold text-emerald-700">€ {projectSAL.toLocaleString('it-IT')}</span>
                   </div>
-
-                  {/* Timeline & Documents */}
-                  <div className="flex flex-wrap gap-4 pt-4 no-print">
-                    <div className="flex items-center gap-2 text-xs font-bold text-gray-500 bg-[#0a0c10]/40 px-4 py-2 rounded-xl">
-                      <Calendar size={14} className="text-blue-500" />
-                      Inizio: {new Date(project.startDate).toLocaleDateString('it-IT')}
-                    </div>
-                    {project.ddts.length > 0 && (
-                      <div className="flex items-center gap-2 text-xs font-bold text-green-500 bg-green-500/10 px-4 py-2 rounded-xl border border-green-500/20">
-                        <FileText size={14} /> {project.ddts.length} DDT Disponibili
-                      </div>
-                    )}
-                    {project.fatture.length > 0 && (
-                      <div className="flex items-center gap-2 text-xs font-bold text-amber-500 bg-amber-500/10 px-4 py-2 rounded-xl border border-amber-500/20">
-                        <Receipt size={14} /> {project.fatture.length} Fatture
-                      </div>
-                    )}
+                  <div className="bg-slate-50 border border-slate-200 p-3">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Budget Contrattuale</span>
+                    <span className="text-base font-bold text-slate-800">€ {budget.toLocaleString('it-IT')}</span>
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Global Transparency Alert */}
-        <div className="bg-gradient-to-br from-[#11141b] to-[#0a0c10] border-2 border-dashed border-blue-500/20 rounded-[3rem] p-10 text-center space-y-4">
-           <div className="bg-blue-600 inline-flex p-4 rounded-3xl mb-4 shadow-2xl shadow-blue-500/20">
-              <CheckCircle2 size={32} className="text-white" />
-           </div>
-           <h3 className="text-2xl font-black tracking-tight">Trasparenza Totale Garantita</h3>
-           <p className="max-w-2xl mx-auto text-[#64748b] font-medium leading-relaxed">
-             Tutti i dati visualizzati provengono in tempo reale dai rapportini firmati digitalmente dai nostri operatori sul campo.
-             Certifichiamo ogni ora di lavoro tramite geolocalizzazione GPS per la vostra massima tranquillità.
-           </p>
-           <PrintButton label="Scarica Report Riepilogativo" className="mx-auto" />
+              {/* Timeline pills */}
+              <div className="pt-4 mt-4 border-t border-slate-100 flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                <span className="flex items-center gap-1.5">
+                  <Calendar size={13} className="text-slate-400" />
+                  Avvio: {new Date(project.startDate).toLocaleDateString('it-IT')}
+                </span>
+                {project.ddts.length > 0 && (
+                  <span className="flex items-center gap-1 text-slate-700 font-semibold">
+                    <FileText size={13} className="text-slate-400" /> {project.ddts.length} DDT
+                  </span>
+                )}
+                {project.fatture.length > 0 && (
+                  <span className="flex items-center gap-1 text-slate-700 font-semibold">
+                    <Receipt size={13} className="text-slate-400" /> {project.fatture.length} Fatture
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* 4. Transparency banner */}
+      <div className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 bg-[#003F61] text-[#FEDE59] flex items-center justify-center shrink-0">
+            <CheckCircle2 size={24} />
+          </div>
+          <div>
+            <h3 className="text-base font-bold text-slate-900">Garanzia di Trasparenza Cantieri EDILMANAGER24</h3>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Tutti i dati di cantiere sono sincronizzati in tempo reale con i rapportini tecnici certificati della direzione lavori.
+            </p>
+          </div>
         </div>
       </div>
     </div>

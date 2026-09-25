@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function CasoStudioPage() {
     return (
-        <div className="bg-white font-manrope relative">
+        <div className="bg-white relative">
             
             {/* HERO SECTION */}
             <section className="relative pt-28 lg:pt-40 pb-12 lg:pb-20 overflow-hidden bg-corporate border-b border-slate-100">

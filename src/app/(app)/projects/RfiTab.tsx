@@ -69,12 +69,12 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
       {/* Header Actions */}
       <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
         <div>
-          <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tighter leading-none">Requests for Information</h2>
-          <p className="text-xs font-black text-slate-400 uppercase tracking-widest mt-2">Formal Site-to-Office Communication Ledger</p>
+          <h2 className="text-2xl font-bold text-slate-900 uppercase tracking-tighter leading-none">Requests for Information</h2>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mt-2">Formal Site-to-Office Communication Ledger</p>
         </div>
         <button 
           onClick={() => setIsSlideOpen(true)}
-          className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest transition-all shadow-xl shadow-blue-900/10 transform active:scale-95"
+          className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-wide transition-all shadow-xl shadow-blue-900/10 transform active:scale-95"
         >
           <Plus size={18} /> Initiate New RFI
         </button>
@@ -84,7 +84,7 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
       {rfis.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border-2 border-dashed border-slate-100 p-24 text-center">
           <HelpCircle size={64} className="mx-auto text-slate-100 mb-8" />
-          <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">No Active RFIs</h3>
+          <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tighter">No Active RFIs</h3>
           <p className="text-sm text-slate-400 font-medium mt-2">Use formal RFIs to request technical clarifications or design variations from the engineering team.</p>
         </div>
       ) : (
@@ -95,17 +95,17 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
               
               <div className="flex justify-between items-start mb-8 relative z-10">
                 <div className="flex items-center gap-5">
-                  <div className="w-14 h-14 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-black text-sm shadow-xl group-hover:scale-110 transition-transform">
+                  <div className="w-14 h-14 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-bold text-sm shadow-xl group-hover:scale-110 transition-transform">
                     #{rfi.number.toString().padStart(3, '0')}
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight leading-tight">{rfi.title}</h3>
-                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-1.5 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-slate-900 uppercase tracking-tight leading-tight">{rfi.title}</h3>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wide mt-1.5 flex items-center gap-2">
                        <Calendar size={12} /> Logged: {new Date(rfi.createdAt).toLocaleDateString('it-IT')}
                     </p>
                   </div>
                 </div>
-                <span className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest border ${priorityColors[rfi.priority]} border-current shadow-sm`}>
+                <span className={`px-3 py-1 rounded-lg text-[9px] font-bold uppercase tracking-wide border ${priorityColors[rfi.priority]} border-current shadow-sm`}>
                   {rfi.priority}
                 </span>
               </div>
@@ -120,14 +120,14 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
                     <div className="p-2 bg-emerald-500 text-white rounded-lg shadow-lg shadow-emerald-500/20">
                       <CheckCircle2 size={16} />
                     </div>
-                    <span className="text-[10px] font-black text-emerald-700 uppercase tracking-[0.2em]">Official Resolution</span>
+                    <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wide">Official Resolution</span>
                   </div>
                   <p className="text-sm text-slate-800 font-bold leading-relaxed">{rfi.answer}</p>
                   <div className="mt-6 pt-4 border-t border-emerald-100 flex items-center justify-between">
-                     <p className="text-[9px] text-emerald-600 font-black uppercase tracking-widest flex items-center gap-2">
+                     <p className="text-[9px] text-emerald-600 font-bold uppercase tracking-wide flex items-center gap-2">
                        <User size={10} /> Resolved by {rfi.answeredBy}
                      </p>
-                     <p className="text-[9px] text-emerald-400 font-black uppercase tracking-widest">
+                     <p className="text-[9px] text-emerald-400 font-bold uppercase tracking-wide">
                        {new Date(rfi.answeredAt!).toLocaleString('it-IT')}
                      </p>
                   </div>
@@ -138,14 +138,14 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
                     <Clock size={20} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-black text-blue-700 uppercase tracking-[0.2em]">Pending Engineering Review</span>
-                    <p className="text-[9px] text-blue-400 font-bold uppercase tracking-widest mt-1 italic">SLA: Response required within 24h</p>
+                    <span className="text-[10px] font-bold text-blue-700 uppercase tracking-wide">Pending Engineering Review</span>
+                    <p className="text-[9px] text-blue-400 font-bold uppercase tracking-wide mt-1 italic">SLA: Response required within 24h</p>
                   </div>
                 </div>
               )}
 
               <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-50 relative z-10">
-                <div className="flex items-center gap-3 text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-4 py-2 rounded-xl">
+                <div className="flex items-center gap-3 text-[10px] font-bold text-slate-400 uppercase tracking-wide bg-slate-50 px-4 py-2 rounded-xl">
                   <Zap size={14} className="text-amber-500" />
                   Target: {rfi.dueDate ? new Date(rfi.dueDate).toLocaleDateString('it-IT') : 'Unscheduled'}
                 </div>
@@ -155,7 +155,7 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
                     setAnswer(rfi.answer || '');
                     setIsResponseSlideOpen(true);
                   }}
-                  className="bg-slate-900 text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2 hover:bg-blue-600 transition-all shadow-xl shadow-slate-900/10 active:scale-95"
+                  className="bg-slate-900 text-white px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-wide flex items-center gap-2 hover:bg-blue-600 transition-all shadow-xl shadow-slate-900/10 active:scale-95"
                 >
                   {rfi.answer ? 'Revise Response' : 'Dispatch Resolution'} <Send size={14} />
                 </button>
@@ -166,11 +166,11 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
       )}
 
       {/* SlideOver Nuova RFI */}
-      <SlideOver isOpen={isSlideOpen} onClose={() => setIsSlideOpen(false)} title={<div className="flex items-center gap-3 text-slate-900 font-black uppercase tracking-tighter text-2xl">❓ <span className="italic text-blue-600">Formal Inquiry</span></div>}>
+      <SlideOver isOpen={isSlideOpen} onClose={() => setIsSlideOpen(false)} title={<div className="flex items-center gap-3 text-slate-900 font-bold uppercase tracking-tighter text-2xl">❓ <span className="italic text-blue-600">Formal Inquiry</span></div>}>
         <form onSubmit={handleCreateRFI} className="space-y-10 pb-20">
           <div className="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 space-y-6">
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Inquiry Title *</label>
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Inquiry Title *</label>
               <input 
                 type="text" 
                 name="title" 
@@ -181,7 +181,7 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Priority Matrix</label>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Priority Matrix</label>
                 <select name="priority" className="w-full bg-white border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all shadow-sm">
                   <option value="LOW">Low Complexity</option>
                   <option value="MEDIUM">Standard</option>
@@ -190,7 +190,7 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Required By</label>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Required By</label>
                 <input 
                   type="date" 
                   name="dueDate" 
@@ -199,7 +199,7 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Technical Inquiry Detail *</label>
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Technical Inquiry Detail *</label>
               <textarea 
                 name="question" 
                 rows={6} 
@@ -212,7 +212,7 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
           <button 
             type="submit" 
             disabled={isPending}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-6 rounded-[2rem] font-black text-xs uppercase tracking-[0.3em] transition-all shadow-2xl shadow-blue-900/20 flex items-center justify-center gap-3"
+            className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-6 rounded-[2rem] font-bold text-xs uppercase tracking-wide transition-all shadow-2xl shadow-blue-900/20 flex items-center justify-center gap-3"
           >
             {isPending ? 'Invio in corso...' : 'Dispatch Formal Inquiry'}
           </button>
@@ -226,13 +226,13 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
             setIsResponseSlideOpen(false);
             setAnswer('');
         }} 
-        title={<div className="flex items-center gap-3 text-slate-900 font-black uppercase tracking-tighter text-2xl">💡 <span className="italic text-blue-600">Resolution Console</span></div>}
+        title={<div className="flex items-center gap-3 text-slate-900 font-bold uppercase tracking-tighter text-2xl">💡 <span className="italic text-blue-600">Resolution Console</span></div>}
       >
         <div className="space-y-10 pb-20">
           <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
              <div className="absolute bottom-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full -mb-16 -mr-16 group-hover:scale-150 transition-transform duration-1000"></div>
-             <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4 relative z-10 leading-none">Inquiry Reference #{selectedRFI?.number}</p>
-             <h3 className="text-xl font-black uppercase tracking-tighter mb-4 relative z-10">{selectedRFI?.title}</h3>
+             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-4 relative z-10 leading-none">Inquiry Reference #{selectedRFI?.number}</p>
+             <h3 className="text-xl font-bold uppercase tracking-tighter mb-4 relative z-10">{selectedRFI?.title}</h3>
              <div className="bg-white/5 p-6 rounded-2xl border border-white/10 relative z-10">
                 <p className="text-sm text-slate-300 font-medium leading-relaxed italic">"{selectedRFI?.question}"</p>
              </div>
@@ -240,7 +240,7 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
 
           <form onSubmit={handleUpdateRFI} className="space-y-8">
             <div className="space-y-2 px-1">
-              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Resolution Protocol</label>
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide ml-1">Resolution Protocol</label>
               <select name="status" defaultValue={selectedRFI?.status} className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-600/5 focus:border-blue-600 transition-all shadow-sm appearance-none">
                 <option value="OPEN">Await Clarification</option>
                 <option value="ANSWERED">Partial Resolution</option>
@@ -250,12 +250,12 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
             
             <div className="space-y-4 px-1">
               <div className="flex items-center justify-between ml-1">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Official Engineering Response</label>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide block">Official Engineering Response</label>
                 <button 
                   type="button"
                   onClick={handleAiSuggest}
                   disabled={aiLoading}
-                  className="flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all disabled:opacity-50 shadow-sm"
+                  className="flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-xl text-[9px] font-bold uppercase tracking-wide hover:bg-blue-600 hover:text-white transition-all disabled:opacity-50 shadow-sm"
                 >
                   {aiLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />} AI Guardian Draft
                 </button>
@@ -274,7 +274,7 @@ export default function RfiTab({ projectId, rfis }: { projectId: string; rfis: R
             <button 
               type="submit" 
               disabled={isPending}
-              className="w-full bg-slate-900 hover:bg-blue-600 disabled:opacity-50 text-white py-6 rounded-[2rem] font-black text-xs uppercase tracking-[0.3em] transition-all shadow-2xl shadow-slate-900/20 active:scale-95 flex items-center justify-center gap-3"
+              className="w-full bg-slate-900 hover:bg-blue-600 disabled:opacity-50 text-white py-6 rounded-[2rem] font-bold text-xs uppercase tracking-wide transition-all shadow-2xl shadow-slate-900/20 active:scale-95 flex items-center justify-center gap-3"
             >
               {isPending ? 'Salvataggio...' : 'Commit Resolution'}
             </button>

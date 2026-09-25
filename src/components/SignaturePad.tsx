@@ -100,7 +100,7 @@ export default function SignaturePad({ onSave, onClear }: SignaturePadProps) {
         {isEmpty && (
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-blue-300">
              <PenTool size={32} className="mb-2 opacity-50" />
-             <p className="text-[10px] font-black uppercase tracking-widest">Firma Qui</p>
+             <p className="text-[10px] font-bold uppercase tracking-wide">Firma Qui</p>
           </div>
         )}
 
@@ -115,7 +115,7 @@ export default function SignaturePad({ onSave, onClear }: SignaturePadProps) {
           <button 
             type="button"
             onClick={handleSave}
-            className={`px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl transition-all flex items-center gap-2 ${
+            className={`px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-wide shadow-xl transition-all flex items-center gap-2 ${
               isEmpty ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
           >
@@ -123,7 +123,7 @@ export default function SignaturePad({ onSave, onClear }: SignaturePadProps) {
           </button>
         </div>
       </div>
-      <p className="text-[10px] font-bold text-gray-400 text-center uppercase tracking-widest">La firma digitale ha valore legale ai sensi del regolamento interno aziendale.</p>
+      <p className="text-[10px] font-bold text-gray-400 text-center uppercase tracking-wide">La firma digitale ha valore legale ai sensi del regolamento interno aziendale.</p>
     </div>
   );
 }

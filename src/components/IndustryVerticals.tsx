@@ -34,8 +34,8 @@ export default function IndustryVerticals() {
             
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-center mb-20 reveal">
-                    <div className="inline-flex items-center px-4 py-1.5 bg-blue-600 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-8 shadow-lg shadow-blue-200">Verticali di Settore</div>
-                    <h2 className="text-5xl font-black tracking-tighter mb-8 leading-[0.95]">
+                    <div className="inline-flex items-center px-4 py-1.5 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase tracking-wide mb-8 shadow-lg shadow-blue-200">Verticali di Settore</div>
+                    <h2 className="text-5xl font-bold tracking-tighter mb-8 leading-[0.95]">
                         <span className="text-slate-900">Progettato per</span> <br className="sm:hidden"/><span className="text-blue-600">ogni sfida.</span>
                     </h2>
                     <p className="text-slate-600 text-lg max-w-2xl mx-auto font-medium">Non importa la dimensione o la tipologia del tuo cantiere. EdilManager ha un modulo specifico per le tue esigenze operative.</p>
@@ -48,21 +48,21 @@ export default function IndustryVerticals() {
                                 <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center border border-blue-100 shadow-sm group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
                                     {v.icon}
                                 </div>
-                                <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest font-mono">
+                                <div className="text-[10px] font-bold text-blue-600 uppercase tracking-wide">
                                     VRT_0{i + 1} // READY
                                 </div>
                             </div>
-                            <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tight leading-tight">{v.title}</h3>
+                            <h3 className="text-3xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">{v.title}</h3>
                             <p className="text-slate-500 text-[15px] leading-relaxed mb-10 font-medium">{v.desc}</p>
                             <ul className="space-y-4 mb-12">
                                 {v.features.map((f, idx) => (
-                                    <li key={idx} className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-slate-900 transition-colors">
+                                    <li key={idx} className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-wide text-slate-400 group-hover:text-slate-900 transition-colors">
                                         <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                                         {f}
                                     </li>
                                 ))}
                             </ul>
-                            <Link href="#contatti" className="inline-flex items-center gap-3 text-xs font-black uppercase tracking-widest text-slate-900 group-hover:text-blue-600 transition-all">
+                            <Link href="#contatti" className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-wide text-slate-900 group-hover:text-blue-600 transition-all">
                                 Analisi Modulo <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                             </Link>
                         </div>

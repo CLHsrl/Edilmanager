@@ -18,11 +18,11 @@ export default async function QuotePrintPage({ params }: { params: Promise<{ id:
             {/* Header: Company Info & Client Info */}
             <div className="flex justify-between items-start border-b border-gray-200 pb-8 mb-8">
                 <div>
-                    <h1 className="text-4xl font-black text-blue-600 tracking-tighter">Edil<span className="text-gray-900">Manager</span></h1>
+                    <h1 className="text-4xl font-bold text-blue-600 tracking-tighter">Edil<span className="text-gray-900">Manager</span></h1>
                     <p className="mt-2 text-gray-500 font-medium text-xs">Viale del Lavoro 22, 00100 Roma (RM)<br/>P.IVA 01234567890 • info@edilmanager.test</p>
                 </div>
                 <div className="text-right">
-                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-2">Spett.le Cliente</p>
+                    <p className="text-gray-400 font-bold uppercase tracking-wide text-xs mb-2">Spett.le Cliente</p>
                     <p className="text-xl font-bold text-gray-900">{quote.client.name}</p>
                     {quote.client.address && <p className="text-gray-600 mt-1">{quote.client.address}<br/>{quote.client.cap} {quote.client.city} ({quote.client.province})</p>}
                     {quote.client.taxId && <p className="text-gray-600 mt-1">P.IVA/CF: {quote.client.taxId}</p>}
@@ -32,11 +32,11 @@ export default async function QuotePrintPage({ params }: { params: Promise<{ id:
             {/* Document Details */}
             <div className="flex items-center justify-between mb-8">
                 <div>
-                    <h2 className="text-3xl font-black text-gray-900">PREVENTIVO</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">PREVENTIVO</h2>
                     <p className="text-gray-500 font-medium">#{quote.number.toString().padStart(4, '0')}</p>
                 </div>
                 <div className="text-right">
-                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-1">Data Partenza</p>
+                    <p className="text-gray-400 font-bold uppercase tracking-wide text-xs mb-1">Data Partenza</p>
                     <p className="text-lg font-bold text-gray-900">{new Date(quote.date).toLocaleDateString('it-IT')}</p>
                 </div>
             </div>
@@ -84,7 +84,7 @@ export default async function QuotePrintPage({ params }: { params: Promise<{ id:
                     </div>
                     <div className="flex justify-between items-center border-t border-gray-200 pt-3">
                         <span className="font-bold text-gray-900 uppercase text-xs tracking-wider">Totale Iva Inclusa</span>
-                        <span className="font-black text-2xl text-blue-600">€ {quote.total.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</span>
+                        <span className="font-bold text-2xl text-blue-600">€ {quote.total.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</span>
                     </div>
                 </div>
             </div>

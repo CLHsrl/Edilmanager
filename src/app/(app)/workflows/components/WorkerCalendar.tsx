@@ -88,28 +88,28 @@ export default function WorkerCalendar({ tasks, lavoratori }: Props) {
     }, [lavoratori, tasks]);
 
     return (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl overflow-hidden flex flex-col">
+        <div className="flex flex-col">
             {/* Calendar Header */}
-            <div className="p-8 border-b border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 bg-slate-50/30">
+            <div className="p-6 border-b border-slate-100 bg-white flex items-center justify-between">
                 <div className="flex items-center gap-5">
-                    <div className="w-14 h-14 bg-slate-900 text-white rounded-2xl shadow-xl flex items-center justify-center">
+                    <div className="w-14 h-14 bg-slate-900 text-white flex items-center justify-center">
                         <CalendarIcon size={28} />
                     </div>
                     <div>
-                        <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase">
+                        <h2 className="text-2xl font-bold text-slate-900 tracking-tight uppercase">
                             {weekDays[0].toLocaleDateString('it-IT', { month: 'long', year: 'numeric' })}
                         </h2>
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mt-1">
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mt-1">
                             Pianificazione Risorse & Squadre
                         </p>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-3 bg-white p-2 rounded-2xl border border-slate-100 shadow-sm">
+                <div className="flex items-center gap-3 bg-white p-2 rounded-none border border-slate-100">
                     <button onClick={() => navigateWeek(-1)} className="p-2.5 hover:bg-slate-50 rounded-xl transition-all text-slate-600">
                         <ChevronLeft size={20} />
                     </button>
-                    <button onClick={resetToToday} className="px-6 py-2.5 text-[10px] font-black uppercase tracking-widest text-slate-900 hover:bg-slate-50 rounded-xl transition-all border border-slate-50">
+                    <button onClick={resetToToday} className="px-6 py-2.5 text-[10px] font-bold uppercase tracking-wide text-slate-900 hover:bg-slate-50 rounded-xl transition-all border border-slate-50">
                         Oggi
                     </button>
                     <button onClick={() => navigateWeek(1)} className="p-2.5 hover:bg-slate-50 rounded-xl transition-all text-slate-600">
@@ -123,7 +123,7 @@ export default function WorkerCalendar({ tasks, lavoratori }: Props) {
                 <div className="min-w-[1200px]">
                     {/* Grid Days Header */}
                     <div className="grid grid-cols-[300px_repeat(7,1fr)] border-b border-slate-100 bg-white sticky top-0 z-10">
-                        <div className="p-6 bg-slate-50/50 border-r border-slate-100 font-black text-[10px] uppercase text-slate-400 tracking-widest flex items-center">
+                        <div className="p-6 bg-slate-50/50 border-r border-slate-100 font-bold text-[10px] uppercase text-slate-400 tracking-wide flex items-center">
                             Risorsa Operativa
                         </div>
                         {weekDays.map((day, i) => {
@@ -132,10 +132,10 @@ export default function WorkerCalendar({ tasks, lavoratori }: Props) {
                                 <div key={i} className={`p-6 text-center border-r border-slate-50 last:border-r-0 transition-colors ${
                                     isToday ? 'bg-blue-50/30' : ''
                                 }`}>
-                                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
+                                    <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">
                                         {day.toLocaleDateString('it-IT', { weekday: 'short' })}
                                     </p>
-                                    <p className={`text-2xl font-black tracking-tighter ${
+                                    <p className={`text-2xl font-bold tracking-tighter ${
                                         isToday ? 'text-blue-600' : 'text-slate-900'
                                     }`}>
                                         {day.getDate()}
@@ -150,16 +150,14 @@ export default function WorkerCalendar({ tasks, lavoratori }: Props) {
                         {activeAssignees.map(resource => (
                             <div key={resource.id} className="grid grid-cols-[300px_repeat(7,1fr)] group hover:bg-slate-50/20 transition-colors">
                                 <div className="p-6 border-r border-slate-100 flex items-center gap-4 bg-white group-hover:bg-slate-50/50 transition-colors">
-                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xs border shadow-sm transition-transform group-hover:scale-110 ${
-                                        resource.type === 'WORKER' ? 'bg-blue-50 text-blue-600 border-blue-100' : 'bg-slate-900 text-white border-slate-900'
-                                    }`}>
+                                    <div className={`w-12 h-12 flex items-center justify-center font-bold text-xs border ${resource.type === 'WORKER' ? 'bg-blue-50 text-blue-600 border-blue-100' : 'bg-slate-900 text-white border-slate-900'}`}>
                                         {resource.nome?.[0] || resource.name?.[0]}{resource.cognome?.[0] || resource.name?.[1] || ''}
                                     </div>
                                     <div className="overflow-hidden">
-                                        <p className="font-black text-slate-900 uppercase tracking-tighter text-sm truncate">
+                                        <p className="font-bold text-slate-900 uppercase tracking-tighter text-sm truncate">
                                             {resource.nome} {resource.cognome || ''}
                                         </p>
-                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1.5 flex items-center gap-1.5">
+                                        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wide mt-1.5 flex items-center gap-1.5">
                                             {resource.type === 'WORKER' ? <HardHat size={12} className="text-blue-500" /> : <UserIcon size={12} className="text-slate-500" />}
                                             {resource.type === 'WORKER' ? 'Cantiere' : 'HQ Staff'}
                                         </p>
@@ -176,22 +174,22 @@ export default function WorkerCalendar({ tasks, lavoratori }: Props) {
                                             {dayTasks.map(task => (
                                                 <div 
                                                     key={task.id}
-                                                    className={`p-3 rounded-2xl border shadow-sm text-left hover:shadow-md transition-all cursor-pointer group/task relative overflow-hidden ${
+                                                    className={`p-3 border text-left hover:bg-slate-50 transition-all cursor-pointer group/task relative overflow-hidden ${
                                                         task.priority === 'HIGH' ? 'bg-red-50 border-red-100 text-red-900' :
                                                         task.status === 'DONE' ? 'bg-emerald-50 border-emerald-100 text-emerald-900' :
                                                         'bg-white border-slate-100 text-slate-700'
                                                     }`}
                                                 >
-                                                    <p className="text-[10px] font-black uppercase leading-tight line-clamp-2 tracking-tight">
+                                                    <p className="text-xs font-bold uppercase leading-tight line-clamp-2 tracking-tight">
                                                         {task.title}
                                                     </p>
-                                                    <div className="flex justify-between items-center mt-3 pt-2 border-t border-black/5">
+                                                    <div className="flex justify-between items-center mt-3 pt-2 border-t border-slate-200">
                                                         <div className="flex items-center gap-1.5">
                                                             {task.status === 'DONE' ? <CheckCircle size={12} className="text-emerald-600" /> : 
                                                              task.status === 'IN_PROGRESS' ? <Clock size={12} className="text-blue-600 animate-pulse" /> :
                                                              <AlertCircle size={12} className="text-orange-500" />}
                                                         </div>
-                                                        <span className="text-[8px] font-black opacity-40 uppercase tracking-widest">{task.status}</span>
+                                                        <span className="text-[8px] font-bold opacity-40 uppercase tracking-wide">{task.status}</span>
                                                     </div>
                                                 </div>
                                             ))}

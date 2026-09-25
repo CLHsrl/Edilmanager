@@ -22,40 +22,52 @@ export default function ClientPortalLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6 selection:bg-blue-100">
+    <div className="min-h-[80vh] flex items-center justify-center p-6 bg-slate-50">
       <div className="w-full max-w-md">
-        <div className="text-center mb-10">
-          <div className="inline-flex p-4 bg-blue-600 rounded-[2.5rem] shadow-2xl shadow-blue-200 mb-6 animate-in zoom-in-50 duration-500">
-            <Building2 className="text-white" size={32} />
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex p-4 bg-[#003F61] text-[#FEDE59] border border-[#003F61] mb-4">
+            <Building2 size={32} />
           </div>
-          <h1 className="text-4xl font-black text-gray-900 tracking-tight mb-2">Area Committente</h1>
-          <p className="text-gray-400 font-bold uppercase text-[10px] tracking-[0.2em]">Enterprise Construction Suite</p>
+          <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">
+            Area Riservata Committente
+          </h1>
+          <p className="text-xs text-slate-500 uppercase tracking-wide mt-1">
+            EDILMANAGER24 • Portale Trasparenza Cantieri
+          </p>
         </div>
 
-        <div className="bg-white rounded-[3rem] p-10 shadow-2xl border border-gray-100">
-          <div className="mb-8">
-            <h2 className="text-xl font-black text-gray-800 mb-2 text-center">Benvenuto nel tuo Progetto</h2>
-            <p className="text-sm text-gray-400 text-center leading-relaxed font-medium">Inserisci la tua Partita IVA o Codice Fiscale per accedere allo stato avanzamento lavori in tempo reale.</p>
+        {/* Card */}
+        <div className="bg-white border border-slate-200 p-8 shadow-sm">
+          <div className="mb-6">
+            <h2 className="text-base font-bold text-slate-900 mb-1">
+              Accedi al Tuo Progetto
+            </h2>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Inserisci la Partita IVA o il Codice Fiscale dell'intestatario della commessa per visualizzare avanzamento, SAL e documentazione in tempo reale.
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="relative group">
-              <label className="text-[10px] font-black text-gray-400 uppercase mb-2 block ml-1">Codice di Accesso *</label>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-2">
+                Codice Fiscale / Partita IVA *
+              </label>
               <div className="relative">
                 <input
                   type="text"
                   required
                   value={taxId}
                   onChange={(e) => setTaxId(e.target.value)}
-                  placeholder="P.IVA / CF..."
-                  className="w-full bg-gray-50 border-2 border-transparent focus:border-blue-600 rounded-2xl px-6 py-4 text-sm font-black text-gray-900 focus:outline-none transition-all placeholder:text-gray-300"
+                  placeholder="Es. 01234567890 o RSSMRA80A01H501U"
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#003F61] placeholder:text-slate-400"
                 />
-                <ShieldCheck className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-blue-600 transition-colors" size={20} />
+                <ShieldCheck className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               </div>
             </div>
 
             {error && (
-              <div className="bg-red-50 text-red-600 p-4 rounded-xl text-xs font-bold border border-red-100 animate-in shake duration-300">
+              <div className="bg-red-50 text-red-700 p-3 text-xs font-bold border border-red-200">
                 {error}
               </div>
             )}
@@ -63,17 +75,17 @@ export default function ClientPortalLogin() {
             <button
               type="submit"
               disabled={isPending || !taxId}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-black py-5 rounded-[2rem] shadow-2xl shadow-blue-200 transition-all transform active:scale-95 flex items-center justify-center gap-2 group"
+              className="w-full h-12 bg-[#003F61] hover:bg-[#002f49] disabled:opacity-50 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
             >
-              {isPending ? <Loader2 size={18} className="animate-spin" /> : null}
+              {isPending ? <Loader2 size={16} className="animate-spin" /> : null}
               {isPending ? 'AUTENTICAZIONE...' : 'ACCEDI AL PORTALE'}
-              {!isPending && <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /> }
+              {!isPending && <ArrowRight size={16} />}
             </button>
           </form>
         </div>
 
-        <p className="mt-8 text-center text-xs text-gray-400 font-bold uppercase tracking-widest">
-          Sistemi di Sicurezza Crittografati v2.1
+        <p className="mt-6 text-center text-[11px] text-slate-400 uppercase tracking-wider">
+          Connessione Crittografata SSL • Edilmanager24
         </p>
       </div>
     </div>

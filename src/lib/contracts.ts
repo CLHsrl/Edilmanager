@@ -1,5 +1,5 @@
 export const CONTRACT_TEMPLATE = `
-<div style="font-family: 'Arial', sans-serif; max-width: 210mm; margin: 0 auto; background: white; color: #333; line-height: 1.5; padding: 40px;">
+<div style="font-family: 'Inter', sans-serif; max-width: 210mm; margin: 0 auto; background: white; color: #333; line-height: 1.5; padding: 40px;">
     <!-- Header -->
     <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
         <div style="font-family: 'Inter', sans-serif;">
@@ -18,14 +18,14 @@ export const CONTRACT_TEMPLATE = `
             <h3 style="font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #1a73e8; margin: 0 0 10px 0;">Committente</h3>
             <p style="font-size: 16px; font-weight: 500; margin: 0 0 5px 0; color: #202124;">{{CLIENT_NAME}}</p>
             <p style="margin: 0 0 5px 0; color: #5f6368; font-size: 14px;">{{CLIENT_ADDRESS}}</p>
-            <p style="margin: 0; color: #70757a; font-size: 12px; font-family: monospace;">{{CLIENT_TAX_ID}}</p>
+            <p style="margin: 0; color: #70757a; font-size: 12px; font-family: 'Inter', sans-serif;">{{CLIENT_TAX_ID}}</p>
         </div>
         <div style="width: 1px; background-color: #dadce0;"></div>
         <div style="flex: 1;">
             <h3 style="font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #1a73e8; margin: 0 0 10px 0;">Appaltatrice</h3>
             <p style="font-size: 16px; font-weight: 500; margin: 0 0 5px 0; color: #202124;">{{COMPANY_NAME}}</p>
             <p style="margin: 0 0 5px 0; color: #5f6368; font-size: 14px;">Sede Legale: Via Roma 1, Milano</p>
-            <p style="margin: 0; color: #70757a; font-size: 12px; font-family: monospace;">P.IVA: 03774540128</p>
+            <p style="margin: 0; color: #70757a; font-size: 12px; font-family: 'Inter', sans-serif;">P.IVA: 03774540128</p>
         </div>
     </div>
 

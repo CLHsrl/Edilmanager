@@ -13,12 +13,5 @@ export default async function QuotesPage() {
         count: quotes.length
     };
 
-    return (
-        <div className="page-content">
-            <QuotesClient 
-                quotes={quotes as any} 
-                stats={stats} 
-            />
-        </div>
-    );
+    return <QuotesClient quotes={quotes as any} stats={stats} />;
 }

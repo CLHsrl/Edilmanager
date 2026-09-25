@@ -1,17 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-mock';
 import { 
-    AlertCircle, ArrowRight, BrainCircuit, 
-    CircleDashed, FileText, HardHat, 
-    Link as LinkIcon, Plus, Receipt, 
-    Sparkles, Target, TrendingUp, Activity, ShieldAlert
+    HardHat, Users, TrendingUp, AlertTriangle, 
+    Receipt, ChevronRight, Plus, Calendar,
+    Building2, ArrowUpRight, Package, ClipboardCheck
 } from 'lucide-react';
 
-// Premium Components
-import DashboardHero from '@/components/dashboard/DashboardHero';
 import FinancialPulse from '@/components/dashboard/FinancialPulse';
 import InventoryScanner from '@/components/dashboard/InventoryScanner';
 import UnifiedAgenda from '@/components/dashboard/UnifiedAgenda';
@@ -19,172 +15,346 @@ import UnifiedAgenda from '@/components/dashboard/UnifiedAgenda';
 export default function DashboardClient({ data }: { data: any }) {
     const { role } = useAuth();
     const { 
-        fattureScadute, movimentiNonAssociati, cantieriAttivi, 
-        preventiviAperti, health, projectedCashflow 
-    } = data;
+        fattureScadute = [], 
+        cantieriAttivi = [], 
+        health = {}, 
+        articoliSottoScorta = [] 
+    } = data || {};
  
     const isAdmin = role === 'ADMIN';
     const isPM = role === 'PM';
-    const isOperaio = role === 'OPERAIO';
 
-    // Mock data for graphs if not fully provided by actions
-    const weeklyTrend = [
-        { name: 'Lun', balance: 4500 },
-        { name: 'Mar', balance: 5200 },
-        { name: 'Mer', balance: -1200 },
-        { name: 'Gio', balance: 8900 },
-        { name: 'Ven', balance: 3400 },
+    const weeklyTrend = health.weeklyTrend || [
+        { name: 'Lun', balance: 0 },
+        { name: 'Mar', balance: 0 },
+        { name: 'Mer', balance: 0 },
+        { name: 'Gio', balance: 0 },
+        { name: 'Ven', balance: 0 },
         { name: 'Sab', balance: 0 },
         { name: 'Dom', balance: 0 },
     ];
 
-    return (
-        <div className="flex flex-col gap-10 pb-20 reveal relative">
-            {/* 1. HERO SECTION */}
-            <DashboardHero 
-                userName="Direttore" 
-                activeWorkers={12} 
-                activeProjects={health.totalActiveProjects}
-            />
+    const todayFormatted = new Intl.DateTimeFormat('it-IT', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    }).format(new Date());
 
-            {/* 2. ANALYTICAL ROW (Admin & PM) */}
-            {(isAdmin || isPM) && (
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    <div className="lg:col-span-8">
+    return (
+        <div className="flex flex-col gap-6 pb-12">
+            {/* 1. Header Section */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white border border-slate-200 p-6 shadow-sm">
+                <div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                        <Calendar size={14} className="text-[#003F61]" />
+                        <span className="capitalize">{todayFormatted}</span>
+                    </div>
+                    <h1 className="text-2xl font-bold text-[#003F61] mt-1 tracking-tight">Panoramica Aziendale</h1>
+                    <p className="text-sm text-slate-500 mt-0.5">Controllo operativo di cantieri, flussi di cassa e logistica.</p>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Link 
+                        href="/projects" 
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#003F61] hover:bg-[#002f49] text-white text-xs font-semibold transition-colors"
+                    >
+                        <Plus size={15} /> Nuovo Cantiere
+                    </Link>
+                    <Link 
+                        href="/fatture" 
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors"
+                    >
+                        <Receipt size={15} /> Fatture
+                    </Link>
+                </div>
+            </div>
+
+            {/* 2. Top KPI Metrics */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {/* Cantieri Attivi */}
+                <div className="bg-white border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
+                    <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Cantieri Aperti</span>
+                        <div className="w-9 h-9 bg-[#003F61]/10 text-[#003F61] flex items-center justify-center">
+                            <HardHat size={18} />
+                        </div>
+                    </div>
+                    <div className="mt-3">
+                        <p className="text-3xl font-bold text-slate-900">{health.totalActiveProjects || 0}</p>
+                        <div className="flex items-center justify-between mt-1">
+                            <span className="text-xs text-slate-500">In corso d'opera</span>
+                            <Link href="/projects" className="text-xs font-medium text-[#003F61] hover:underline inline-flex items-center">
+                                Gestisci <ChevronRight size={13} />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Personale Attivo */}
+                <div className="bg-white border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
+                    <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Personale Registrato</span>
+                        <div className="w-9 h-9 bg-blue-50 text-blue-700 flex items-center justify-center">
+                            <Users size={18} />
+                        </div>
+                    </div>
+                    <div className="mt-3">
+                        <p className="text-3xl font-bold text-slate-900">{health.totalActiveWorkers || 0}</p>
+                        <div className="flex items-center justify-between mt-1">
+                            <span className="text-xs text-slate-500">Operai & Tecnici</span>
+                            <Link href="/lavoratori" className="text-xs font-medium text-[#003F61] hover:underline inline-flex items-center">
+                                Personale <ChevronRight size={13} />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Margine Operativo */}
+                <div className="bg-white border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
+                    <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Margine Globale</span>
+                        <div className="w-9 h-9 bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                            <TrendingUp size={18} />
+                        </div>
+                    </div>
+                    <div className="mt-3">
+                        <p className="text-3xl font-bold text-slate-900">{health.globalMargin || 0}%</p>
+                        <div className="flex items-center justify-between mt-1">
+                            <span className="text-xs text-emerald-600 font-medium">Margine medio commesse</span>
+                            <Link href="/cassa" className="text-xs font-medium text-[#003F61] hover:underline inline-flex items-center">
+                                Finanza <ChevronRight size={13} />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Scadenze & Pendenze */}
+                <div className="bg-white border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
+                    <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Pendenze Fiscali</span>
+                        <div className={`w-9 h-9 flex items-center justify-center ${fattureScadute.length > 0 ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-600'}`}>
+                            <AlertTriangle size={18} />
+                        </div>
+                    </div>
+                    <div className="mt-3">
+                        <p className={`text-3xl font-bold ${fattureScadute.length > 0 ? 'text-rose-600' : 'text-slate-900'}`}>
+                            {fattureScadute.length}
+                        </p>
+                        <div className="flex items-center justify-between mt-1">
+                            <span className="text-xs text-slate-500">
+                                {fattureScadute.length > 0 ? 'Fatture scadute' : 'Tutto saldato'}
+                            </span>
+                            <Link href="/fatture" className="text-xs font-medium text-[#003F61] hover:underline inline-flex items-center">
+                                Scadenzario <ChevronRight size={13} />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* 3. Main Operational Layout (2 Cols: 2/3 and 1/3) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                {/* Left Column (2/3) */}
+                <div className="lg:col-span-2 flex flex-col gap-6">
+                    
+                    {/* Financial Chart (Admin & PM) */}
+                    {(isAdmin || isPM) && (
                         <FinancialPulse 
                             weeklyTrend={weeklyTrend} 
-                            monthlyTrend={health.monthlyCashflowTrend} 
+                            monthlyTrend={health.monthlyCashflowTrend || []} 
+                            globalMargin={health.globalMargin || 0}
                         />
-                    </div>
-                    <div className="lg:col-span-4">
-                        <InventoryScanner articoli={data.articoliSottoScorta || []} />
-                    </div>
-                </div>
-            )}
+                    )}
 
-            {/* 3. STRATEGIC ROW */}
-            {isAdmin && (
-                <div className="bg-slate-900 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden group border border-white/5">
-                    <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-600/20 to-transparent pointer-events-none"></div>
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-10 relative z-10">
-                        <div className="max-w-2xl">
-                            <div className="flex items-center gap-3 mb-6">
-                                <span className="bg-blue-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-blue-900/20">
-                                    AI CEO ADVISOR
-                                </span>
-                                <span className="flex items-center gap-2 text-slate-400 text-[10px] font-black uppercase tracking-widest">
-                                    <Sparkles size={14} className="text-blue-400" /> Focus Strategico Settimanale
-                                </span>
+                    {/* Cantieri Attivi Table */}
+                    <div className="bg-white border border-slate-200 shadow-sm overflow-hidden">
+                        <div className="p-5 border-b border-slate-100 flex justify-between items-center">
+                            <div className="flex items-center gap-2">
+                                <HardHat size={18} className="text-[#003F61]" />
+                                <h3 className="text-base font-semibold text-[#003F61]">Cantieri in Lavorazione</h3>
                             </div>
-                            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase mb-6 leading-none">
-                                Ottimizzazione <span className="text-blue-500">Margin-Call</span> Cantieri
-                            </h2>
-                            <p className="text-slate-400 text-base font-medium leading-relaxed mb-8">
-                                L'analisi dei costi attuali indica un'opportunità di recupero del <span className="text-white font-black">4.2%</span> sulla logistica dell'ultimo miglio. Sblocca il piano d'azione per convertire questa inefficienza in utile netto.
-                            </p>
-                            <Link href="/strategy" className="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all transform active:scale-95 shadow-xl">
-                                Esplora Strategia <ArrowRight size={18} />
+                            <Link 
+                                href="/projects" 
+                                className="text-xs font-semibold text-[#003F61] hover:underline inline-flex items-center gap-1"
+                            >
+                                Vedi tutti i cantieri <ArrowUpRight size={14} />
                             </Link>
-                        </div>
-                        <div className="hidden lg:block">
-                            <div className="w-48 h-48 rounded-full border-8 border-slate-800 flex items-center justify-center relative">
-                                <div className="absolute inset-0 rounded-full border-t-8 border-blue-500 animate-spin"></div>
-                                <BrainCircuit size={64} className="text-blue-500" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* 4. OPERATIONAL GRID */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Agenda Unificata */}
-                <div className="lg:col-span-1">
-                    <UnifiedAgenda items={[]} /> {/* Pass real agenda items here */}
-                </div>
-
-                {/* Status List (Fatture / Cantieri) */}
-                <div className="lg:col-span-2 space-y-8">
-                    {/* Cantieri */}
-                    <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-premium">
-                        <div className="flex justify-between items-center mb-8">
-                            <div>
-                                <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
-                                    <HardHat size={18} className="text-blue-600" /> Controllo Operativo
-                                </h3>
-                                <p className="text-[10px] text-slate-400 font-bold uppercase mt-1">Stato avanzamento cantieri attivi</p>
-                            </div>
-                            <div className="flex gap-4 items-center">
-                                {data.geofencingAlertsCount > 0 && (
-                                    <div className="bg-red-50 text-red-600 border border-red-100 px-3 py-1.5 rounded-xl flex items-center gap-2 animate-pulse shadow-sm">
-                                        <ShieldAlert size={14} />
-                                        <span className="text-[9px] font-black uppercase tracking-widest">{data.geofencingAlertsCount} GPS ALERTS</span>
-                                    </div>
-                                )}
-                                <Link href="/projects" className="text-[10px] font-black text-blue-600 uppercase tracking-widest hover:underline">Vedi Tutti</Link>
-                            </div>
                         </div>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {cantieriAttivi.map((c: any) => (
-                            <Link key={c.id} href={`/projects/${c.id}`} className="block bg-slate-50 border border-slate-100 p-5 rounded-3xl hover:border-blue-600 hover:bg-white transition-all group">
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <p className="text-sm font-black text-slate-900 uppercase tracking-tighter group-hover:text-blue-600 transition-colors">{c.number ? `#${c.number} ` : ''}{c.name}</p>
-                                        <p className="text-[10px] text-slate-400 font-bold uppercase mt-1">{c.client?.name || 'Committente Privato'}</p>
-                                    </div>
-                                    <div className="p-2 bg-white rounded-xl shadow-sm border border-slate-100 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                        <ArrowRight size={16} />
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                                        <th className="px-4 py-3">Cantiere</th>
+                                        <th className="px-4 py-3">Committente</th>
+                                        <th className="px-4 py-3">Budget</th>
+                                        <th className="px-4 py-3">Stato</th>
+                                        <th className="px-4 py-3 text-right">Dettaglio</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-slate-100">
+                                    {cantieriAttivi.map((c: any) => (
+                                        <tr key={c.id} className="hover:bg-slate-50/70 transition-colors">
+                                            <td className="px-4 py-3 font-semibold text-slate-900">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-xs font-mono text-slate-400">{c.number ? `#${c.number}` : ''}</span>
+                                                    <span>{c.name}</span>
+                                                </div>
+                                            </td>
+                                            <td className="px-4 py-3 text-slate-600">
+                                                {c.client?.name || 'Cliente Diretto'}
+                                            </td>
+                                            <td className="px-4 py-3 text-slate-900 font-medium">
+                                                {c.budget ? `€ ${c.budget.toLocaleString('it-IT')}` : '—'}
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                                    Attivo
+                                                </span>
+                                            </td>
+                                            <td className="px-4 py-3 text-right">
+                                                <Link 
+                                                    href={`/projects/${c.id}`} 
+                                                    className="inline-flex items-center text-xs font-medium text-[#003F61] hover:underline"
+                                                >
+                                                    Apri Scheda <ChevronRight size={14} />
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    {cantieriAttivi.length === 0 && (
+                                        <tr>
+                                            <td colSpan={5} className="px-4 py-8 text-center text-slate-500 text-sm">
+                                                Nessun cantiere attivo al momento.
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    {/* Fiscal Pulse (Solo Admin) */}
+                    {/* Scadenzario Fiscale (Admin) */}
                     {isAdmin && (
-                        <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
-                            <div className="flex justify-between items-center mb-8">
-                                <div>
-                                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
-                                        <Activity size={18} className="text-emerald-600" /> Scadenzario Fiscale
-                                    </h3>
-                                    <p className="text-[10px] text-slate-400 font-bold uppercase mt-1">Gestione flussi di cassa in entrata/uscita</p>
+                        <div className="bg-white border border-slate-200 shadow-sm overflow-hidden">
+                            <div className="p-5 border-b border-slate-100 flex justify-between items-center">
+                                <div className="flex items-center gap-2">
+                                    <Receipt size={18} className="text-[#003F61]" />
+                                    <h3 className="text-base font-semibold text-[#003F61]">Scadenzario Fiscale & Pagamenti</h3>
                                 </div>
-                                <span className="bg-red-50 text-red-600 border border-red-100 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">{fattureScadute.length} Alert</span>
+                                {fattureScadute.length > 0 && (
+                                    <span className="bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium px-2.5 py-0.5">
+                                        {fattureScadute.length} Scadute
+                                    </span>
+                                )}
                             </div>
                             
-                            <div className="space-y-3">
-                                {fattureScadute.length === 0 ? (
-                                    <div className="p-10 text-center bg-slate-50 rounded-3xl border border-dashed border-slate-200">
-                                        <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Nessuna pendenza rilevata</p>
-                                    </div>
-                                ) : (
-                                    fattureScadute.map((f: any) => (
-                                        <div key={f.id} className="p-5 bg-slate-50 hover:bg-white border border-slate-100 hover:border-emerald-600 rounded-3xl flex justify-between items-center transition-all group">
-                                            <div className="flex items-center gap-4">
-                                                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center font-black text-xs ${f.tipo === 'ATTIVA' ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}`}>
-                                                    {f.tipo === 'ATTIVA' ? 'IN' : 'OUT'}
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm font-black text-slate-900 uppercase tracking-tighter">{f.soggetto}</p>
-                                                    <p className="text-[10px] text-slate-400 font-bold uppercase">Doc. {f.numero} • Scad. {new Date(f.dataScadenza).toLocaleDateString('it-IT')}</p>
-                                                </div>
-                                            </div>
-                                            <div className="text-right">
-                                                <p className="text-sm font-black text-slate-900 tracking-tighter">€ {f.totale.toLocaleString('it-IT')}</p>
-                                                <Link href={`/fatture/${f.id}`} className="text-[10px] font-black text-blue-600 uppercase tracking-widest hover:underline">Dettagli</Link>
-                                            </div>
-                                        </div>
-                                    ))
-                                )}
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left border-collapse text-sm">
+                                    <thead>
+                                        <tr className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                                            <th className="px-4 py-3">Flusso</th>
+                                            <th className="px-4 py-3">Fornitore / Cliente</th>
+                                            <th className="px-4 py-3">Documento & Scadenza</th>
+                                            <th className="px-4 py-3 text-right">Importo</th>
+                                            <th className="px-4 py-3 text-right">Azione</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-slate-100">
+                                        {fattureScadute.length === 0 ? (
+                                            <tr>
+                                                <td colSpan={5} className="px-4 py-8 text-center text-slate-500 text-sm">
+                                                    Nessun pagamento o incasso scaduto in sospeso.
+                                                </td>
+                                            </tr>
+                                        ) : (
+                                            fattureScadute.map((f: any) => (
+                                                <tr key={f.id} className="hover:bg-slate-50/70 transition-colors">
+                                                    <td className="px-4 py-3">
+                                                        <span className={`text-xs font-semibold px-2 py-0.5 border ${
+                                                            f.tipo === 'ATTIVA' 
+                                                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
+                                                                : 'bg-rose-50 text-rose-700 border-rose-200'
+                                                        }`}>
+                                                            {f.tipo === 'ATTIVA' ? 'Entrata' : 'Uscita'}
+                                                        </span>
+                                                    </td>
+                                                    <td className="px-4 py-3 font-semibold text-slate-900">
+                                                        {f.soggetto}
+                                                    </td>
+                                                    <td className="px-4 py-3 text-xs text-slate-500">
+                                                        Doc. #{f.numero} • Scad. {new Date(f.dataScadenza).toLocaleDateString('it-IT')}
+                                                    </td>
+                                                    <td className="px-4 py-3 text-right font-bold text-slate-900">
+                                                        € {f.totale.toLocaleString('it-IT')}
+                                                    </td>
+                                                    <td className="px-4 py-3 text-right">
+                                                        <Link 
+                                                            href={`/fatture/${f.id}`} 
+                                                            className="text-xs font-semibold text-[#003F61] hover:underline"
+                                                        >
+                                                            Gestisci
+                                                        </Link>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        )}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     )}
                 </div>
+                
+                {/* Right Column (1/3) */}
+                <div className="lg:col-span-1 flex flex-col gap-6">
+                    {/* Quick Management Actions */}
+                    <div className="bg-white border border-slate-200 p-5 shadow-sm">
+                        <h3 className="text-base font-semibold text-[#003F61] mb-3 pb-3 border-b border-slate-100 flex items-center gap-2">
+                            <ClipboardCheck size={18} className="text-[#003F61]" />
+                            Azioni Rapide
+                        </h3>
+                        <div className="grid grid-cols-2 gap-2">
+                            <Link 
+                                href="/projects" 
+                                className="flex flex-col items-center justify-center p-3 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 text-center transition-colors"
+                            >
+                                <HardHat size={20} className="text-[#003F61] mb-1.5" />
+                                <span className="text-xs font-semibold">Cantieri</span>
+                            </Link>
+                            <Link 
+                                href="/fatture" 
+                                className="flex flex-col items-center justify-center p-3 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 text-center transition-colors"
+                            >
+                                <Receipt size={20} className="text-[#003F61] mb-1.5" />
+                                <span className="text-xs font-semibold">Fatture</span>
+                            </Link>
+                            <Link 
+                                href="/magazzino" 
+                                className="flex flex-col items-center justify-center p-3 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 text-center transition-colors"
+                            >
+                                <Package size={20} className="text-[#003F61] mb-1.5" />
+                                <span className="text-xs font-semibold">Magazzino</span>
+                            </Link>
+                            <Link 
+                                href="/lavoratori" 
+                                className="flex flex-col items-center justify-center p-3 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 text-center transition-colors"
+                            >
+                                <Users size={20} className="text-[#003F61] mb-1.5" />
+                                <span className="text-xs font-semibold">Personale</span>
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Inventory Scanner (Sotto Scorta) */}
+                    <InventoryScanner articoli={articoliSottoScorta || []} />
+
+                    {/* Unified Agenda */}
+                    <UnifiedAgenda items={[]} />
+                </div>
+
             </div>
         </div>
     );
 }
-

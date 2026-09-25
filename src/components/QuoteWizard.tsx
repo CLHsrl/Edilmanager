@@ -288,7 +288,7 @@ export default function QuoteWizard() {
                         ) : (
                             items.map((item, idx) => (
                                 <div key={item.id} className="p-4 flex gap-4 hover:bg-gray-50 transition-colors group">
-                                    <div className="text-gray-300 font-mono text-xs pt-3">{idx + 1}</div>
+                                    <div className="text-gray-300 text-xs pt-3">{idx + 1}</div>
                                     <div className="flex-1 space-y-4">
                                         {item.type === 'TEXT' ? (
                                             <textarea
@@ -359,7 +359,7 @@ export default function QuoteWizard() {
                                 <Calculator className="text-blue-400" size={24} />
                                 <span className="text-xl font-bold">Totale Preventivo</span>
                             </div>
-                            <span className="text-3xl font-black text-blue-400">€ {total.toLocaleString()}</span>
+                            <span className="text-3xl font-bold text-blue-400">€ {total.toLocaleString()}</span>
                         </div>
                     </div>
 

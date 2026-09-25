@@ -111,29 +111,29 @@ export default function ContractBossFight({ lead, onWin, onCancel }: Props) {
            </div>
            
            <div className="space-y-4 mb-12">
-             <h2 className="text-5xl font-black text-gray-900 tracking-tighter uppercase leading-none">
+             <h2 className="text-5xl font-bold text-gray-900 tracking-tighter uppercase leading-none">
                 Inaugurazione <span className="text-green-600">Completata!</span>
              </h2>
-             <p className="text-gray-500 font-black uppercase text-xs tracking-[0.4em]">
+             <p className="text-gray-500 font-bold uppercase text-xs tracking-wide">
                 Contratto Firmato • Edificio Consegnato
              </p>
            </div>
 
            <div className="bg-green-50 border-2 border-green-100 rounded-3xl p-8 mb-12 flex items-center justify-center gap-6">
               <div className="text-left">
-                <p className="text-[10px] font-black text-green-800 uppercase tracking-widest">Bonus Acquisito</p>
-                <p className="text-3xl font-black text-green-600 tracking-tighter">+2,000 XP</p>
+                <p className="text-[10px] font-bold text-green-800 uppercase tracking-wide">Bonus Acquisito</p>
+                <p className="text-3xl font-bold text-green-600 tracking-tighter">+2,000 XP</p>
               </div>
               <div className="w-px h-12 bg-green-200"></div>
               <div className="text-left">
-                <p className="text-[10px] font-black text-green-800 uppercase tracking-widest">Prestigio</p>
-                <p className="text-3xl font-black text-green-600 tracking-tighter">+50 Fame</p>
+                <p className="text-[10px] font-bold text-green-800 uppercase tracking-wide">Prestigio</p>
+                <p className="text-3xl font-bold text-green-600 tracking-tighter">+50 Fame</p>
               </div>
            </div>
 
            <button 
              onClick={onWin}
-             className="group w-full bg-green-600 hover:bg-green-700 text-white py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] shadow-2xl shadow-green-200 transition-all hover:scale-[1.03] active:scale-95 text-lg flex items-center justify-center gap-4"
+             className="group w-full bg-green-600 hover:bg-green-700 text-white py-8 rounded-[2.5rem] font-bold uppercase tracking-wide shadow-2xl shadow-green-200 transition-all hover:scale-[1.03] active:scale-95 text-lg flex items-center justify-center gap-4"
            >
              <Handshake size={24} className="group-hover:rotate-12 transition-transform" />
              Taglia il Nastro
@@ -156,15 +156,15 @@ export default function ContractBossFight({ lead, onWin, onCancel }: Props) {
                       <HardHat size={120} className="text-white" />
                    </div>
                    
-                   <p className="text-amber-500 font-black text-xs uppercase tracking-[0.3em] mb-4">Fase Finale: Closing Battle</p>
-                   <h2 className="text-3xl font-black text-white tracking-tighter uppercase mb-12 italic">Sfida con: {lead.name}</h2>
+                   <p className="text-amber-500 font-bold text-xs uppercase tracking-wide mb-4">Fase Finale: Closing Battle</p>
+                   <h2 className="text-3xl font-bold text-white tracking-tighter uppercase mb-12 italic">Sfida con: {lead.name}</h2>
 
                    <div className="space-y-6 relative z-10">
                       <div className="flex justify-between items-center px-2">
-                         <span className="text-[10px] font-black text-white/50 uppercase tracking-widest flex items-center gap-2">
+                         <span className="text-[10px] font-bold text-white/50 uppercase tracking-wide flex items-center gap-2">
                            <ShieldAlert size={16} className="text-red-500" /> Resistenza Dubbio
                          </span>
-                         <span className="text-lg font-black text-white">{shield}%</span>
+                         <span className="text-lg font-bold text-white">{shield}%</span>
                       </div>
                       <div className="h-4 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
                          <div 
@@ -177,14 +177,14 @@ export default function ContractBossFight({ lead, onWin, onCancel }: Props) {
                    </div>
 
                    <div className="mt-16 p-8 bg-red-500/10 border-2 border-red-500/20 rounded-3xl animate-pulse">
-                      <p className="text-red-400 font-black text-sm uppercase tracking-tight leading-tight italic">
+                      <p className="text-red-400 font-bold text-sm uppercase tracking-tight leading-tight italic">
                         "{currentObjection.text}"
                       </p>
                    </div>
                 </div>
              </div>
 
-             <div className="bg-black/40 border border-white/5 rounded-3xl p-6 h-48 overflow-y-auto font-mono text-[10px] text-white/40 space-y-2 flex flex-col-reverse">
+             <div className="bg-black/40 border border-white/5 rounded-3xl p-6 h-48 overflow-y-auto text-[10px] text-white/40 space-y-2 flex flex-col-reverse">
                 {battleLog.map((log, i) => (
                   <p key={i} className={i === 0 ? "text-amber-400 font-bold" : ""}>
                     {`> ${log}`}
@@ -196,7 +196,7 @@ export default function ContractBossFight({ lead, onWin, onCancel }: Props) {
           {/* Player Actions */}
           <div className="space-y-6">
              <div className="grid grid-cols-1 gap-4">
-                <p className="text-white font-black text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
+                <p className="text-white font-bold text-xs uppercase tracking-wide mb-2 flex items-center gap-2">
                    <Sword size={16} className="text-amber-500 uppercase" /> Scegli la tua Mossa:
                 </p>
                 {currentObjection.solutions.map((sol, i) => (
@@ -206,14 +206,14 @@ export default function ContractBossFight({ lead, onWin, onCancel }: Props) {
                     className="group relative bg-white/5 hover:bg-amber-500 border-2 border-white/10 hover:border-amber-400 p-6 rounded-3xl text-left transition-all hover:scale-[1.02] active:scale-95 overflow-hidden"
                   >
                      <div className="flex justify-between items-center mb-2">
-                        <span className="font-black text-white group-hover:text-gray-900 uppercase tracking-tighter text-lg">
+                        <span className="font-bold text-white group-hover:text-gray-900 uppercase tracking-tighter text-lg">
                            {sol.label}
                         </span>
-                        <span className="bg-amber-500 group-hover:bg-gray-900 text-white p-2 rounded-xl text-xs font-black">
+                        <span className="bg-amber-500 group-hover:bg-gray-900 text-white p-2 rounded-xl text-xs font-bold">
                            ATK: {sol.damage}
                         </span>
                      </div>
-                     <p className="text-xs font-bold text-white/40 group-hover:text-gray-900/60 uppercase tracking-widest">
+                     <p className="text-xs font-bold text-white/40 group-hover:text-gray-900/60 uppercase tracking-wide">
                        {sol.tip}
                      </p>
                   </button>
@@ -223,7 +223,7 @@ export default function ContractBossFight({ lead, onWin, onCancel }: Props) {
              <div className="pt-12 text-center">
                 <button 
                   onClick={onCancel}
-                  className="text-white/30 hover:text-white font-black uppercase text-[10px] tracking-widest flex items-center gap-2 mx-auto transition-all"
+                  className="text-white/30 hover:text-white font-bold uppercase text-[10px] tracking-wide flex items-center gap-2 mx-auto transition-all"
                 >
                   <XCircle size={16} /> Ritirati (Annulla Trattativa)
                 </button>

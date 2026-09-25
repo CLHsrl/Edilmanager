@@ -12,12 +12,5 @@ export default async function ClientsPage(props: { searchParams: Promise<{ query
         aziende: clients.filter(c => c.type === 'COMPANY').length,
     };
 
-    return (
-        <div className="page-content">
-            <ClientsClient 
-                clients={clients as any} 
-                stats={stats} 
-            />
-        </div>
-    );
+    return <ClientsClient clients={clients as any} stats={stats} />;
 }

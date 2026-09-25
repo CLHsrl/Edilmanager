@@ -19,11 +19,11 @@ export default function SchedaAttrezzo({ attrezzo }: SchedaAttrezzoProps) {
               <Wrench size={32} />
             </div>
             <div>
-              <h2 className="text-2xl font-black text-gray-900 leading-tight">{attrezzo.nome}</h2>
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{attrezzo.targa || 'Nessuna targa'}</p>
+              <h2 className="text-2xl font-bold text-gray-900 leading-tight">{attrezzo.nome}</h2>
+              <p className="text-xs font-bold text-gray-500 uppercase tracking-wide">{attrezzo.targa || 'Nessuna targa'}</p>
             </div>
           </div>
-          <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${
+          <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide ${
             attrezzo.stato === 'DISPONIBILE' ? 'bg-green-100 text-green-700' :
             attrezzo.stato === 'IN_USO' ? 'bg-blue-100 text-blue-700' :
             'bg-red-100 text-red-700'
@@ -38,7 +38,7 @@ export default function SchedaAttrezzo({ attrezzo }: SchedaAttrezzoProps) {
         <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
           <div className="flex items-center gap-2 mb-4 text-gray-400">
             <MapPin size={16} />
-            <span className="text-[10px] font-black uppercase tracking-widest">Cantiere Attuale</span>
+            <span className="text-[10px] font-bold uppercase tracking-wide">Cantiere Attuale</span>
           </div>
           <p className="font-bold text-gray-900">{attrezzo.project?.name || 'Nessun cantiere'}</p>
           <p className="text-xs text-gray-500 mt-1">{attrezzo.project?.indirizzo || 'Disponibile in magazzino'}</p>
@@ -47,7 +47,7 @@ export default function SchedaAttrezzo({ attrezzo }: SchedaAttrezzoProps) {
         <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
           <div className="flex items-center gap-2 mb-4 text-gray-400">
             <User size={16} />
-            <span className="text-[10px] font-black uppercase tracking-widest">Responsabile / Dipendente</span>
+            <span className="text-[10px] font-bold uppercase tracking-wide">Responsabile / Dipendente</span>
           </div>
           <p className="font-bold text-gray-900">{attrezzo.dipendente ? `${attrezzo.dipendente.nome} ${attrezzo.dipendente.cognome || ''}` : 'Nessun dipendente'}</p>
           <p className="text-xs text-gray-500 mt-1">{attrezzo.dipendente?.tipo || 'Non assegnato'}</p>
@@ -59,10 +59,10 @@ export default function SchedaAttrezzo({ attrezzo }: SchedaAttrezzoProps) {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <History size={18} className={isManutenzioneScaduta ? 'text-red-600' : 'text-green-600'} />
-            <span className="text-xs font-black uppercase tracking-widest">Manutenzione & Revisione</span>
+            <span className="text-xs font-bold uppercase tracking-wide">Manutenzione & Revisione</span>
           </div>
           {isManutenzioneScaduta && (
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-red-600 text-white rounded-full text-[9px] font-black animate-pulse">
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-red-600 text-white rounded-full text-[9px] font-bold animate-pulse">
               <AlertCircle size={12} /> SCADUTA
             </div>
           )}
@@ -71,13 +71,13 @@ export default function SchedaAttrezzo({ attrezzo }: SchedaAttrezzoProps) {
         <div className="flex items-end justify-between">
           <div>
             <p className="text-[10px] text-gray-500 uppercase font-bold mb-1">Ultimi Intervento</p>
-            <p className="text-lg font-black text-gray-900">
+            <p className="text-lg font-bold text-gray-900">
               {attrezzo.dataManutenzione 
                 ? new Date(attrezzo.dataManutenzione).toLocaleDateString('it-IT', { day: '2-digit', month: 'long', year: 'numeric' })
                 : 'Dato non inserito'}
             </p>
           </div>
-          <button className="text-[10px] font-black uppercase tracking-widest text-blue-600 hover:underline">
+          <button className="text-[10px] font-bold uppercase tracking-wide text-blue-600 hover:underline">
             Aggiorna registro
           </button>
         </div>
@@ -85,7 +85,7 @@ export default function SchedaAttrezzo({ attrezzo }: SchedaAttrezzoProps) {
 
       {/* Compliance & Documenti */}
       <div className="space-y-4">
-        <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 ml-1">Documentazione Tecnica</h3>
+        <h3 className="text-xs font-bold uppercase tracking-wide text-gray-400 ml-1">Documentazione Tecnica</h3>
         <div className="grid grid-cols-1 gap-2">
           {attrezzo.documenti?.length > 0 ? (
             attrezzo.documenti.map((doc: any) => (
@@ -108,7 +108,7 @@ export default function SchedaAttrezzo({ attrezzo }: SchedaAttrezzoProps) {
             ))
           ) : (
             <div className="text-center py-10 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
-              <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Nessun documento caricato</p>
+              <p className="text-xs text-gray-400 font-bold uppercase tracking-wide">Nessun documento caricato</p>
             </div>
           )}
         </div>
@@ -117,7 +117,7 @@ export default function SchedaAttrezzo({ attrezzo }: SchedaAttrezzoProps) {
       {/* Note Speciali */}
       {attrezzo.note && (
         <div className="bg-yellow-50 rounded-xl p-5 border border-yellow-100">
-          <h4 className="text-[10px] font-black uppercase tracking-widest text-yellow-800 mb-2">Note Operative</h4>
+          <h4 className="text-[10px] font-bold uppercase tracking-wide text-yellow-800 mb-2">Note Operative</h4>
           <p className="text-sm text-yellow-900/80 leading-relaxed font-medium">
             {attrezzo.note}
           </p>

@@ -6,16 +6,16 @@ export default async function BIPage() {
   const data = await getBIStats();
 
   return (
-    <div className="flex flex-col gap-10 pb-20 reveal">
-      {/* Unified Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 no-print">
+    <div className="flex flex-col gap-6 pb-12">
+      {/* Header Card */}
+      <div className="bg-white border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="page-label">
-            <TrendingUp className="text-blue-600" size={14} />
-            Predictive Analytics & Intelligence
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-1">
+            <TrendingUp size={14} className="text-[#003F61]" />
+            <span>Strategia / Business Intelligence & Analytics</span>
           </div>
-          <h1 className="page-title">BI Analytics</h1>
-          <p className="page-description">Previsioni finanziarie e analisi marginalità profonda per cantiere</p>
+          <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">BI Analytics & Previsioni</h1>
+          <p className="text-sm text-slate-500 mt-1">Analisi avanzata della marginalità per cantiere, forecast di cassa a 6 mesi e controllo scostamenti.</p>
         </div>
       </div>
 

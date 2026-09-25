@@ -46,7 +46,7 @@ export default function ContattiPage() {
     };
 
     return (
-        <div className="bg-white min-h-screen font-manrope relative">
+        <div className="bg-white min-h-screen relative">
             <section className="pt-28 lg:pt-40 pb-12 lg:pb-20 bg-navy-deep text-white relative min-h-screen flex items-center overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-edil-blue/5 blur-3xl rounded-full"></div>
                 

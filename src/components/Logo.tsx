@@ -8,29 +8,25 @@ interface LogoProps {
 
 export default function Logo({ variant = 'dark', href = '/', className = '' }: LogoProps) {
     const isLight = variant === 'light';
-    
-    const markStyles = isLight
-        ? 'bg-white text-slate-900'
-        : 'bg-slate-900 text-white';
-        
-    const textStyles = isLight
-        ? 'text-white'
-        : 'text-slate-900';
+    const mainTextColor = isLight ? 'text-white' : 'text-[#003F61]';
+    const subColor = isLight ? 'text-white/60' : 'text-slate-500';
 
     const inner = (
-        <div className={`flex items-center gap-3 ${className}`}>
-            <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-black text-lg shadow-sm ${markStyles}`}>
-                E
-            </div>
-            <span className={`font-black text-xl tracking-tighter uppercase ${textStyles}`}>
-                EdilManager
+        <div className={`flex flex-col ${className}`}>
+            <span className="font-bold text-xl leading-tight uppercase tracking-tight">
+                <span className={mainTextColor}>EDIL</span>
+                <span className="text-[#FEDE59]">MANAGER</span>
+                <span className={mainTextColor}>24</span>
+            </span>
+            <span className={`text-[10px] tracking-wider font-medium ${subColor}`}>
+                by RifacciamoCasa
             </span>
         </div>
     );
 
     if (!href) return inner;
     return (
-        <Link href={href} className="group transition-transform hover:scale-[1.02] active:scale-[0.98]">
+        <Link href={href} className="group transition-transform hover:opacity-90">
             {inner}
         </Link>
     );

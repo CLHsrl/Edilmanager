@@ -26,8 +26,8 @@ export default function IntegrationsMap() {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="flex flex-col lg:flex-row items-center gap-16">
                     <div className="lg:w-1/2">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-[10px] font-black uppercase tracking-widest mb-6 border border-slate-200">Ecosistema Connesso</div>
-                        <h2 className="text-4xl font-black text-slate-900 tracking-tighter mb-6 leading-tight">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-[10px] font-bold uppercase tracking-wide mb-6 border border-slate-200">Ecosistema Connesso</div>
+                        <h2 className="text-4xl font-bold text-slate-900 tracking-tighter mb-6 leading-tight">
                             Il cuore pulsante della tua impresa,<br/>completamente integrato.
                         </h2>
                         <p className="text-lg text-slate-600 mb-8 leading-relaxed">
@@ -51,7 +51,7 @@ export default function IntegrationsMap() {
 
                     <div className="lg:w-1/2 relative h-[400px] flex items-center justify-center">
                         {/* Center Logo */}
-                        <div className="relative z-10 w-24 h-24 bg-slate-900 rounded-3xl shadow-2xl flex items-center justify-center text-white font-black text-3xl">
+                        <div className="relative z-10 w-24 h-24 bg-slate-900 rounded-3xl shadow-2xl flex items-center justify-center text-white font-bold text-3xl">
                             E
                         </div>
 
@@ -78,7 +78,7 @@ export default function IntegrationsMap() {
                                         <div className="text-blue-600 group-hover:text-purple-600 transition-colors">
                                             {item.icon}
                                         </div>
-                                        <span className="text-[10px] font-black uppercase text-slate-400 group-hover:text-slate-900">{item.name}</span>
+                                        <span className="text-[10px] font-bold uppercase text-slate-400 group-hover:text-slate-900">{item.name}</span>
                                     </div>
                                 );
                             })}

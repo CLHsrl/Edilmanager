@@ -48,7 +48,7 @@ export default function PricingTable() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 relative z-10">
                 <button
                     onClick={() => setIsAnnual(false)}
-                    className={`text-sm font-black uppercase tracking-widest transition-colors ${!isAnnual ? 'text-slate-900' : 'text-slate-400'}`}
+                    className={`text-sm font-bold uppercase tracking-wide transition-colors ${!isAnnual ? 'text-slate-900' : 'text-slate-400'}`}
                 >
                     Mensile
                 </button>
@@ -63,11 +63,11 @@ export default function PricingTable() {
                 <div className="flex items-center gap-2">
                     <button
                         onClick={() => setIsAnnual(true)}
-                        className={`text-sm font-black uppercase tracking-widest transition-colors ${isAnnual ? 'text-slate-900' : 'text-slate-400'}`}
+                        className={`text-sm font-bold uppercase tracking-wide transition-colors ${isAnnual ? 'text-slate-900' : 'text-slate-400'}`}
                     >
                         Annuale
                     </button>
-                    <div className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1 border border-blue-100">
+                    <div className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide flex items-center gap-1 border border-blue-100">
                         <Zap size={10} /> Risparmia 2 mesi
                     </div>
                 </div>
@@ -83,19 +83,19 @@ export default function PricingTable() {
                             className={`relative p-10 rounded-[2.5rem] backdrop-blur-xl border transition-all duration-500 group overflow-hidden ${isPopular ? 'bg-blue-50/30 border-blue-200/50 shadow-2xl' : 'bg-white/70 border-white shadow-lg'}`}
                         >
                             {isPopular && (
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-xl shadow-blue-200 flex items-center gap-1.5 z-20">
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-6 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wide shadow-xl shadow-blue-200 flex items-center gap-1.5 z-20">
                                     <Zap size={10} /> Più Scelto
                                 </div>
                             )}
                             
                             <div className="mb-10">
-                                <div className={`text-[10px] font-black uppercase tracking-[0.2em] mb-3 ${isPopular ? 'text-blue-600' : 'text-slate-400'}`}>{plan.name}</div>
+                                <div className={`text-[10px] font-bold uppercase tracking-wide mb-3 ${isPopular ? 'text-blue-600' : 'text-slate-400'}`}>{plan.name}</div>
                                 <p className="text-sm text-slate-500 mb-8 leading-relaxed font-medium">{plan.desc}</p>
                                 {price !== null ? (
                                     <div>
                                         <div className="flex items-baseline gap-1.5 mb-2">
                                             <span className="text-lg font-bold text-slate-500">€</span>
-                                            <span className="text-6xl font-black text-slate-900 tracking-tighter">{price}</span>
+                                            <span className="text-6xl font-bold text-slate-900 tracking-tighter">{price}</span>
                                             <span className="text-slate-400 font-bold text-sm">/mese</span>
                                         </div>
                                         {isAnnual && (
@@ -106,7 +106,7 @@ export default function PricingTable() {
                                     </div>
                                 ) : (
                                     <div className="flex items-baseline gap-1.5">
-                                        <span className="text-5xl font-black text-slate-900 tracking-tighter">Custom</span>
+                                        <span className="text-5xl font-bold text-slate-900 tracking-tighter">Custom</span>
                                     </div>
                                 )}
                             </div>
@@ -126,7 +126,7 @@ export default function PricingTable() {
 
                             <Link 
                                 href="/#contatti"
-                                className={`w-full py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center transition-all ${isPopular ? 'bg-blue-600 text-white hover:bg-slate-900 shadow-xl shadow-blue-200' : 'bg-slate-900 text-white hover:bg-blue-600 shadow-lg'}`}
+                                className={`w-full py-5 rounded-2xl font-bold uppercase tracking-wide text-[10px] flex items-center justify-center transition-all ${isPopular ? 'bg-blue-600 text-white hover:bg-slate-900 shadow-xl shadow-blue-200' : 'bg-slate-900 text-white hover:bg-blue-600 shadow-lg'}`}
                             >
                                 {plan.cta}
                             </Link>

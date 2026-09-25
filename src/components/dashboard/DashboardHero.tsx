@@ -27,14 +27,14 @@ export default function DashboardHero({ userName, activeWorkers, activeProjects 
             <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
                 <div>
                     <div className="flex items-center gap-3 mb-4">
-                        <div className="bg-amber-400 text-slate-950 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 shadow-lg">
+                        <div className="bg-amber-400 text-slate-950 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide flex items-center gap-1.5 shadow-lg">
                             <Cloud size={14} /> 22°C • Soleggiato
                         </div>
-                        <div className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+                        <div className="text-white/40 text-[10px] font-bold uppercase tracking-wide flex items-center gap-1.5">
                             <Clock size={14} /> {new Date().toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })}
                         </div>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter uppercase leading-none mb-3">
+                    <h1 className="text-4xl md:text-6xl font-bold italic tracking-tighter uppercase leading-none mb-3">
                         {greeting}, <span className="text-blue-400">{userName || 'Direttore'}</span>
                     </h1>
                     <p className="text-white/40 text-sm font-medium max-w-md">
@@ -48,8 +48,8 @@ export default function DashboardHero({ userName, activeWorkers, activeProjects 
                             <Users size={24} />
                         </div>
                         <div>
-                            <p className="text-2xl font-black">{activeWorkers}</p>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-white/40">In Cantiere</p>
+                            <p className="text-2xl font-bold">{activeWorkers}</p>
+                            <p className="text-[10px] font-bold uppercase tracking-wide text-white/40">In Cantiere</p>
                         </div>
                     </div>
 
@@ -58,8 +58,8 @@ export default function DashboardHero({ userName, activeWorkers, activeProjects 
                             <HardHat size={24} />
                         </div>
                         <div>
-                            <p className="text-2xl font-black">{activeProjects}</p>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Cantieri Attivi</p>
+                            <p className="text-2xl font-bold">{activeProjects}</p>
+                            <p className="text-[10px] font-bold uppercase tracking-wide text-white/40">Cantieri Attivi</p>
                         </div>
                     </div>
                 </div>
