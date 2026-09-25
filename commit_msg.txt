@@ -1,1 +1,1 @@
-feat: pagina login corporativa, brand colors, homepage redirect  
+fix: add missing TaskAssignmentSelect component, remove invalid Prisma dependencies include  

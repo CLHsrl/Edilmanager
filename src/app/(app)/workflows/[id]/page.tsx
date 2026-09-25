@@ -12,7 +12,6 @@ export default async function WorkflowDetailPage({ params }: { params: Promise<{
         where: { id },
         include: {
             assignedTo: { select: { id: true, name: true } },
-            dependencies: { include: { dependsOn: true } }
         }
     });
 
