@@ -1,7 +1,9 @@
-import { Menu, HardHat, Search, Bell, UserCircle } from 'lucide-react';
+import { Bell, UserCircle } from 'lucide-react';
 import Link from 'next/link';
 import SidebarLinks from '@/components/SidebarLinks';
 import AnomalyContainer from '@/components/AnomalyContainer';
+import MobileNav from '@/components/MobileNav';
+import MobileBottomNav from '@/components/MobileBottomNav';
 
 import { getServerSession } from '@/lib/auth-server';
 import { prisma } from '@/lib/prisma';
@@ -47,9 +49,7 @@ export default async function AppLayout({
         <header className="h-16 bg-white border-b border-slate-200 px-4 md:px-6 lg:px-8 shrink-0 z-40">
           <div className="max-w-[1400px] mx-auto h-full flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 flex-1">
-              <button className="md:hidden p-2 text-slate-500 hover:bg-slate-100">
-                <Menu size={20} />
-              </button>
+              <MobileNav user={user as any} />
               
               {/* Functional Advanced Search Bar */}
               <GlobalSearchBar />
@@ -73,7 +73,7 @@ export default async function AppLayout({
         </header>
 
         {/* Main Scrolling Area */}
-        <main className="flex-1 overflow-y-auto pt-3 md:pt-4 px-4 md:px-6 lg:px-8 pb-8 relative">
+        <main className="flex-1 overflow-y-auto pt-3 md:pt-4 px-4 md:px-6 lg:px-8 pb-24 md:pb-8 relative">
           <div className="max-w-[1400px] mx-auto">
             {/* Global Anomaly Check (renders margin only when alert exists) */}
             <AnomalyContainer />
@@ -82,6 +82,9 @@ export default async function AppLayout({
           </div>
         </main>
       </div>
+
+      {/* Mobile Bottom Navigation */}
+      <MobileBottomNav />
       
     </div>
   );

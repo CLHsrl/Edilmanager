@@ -181,3 +181,9 @@ td {
     display: none !important;
   }
 }
+
+/* ─── MOBILE SAFE AREA ──────────────────────────────────── */
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

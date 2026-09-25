@@ -1,1 +1,1 @@
-fix: add missing TaskAssignmentSelect component, remove invalid Prisma dependencies include  
+fix: mobile nav drawer, bottom nav, workflow buttons, role management settings  

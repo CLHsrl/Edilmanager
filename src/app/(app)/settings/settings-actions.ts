@@ -99,3 +99,52 @@ export async function getSettingsStats() {
     ]);
     return { projectsCount, clientsCount, lavoratoriCount, fattureCount };
 }
+
+// ─── GESTIONE RUOLI ───────────────────────────────────────────────────────────
+
+export async function getStaffUsers() {
+    return prisma.user.findMany({
+        select: { id: true, name: true, email: true, role: true },
+        orderBy: { name: 'asc' },
+    });
+}
+
+/** Cambia il ruolo di un utente specifico (solo ADMIN può farlo) */
+export async function updateUserRole(formData: FormData) {
+    const session = await getServerSession();
+    if (session.role !== 'ADMIN') throw new Error('Accesso negato.');
+
+    const userId = formData.get('userId') as string;
+    const newRole = formData.get('role') as string;
+
+    const validRoles = ['ADMIN', 'PM', 'ACCOUNTANT', 'WORKER', 'VIEWER'];
+    if (!validRoles.includes(newRole)) throw new Error('Ruolo non valido.');
+
+    await prisma.user.update({
+        where: { id: userId },
+        data: { role: newRole },
+    });
+
+    await logAuditEvent('UPDATE_USER_ROLE', userId, `Ruolo aggiornato a ${newRole}`, session.userId);
+    revalidatePath('/settings');
+    revalidatePath('/settings/profile');
+}
+
+/** Trasferisce il ruolo ADMIN a un altro utente e abbassa l'admin corrente a PM */
+export async function transferAdmin(formData: FormData) {
+    const session = await getServerSession();
+    if (session.role !== 'ADMIN') throw new Error('Accesso negato.');
+
+    const newAdminId = formData.get('newAdminId') as string;
+    if (!newAdminId) throw new Error('Seleziona un utente.');
+    if (newAdminId === session.userId) throw new Error('Sei già l\'admin.');
+
+    // Transazione atomica: promuovi il nuovo admin, abbassa il corrente
+    await prisma.$transaction([
+        prisma.user.update({ where: { id: newAdminId },    data: { role: 'ADMIN' } }),
+        prisma.user.update({ where: { id: session.userId }, data: { role: 'PM' } }),
+    ]);
+
+    await logAuditEvent('TRANSFER_ADMIN', newAdminId, `Ruolo ADMIN trasferito dall\'utente ${session.userId}`, session.userId);
+    revalidatePath('/settings');
+}

@@ -46,11 +46,11 @@ export default function WorkflowsClient({ initialTasks, users, lavoratori }: Pro
                     <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">Workflow & Attività</h1>
                     <p className="text-sm text-slate-500 mt-1">Pianificazione task di cantiere, scadenze operative e assegnazione maestranze.</p>
                 </div>
-                <div className="flex items-center gap-3">
-                    <div className="flex border border-slate-200">
+                <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex border border-slate-200 w-full sm:w-auto">
                         <button 
                             onClick={() => setView('calendar')}
-                            className={`px-3 py-2 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer ${
+                            className={`flex-1 sm:flex-none px-3 py-2 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                                 view === 'calendar' ? 'bg-[#003F61] text-white' : 'bg-white text-slate-700 hover:bg-slate-50'
                             }`}
                         >
@@ -58,7 +58,7 @@ export default function WorkflowsClient({ initialTasks, users, lavoratori }: Pro
                         </button>
                         <button 
                             onClick={() => setView('board')}
-                            className={`px-3 py-2 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer border-l border-slate-200 ${
+                            className={`flex-1 sm:flex-none px-3 py-2 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer border-l border-slate-200 ${
                                 view === 'board' ? 'bg-[#003F61] text-white' : 'bg-white text-slate-700 hover:bg-slate-50'
                             }`}
                         >
@@ -66,7 +66,7 @@ export default function WorkflowsClient({ initialTasks, users, lavoratori }: Pro
                         </button>
                         <button 
                             onClick={() => setView('table')}
-                            className={`px-3 py-2 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer border-l border-slate-200 ${
+                            className={`flex-1 sm:flex-none px-3 py-2 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer border-l border-slate-200 ${
                                 view === 'table' ? 'bg-[#003F61] text-white' : 'bg-white text-slate-700 hover:bg-slate-50'
                             }`}
                         >
@@ -76,7 +76,7 @@ export default function WorkflowsClient({ initialTasks, users, lavoratori }: Pro
 
                     <Link 
                         href="/workflows/new" 
-                        className="h-10 px-4 bg-[#003F61] text-white hover:bg-[#002f49] text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
+                        className="w-full sm:w-auto h-10 px-4 bg-[#003F61] text-white hover:bg-[#002f49] text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     >
                         <Plus size={16} /> Nuova Attività
                     </Link>
