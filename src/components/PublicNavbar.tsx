@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ArrowRight, ShieldCheck, PhoneCall, Building2 } from 'lucide-react';
+import { Menu, X, ArrowRight, ShieldCheck, PhoneCall } from 'lucide-react';
 import Logo from '@/components/Logo';
 
 export default function PublicNavbar() {
@@ -10,92 +10,86 @@ export default function PublicNavbar() {
 
     return (
         <header className="sticky top-0 left-0 right-0 z-50 bg-[#003F61] text-white border-b border-white/10 shadow-lg">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-                {/* Logo */}
-                <div className="flex items-center gap-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+                
+                {/* Left: Brand Logo */}
+                <div className="flex items-center gap-4 shrink-0">
                     <Logo variant="light" href="/" />
-                    <div className="hidden xl:inline-flex items-center gap-2 bg-[#FEDE59]/15 border border-[#FEDE59]/30 px-2.5 py-0.5">
+                    <div className="hidden 2xl:inline-flex items-center gap-2 bg-[#FEDE59]/15 border border-[#FEDE59]/30 px-2.5 py-0.5">
                         <span className="w-1.5 h-1.5 bg-[#FEDE59]" />
-                        <span className="text-[#FEDE59] text-[9px] font-black uppercase tracking-widest">
+                        <span className="text-[#FEDE59] text-[9px] font-black uppercase tracking-widest whitespace-nowrap">
                             Gestionale Edile Professionale
                         </span>
                     </div>
                 </div>
 
-                {/* Desktop Navigation Links */}
-                <nav className="hidden lg:flex items-center gap-8 font-bold text-xs uppercase tracking-wider text-white/80">
-                    <a href="#moduli" className="hover:text-[#FEDE59] transition-colors py-2">
-                        Moduli & Cantieri
+                {/* Center: Desktop Navigation Links (only on xl+ to completely prevent overlaps) */}
+                <nav className="hidden xl:flex items-center gap-7 font-bold text-xs uppercase tracking-wider text-white/80 shrink-0">
+                    <a href="#moduli" className="hover:text-[#FEDE59] transition-colors py-2 whitespace-nowrap">
+                        Funzionalità
                     </a>
-                    <a href="#dashboard-anteprima" className="hover:text-[#FEDE59] transition-colors py-2">
+                    <a href="#dashboard-anteprima" className="hover:text-[#FEDE59] transition-colors py-2 whitespace-nowrap">
                         Dashboard Live
                     </a>
-                    <a href="#confronto" className="hover:text-[#FEDE59] transition-colors py-2">
-                        Metodo Tradizionale vs E24
+                    <a href="#confronto" className="hover:text-[#FEDE59] transition-colors py-2 whitespace-nowrap">
+                        Confronto
                     </a>
-                    <a href="#prezzi" className="hover:text-[#FEDE59] transition-colors py-2">
-                        Piani & Licenze
+                    <a href="#prezzi" className="hover:text-[#FEDE59] transition-colors py-2 whitespace-nowrap">
+                        Prezzi
                     </a>
-                    <a href="#contatti" className="hover:text-[#FEDE59] transition-colors py-2">
+                    <a href="#contatti" className="hover:text-[#FEDE59] transition-colors py-2 whitespace-nowrap">
                         Contatti
                     </a>
                 </nav>
 
-                {/* Desktop Action Buttons */}
-                <div className="hidden sm:flex items-center gap-3">
+                {/* Right: Actions */}
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                     <Link 
                         href="/login" 
-                        className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white border border-white/20 hover:border-white/40 hover:bg-white/10 px-4 py-2.5 transition-all"
+                        className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white border border-white/20 hover:border-white/40 hover:bg-white/10 px-3 sm:px-4 py-2 transition-all whitespace-nowrap"
                     >
-                        <ShieldCheck size={15} className="text-[#FEDE59]" />
+                        <ShieldCheck size={14} className="text-[#FEDE59]" />
                         <span>Accedi</span>
                     </Link>
+                    
                     <a 
                         href="#contatti" 
-                        className="flex items-center gap-2 bg-[#FEDE59] hover:bg-[#e5c74f] text-[#003F61] px-5 py-2.5 text-xs font-black uppercase tracking-wider transition-all shadow-md"
+                        className="hidden sm:flex items-center gap-1.5 bg-[#FEDE59] hover:bg-[#e5c74f] text-[#003F61] px-4 py-2 text-xs font-black uppercase tracking-wider transition-all shadow-md whitespace-nowrap"
                     >
                         <span>Richiedi Demo</span>
-                        <ArrowRight size={14} />
+                        <ArrowRight size={13} />
                     </a>
-                </div>
 
-                {/* Mobile Menu Button */}
-                <div className="flex items-center gap-2 sm:hidden">
-                    <Link
-                        href="/login"
-                        className="text-[11px] font-bold uppercase tracking-wider bg-white/10 text-white px-3 py-1.5 border border-white/20"
-                    >
-                        Accedi
-                    </Link>
+                    {/* Hamburger Button for mobile and tablets (< xl) */}
                     <button 
-                        className="p-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors focus:outline-none"
+                        className="xl:hidden p-2 text-white/90 hover:text-white hover:bg-white/10 transition-colors focus:outline-none"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label="Menu"
+                        aria-label="Toggle navigation menu"
                     >
-                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
                     </button>
                 </div>
             </div>
 
-            {/* Mobile Navigation Drawer */}
+            {/* Mobile / Tablet Dropdown Drawer (Positioned absolute below header to prevent any overlapping) */}
             {isMenuOpen && (
-                <div className="lg:hidden bg-[#002b42] border-t border-white/10 px-6 py-6 space-y-5 shadow-2xl animate-in slide-in-from-top duration-200">
+                <div className="xl:hidden absolute top-full left-0 right-0 w-full bg-[#00273D] border-b border-white/15 px-6 py-6 space-y-5 shadow-2xl z-50 animate-in slide-in-from-top-2 duration-200">
                     <div className="text-[10px] font-bold uppercase tracking-widest text-[#FEDE59]">
                         Navigazione Piattaforma
                     </div>
-                    <nav className="flex flex-col gap-3 text-sm font-semibold text-white/90">
+                    <nav className="flex flex-col gap-1 text-sm font-semibold text-white/90">
                         <a 
                             href="#moduli" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="flex items-center justify-between py-2 border-b border-white/10 hover:text-[#FEDE59]"
+                            className="flex items-center justify-between py-2.5 border-b border-white/10 hover:text-[#FEDE59] transition-colors"
                         >
-                            <span>Moduli & Cantieri</span>
+                            <span>Funzionalità & Moduli</span>
                             <ArrowRight size={14} className="text-white/40" />
                         </a>
                         <a 
                             href="#dashboard-anteprima" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="flex items-center justify-between py-2 border-b border-white/10 hover:text-[#FEDE59]"
+                            className="flex items-center justify-between py-2.5 border-b border-white/10 hover:text-[#FEDE59] transition-colors"
                         >
                             <span>Anteprima Dashboard</span>
                             <ArrowRight size={14} className="text-white/40" />
@@ -103,25 +97,25 @@ export default function PublicNavbar() {
                         <a 
                             href="#confronto" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="flex items-center justify-between py-2 border-b border-white/10 hover:text-[#FEDE59]"
+                            className="flex items-center justify-between py-2.5 border-b border-white/10 hover:text-[#FEDE59] transition-colors"
                         >
-                            <span>Confronto vs Metodo Tradizionale</span>
+                            <span>Confronto: Excel vs E24</span>
                             <ArrowRight size={14} className="text-white/40" />
                         </a>
                         <a 
                             href="#prezzi" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="flex items-center justify-between py-2 border-b border-white/10 hover:text-[#FEDE59]"
+                            className="flex items-center justify-between py-2.5 border-b border-white/10 hover:text-[#FEDE59] transition-colors"
                         >
-                            <span>Piani & Licenze</span>
+                            <span>Piani & Prezzi</span>
                             <ArrowRight size={14} className="text-white/40" />
                         </a>
                         <a 
                             href="#contatti" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="flex items-center justify-between py-2 border-b border-white/10 hover:text-[#FEDE59]"
+                            className="flex items-center justify-between py-2.5 border-b border-white/10 hover:text-[#FEDE59] transition-colors"
                         >
-                            <span>Richiedi Consulenza</span>
+                            <span>Richiedi Demo Guidata</span>
                             <ArrowRight size={14} className="text-white/40" />
                         </a>
                     </nav>
@@ -130,20 +124,11 @@ export default function PublicNavbar() {
                         <Link 
                             href="/login" 
                             onClick={() => setIsMenuOpen(false)}
-                            className="w-full bg-white text-[#003F61] py-3 text-center text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2"
+                            className="w-full bg-[#FEDE59] text-[#003F61] py-3 text-center text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md"
                         >
                             <ShieldCheck size={16} />
-                            <span>Entra nel Gestionale</span>
+                            <span>Accedi al Gestionale</span>
                         </Link>
-                        <a 
-                            href="https://wa.me/393331234567" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="w-full bg-[#25D366] text-white py-3 text-center text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
-                        >
-                            <PhoneCall size={15} />
-                            <span>Parla con un Consulente Edile</span>
-                        </a>
                     </div>
                 </div>
             )}

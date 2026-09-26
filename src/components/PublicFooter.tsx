@@ -17,7 +17,7 @@ export default function PublicFooter() {
                     <div className="pt-2 flex flex-col gap-2.5 text-xs text-white/60">
                         <div className="flex items-center gap-2.5">
                             <Building2 size={15} className="text-[#FEDE59]" />
-                            <span>Progetto sviluppato da RifacciamoCasa Srl</span>
+                            <span>Progetto sviluppato da RifacciamoCasa by CLH Srl</span>
                         </div>
                         <div className="flex items-center gap-2.5">
                             <Shield size={15} className="text-emerald-400" />

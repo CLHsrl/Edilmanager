@@ -62,7 +62,7 @@ export default function LoginPage() {
 
                 {/* Logo */}
                 <div>
-                    <Logo variant="light" href="" />
+                    <Logo variant="light" href="/" />
                 </div>
 
                 {/* Tagline & Presentation */}
@@ -110,7 +110,7 @@ export default function LoginPage() {
                 {/* Mobile Top Brand Header (Clean, No menu, matching Desktop Hero) */}
                 <div className="lg:hidden flex flex-col items-center text-center mb-3">
                     <div className="mb-2">
-                        <Logo variant="light" href="" />
+                        <Logo variant="light" href="/" />
                     </div>
                     <div className="inline-flex items-center gap-1.5 bg-[#FEDE59]/15 border border-[#FEDE59]/30 px-2.5 py-0.5 mb-1.5">
                         <span className="w-1.5 h-1.5 bg-[#FEDE59]" />
