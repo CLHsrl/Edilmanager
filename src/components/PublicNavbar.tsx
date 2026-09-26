@@ -15,12 +15,6 @@ export default function PublicNavbar() {
                 {/* Left: Brand Logo */}
                 <div className="flex items-center gap-4 shrink-0">
                     <Logo variant="light" href="/" />
-                    <div className="hidden 2xl:inline-flex items-center gap-2 bg-[#FEDE59]/15 border border-[#FEDE59]/30 px-2.5 py-0.5">
-                        <span className="w-1.5 h-1.5 bg-[#FEDE59]" />
-                        <span className="text-[#FEDE59] text-[9px] font-black uppercase tracking-widest whitespace-nowrap">
-                            Gestionale Edile Professionale
-                        </span>
-                    </div>
                 </div>
 
                 {/* Center: Desktop Navigation Links (only on xl+ to completely prevent overlaps) */}
