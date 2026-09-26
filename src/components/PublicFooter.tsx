@@ -68,16 +68,12 @@ export default function PublicFooter() {
                     </h4>
                     <ul className="space-y-3 text-xs font-medium">
                         <li className="flex items-center gap-2 text-white/80">
-                            <Phone size={14} className="text-[#FEDE59]" />
-                            <a href="tel:+393331234567" className="hover:text-white">+39 333 123 4567</a>
-                        </li>
-                        <li className="flex items-center gap-2 text-white/80">
                             <Mail size={14} className="text-[#FEDE59]" />
                             <a href="mailto:info@edilmanager24.it" className="hover:text-white">info@edilmanager24.it</a>
                         </li>
-                        <li className="flex items-start gap-2 text-white/60 pt-1">
-                            <MapPin size={14} className="text-[#FEDE59] shrink-0 mt-0.5" />
-                            <span>Sede Operativa: Milano / Roma • Italia</span>
+                        <li className="flex items-center gap-2 text-white/80">
+                            <Building2 size={14} className="text-[#FEDE59]" />
+                            <span>CLH Srl</span>
                         </li>
                     </ul>
                 </div>
@@ -87,7 +83,7 @@ export default function PublicFooter() {
             <div className="border-t border-white/10 bg-[#001f30]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-white/40 font-medium">
                     <p>
-                        © {new Date().getFullYear()} EDILMANAGER24 • RifacciamoCasa Srl — P.IVA IT01234567890. Tutti i diritti riservati.
+                        © {new Date().getFullYear()} EDILMANAGER24 • CLH Srl. Tutti i diritti riservati.
                     </p>
                     <div className="flex items-center gap-6">
                         <span className="text-white/60">Software Gestionale Edile Professionale</span>
