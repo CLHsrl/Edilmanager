@@ -132,7 +132,7 @@ export default function LoginPage() {
                             Accesso al sistema
                         </p>
                         <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">
-                            Benvenuto in Edilmanager24
+                            Benvenuto in RifacciamoCasa
                         </h1>
                         <p className="text-xs text-slate-500 mt-1">
                             Inserisci le tue credenziali per accedere allo spazio di lavoro.
