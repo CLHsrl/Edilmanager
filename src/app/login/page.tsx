@@ -104,11 +104,11 @@ export default function LoginPage() {
                 <div className="absolute bottom-20 right-6 w-48 h-48 border border-white/5" />
             </div>
 
-            {/* ─── FORM CONTAINER (Mobile: Centered on Blue / Desktop: Right Side on Slate) ─── */}
-            <div className="flex-1 flex flex-col items-center justify-center pt-3 pb-6 px-4 sm:p-8 lg:p-16 relative z-10 my-auto min-h-screen lg:min-h-0">
+            {/* ─── FORM CONTAINER (Mobile: Top-aligned on Blue / Desktop: Centered on Slate) ─── */}
+            <div className="flex-1 flex flex-col items-center justify-start lg:justify-center pt-5 pb-8 px-4 sm:p-8 lg:p-16 relative z-10 my-0 lg:my-auto min-h-screen lg:min-h-0">
                 
                 {/* Mobile Top Brand Header (Clean, No menu, matching Desktop Hero) */}
-                <div className="lg:hidden flex flex-col items-center text-center mb-3 pt-1">
+                <div className="lg:hidden flex flex-col items-center text-center mb-3">
                     <div className="mb-2">
                         <Logo variant="light" href="" />
                     </div>
