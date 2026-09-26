@@ -105,42 +105,42 @@ export default function LoginPage() {
             </div>
 
             {/* ─── FORM CONTAINER (Mobile: Centered on Blue / Desktop: Right Side on Slate) ─── */}
-            <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 lg:p-16 relative z-10 my-auto min-h-screen lg:min-h-0">
+            <div className="flex-1 flex flex-col items-center justify-center pt-3 pb-6 px-4 sm:p-8 lg:p-16 relative z-10 my-auto min-h-screen lg:min-h-0">
                 
                 {/* Mobile Top Brand Header (Clean, No menu, matching Desktop Hero) */}
-                <div className="lg:hidden flex flex-col items-center text-center mb-6 pt-4">
-                    <div className="mb-4">
+                <div className="lg:hidden flex flex-col items-center text-center mb-3 pt-1">
+                    <div className="mb-2">
                         <Logo variant="light" href="" />
                     </div>
-                    <div className="inline-flex items-center gap-1.5 bg-[#FEDE59]/15 border border-[#FEDE59]/30 px-3 py-1 mb-2">
+                    <div className="inline-flex items-center gap-1.5 bg-[#FEDE59]/15 border border-[#FEDE59]/30 px-2.5 py-0.5 mb-1.5">
                         <span className="w-1.5 h-1.5 bg-[#FEDE59]" />
-                        <span className="text-[#FEDE59] text-[10px] font-black uppercase tracking-widest">
+                        <span className="text-[#FEDE59] text-[9px] font-black uppercase tracking-widest">
                             Gestionale Edile Professionale
                         </span>
                     </div>
-                    <p className="text-white/80 text-xs font-medium">
+                    <p className="text-white/80 text-[11px] font-medium">
                         Cantieri, finanze e squadre sotto controllo
                     </p>
                 </div>
 
                 {/* Login Card */}
-                <div className="w-full max-w-sm sm:max-w-md bg-white border border-slate-200 shadow-2xl p-6 sm:p-10">
+                <div className="w-full max-w-sm sm:max-w-md bg-white border border-slate-200 shadow-2xl p-5 sm:p-10">
 
                     {/* Section Header */}
-                    <div className="mb-6">
-                        <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                    <div className="mb-4 sm:mb-6">
+                        <p className="text-[10px] sm:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-0.5">
                             Accesso al sistema
                         </p>
-                        <h1 className="text-2xl font-bold text-[#003F61] tracking-tight">
+                        <h1 className="text-xl sm:text-2xl font-bold text-[#003F61] tracking-tight">
                             Benvenuto in RifacciamoCasa
                         </h1>
-                        <p className="text-xs text-slate-500 mt-1">
+                        <p className="text-xs text-slate-500 mt-0.5 sm:mt-1">
                             Inserisci le tue credenziali per accedere allo spazio di lavoro.
                         </p>
                     </div>
 
                     {/* Tab toggle (Staff vs Client) */}
-                    <div className="flex border border-slate-200 bg-slate-50 mb-6">
+                    <div className="flex border border-slate-200 bg-slate-50 mb-4 sm:mb-6">
                         <button
                             type="button"
                             onClick={() => { setLoginType('STAFF'); setErrorMsg(''); setIdentifier(''); setPassword(''); }}
