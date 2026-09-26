@@ -95,18 +95,24 @@ export default function PublicHomePage() {
                         </div>
 
                         {/* Micro Trust Indicators */}
-                        <div className="mt-12 pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-3 gap-6 text-left">
-                            <div>
-                                <div className="text-2xl sm:text-3xl font-black text-[#FEDE59]">€42.8M</div>
-                                <div className="text-[11px] uppercase tracking-wider text-white/60 font-semibold">Lavori Monitorati</div>
+                        <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-white/15 grid grid-cols-3 divide-x divide-white/15 text-center lg:text-left lg:divide-x-0 lg:gap-8">
+                            <div className="px-2 sm:px-0">
+                                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-[#FEDE59] tracking-tight">€42.8M</div>
+                                <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-white/70 font-semibold mt-0.5 leading-tight">
+                                    Lavori Monitorati
+                                </div>
                             </div>
-                            <div>
-                                <div className="text-2xl sm:text-3xl font-black text-white">180+</div>
-                                <div className="text-[11px] uppercase tracking-wider text-white/60 font-semibold">Cantieri Gestiti</div>
+                            <div className="px-2 sm:px-0 lg:border-l lg:border-white/15 lg:pl-8">
+                                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">180+</div>
+                                <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-white/70 font-semibold mt-0.5 leading-tight">
+                                    Cantieri Gestiti
+                                </div>
                             </div>
-                            <div className="col-span-2 sm:col-span-1">
-                                <div className="text-2xl sm:text-3xl font-black text-emerald-400">100%</div>
-                                <div className="text-[11px] uppercase tracking-wider text-white/60 font-semibold">Cloud & Mobile Ready</div>
+                            <div className="px-2 sm:px-0 lg:border-l lg:border-white/15 lg:pl-8">
+                                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-emerald-400 tracking-tight">100%</div>
+                                <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-white/70 font-semibold mt-0.5 leading-tight">
+                                    Cloud & Mobile
+                                </div>
                             </div>
                         </div>
 
