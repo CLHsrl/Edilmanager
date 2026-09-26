@@ -486,18 +486,16 @@ export default function PublicHomePage() {
             </section>
 
             {/* ─── 4. CONFRONTO: EXCEL VS EDILMANAGER24 ─── */}
-            <section id="confronto" className="py-24 bg-slate-900 text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-[#FEDE59]/5 pointer-events-none" />
-
+            <section id="confronto" className="py-24 bg-[#003F61] text-white relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center max-w-2xl mx-auto mb-16">
-                        <div className="inline-flex items-center gap-2 bg-[#FEDE59]/20 text-[#FEDE59] text-[10px] font-black uppercase tracking-widest px-3 py-1 mb-3">
+                        <div className="inline-flex items-center gap-2 bg-white/10 text-[#FEDE59] text-[10px] font-black uppercase tracking-widest px-3 py-1 mb-3 border border-[#FEDE59]/30">
                             Il Salto di Qualità
                         </div>
-                        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
                             Metodo Tradizionale vs EDILMANAGER24
                         </h2>
-                        <p className="text-white/70 text-sm mt-3">
+                        <p className="text-white/80 text-sm mt-3">
                             Scopri perché decine di impresari hanno abbandonato i fogli di calcolo per una piattaforma centralizzata.
                         </p>
                     </div>
@@ -505,12 +503,12 @@ export default function PublicHomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                         
                         {/* Vecchio Metodo */}
-                        <div className="bg-white/5 border border-red-500/30 p-8 space-y-6">
-                            <div className="flex items-center gap-3 text-red-400 font-bold uppercase tracking-wider text-xs border-b border-red-500/20 pb-4">
-                                <XIcon size={18} />
+                        <div className="bg-[#002e48] border border-white/15 p-8 space-y-6 shadow-sm">
+                            <div className="flex items-center gap-3 text-red-300 font-bold uppercase tracking-wider text-xs border-b border-white/10 pb-4">
+                                <XIcon size={18} className="text-red-400" />
                                 <span>Metodo Tradizionale (Excel + WhatsApp)</span>
                             </div>
-                            <ul className="space-y-4 text-xs text-white/70">
+                            <ul className="space-y-4 text-xs text-white/75">
                                 <li className="flex items-start gap-3">
                                     <span className="text-red-400 font-bold shrink-0">✕</span>
                                     <span>Fogli Excel duplicati e non allineati tra ufficio e cantiere.</span>
@@ -531,29 +529,26 @@ export default function PublicHomePage() {
                         </div>
 
                         {/* Nuovo Metodo */}
-                        <div className="bg-[#003F61] border-2 border-[#FEDE59] p-8 space-y-6 shadow-2xl relative">
-                            <div className="absolute top-0 right-0 bg-[#FEDE59] text-[#003F61] text-[9px] font-black uppercase px-2.5 py-0.5 tracking-wider">
-                                Consigliato
-                            </div>
+                        <div className="bg-[#00283e] border border-[#FEDE59]/40 p-8 space-y-6 shadow-lg">
                             <div className="flex items-center gap-3 text-[#FEDE59] font-black uppercase tracking-wider text-xs border-b border-white/10 pb-4">
-                                <Check size={18} />
+                                <Check size={18} className="text-[#FEDE59]" />
                                 <span>Con EDILMANAGER24</span>
                             </div>
-                            <ul className="space-y-4 text-xs text-white/90">
+                            <ul className="space-y-4 text-xs text-white/95">
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                                    <span className="text-[#FEDE59] font-bold shrink-0">✓</span>
                                     <span>Unica base dati cloud aggiornata in tempo reale da smartphone e PC.</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                                    <span className="text-[#FEDE59] font-bold shrink-0">✓</span>
                                     <span>Calcolo automatico del margine lordo e avanzamento SAL istantaneo.</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                                    <span className="text-[#FEDE59] font-bold shrink-0">✓</span>
                                     <span>Archivio fotografico geolocalizzato diviso per cantiere e giorno.</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                                    <span className="text-[#FEDE59] font-bold shrink-0">✓</span>
                                     <span>Pianificazione tesoreria a 90 giorni per anticipare i fabbisogni di cassa.</span>
                                 </li>
                             </ul>
